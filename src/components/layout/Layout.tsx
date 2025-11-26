@@ -9,7 +9,7 @@ import HeaderTwo from "./header/HeaderTwo";
 // import HeaderThree from "./header/HeaderThree";
 // import HeaderFour from "./header/HeaderFour";
 // import HeaderFive from "./header/HeaderFive";
-import Footer from "./footer/Footer";
+// import Footer from "./footer/Footer";
 import FooterTwo from "./footer/FooterTwo";
 // import FooterThree from "./footer/FooterThree";
 // import FooterFour from "./footer/FooterFour";
@@ -224,7 +224,7 @@ const Layout = ({
           /> */}
         
         <main>{children}</main>
-        {footer === 1 && <Footer />}
+        {/* {footer === 1 && <Footer />} */}
         {footer === 2 && <FooterTwo />}
         {/* {footer === 3 && <FooterThree />}
         {footer === 4 && <FooterFour />}

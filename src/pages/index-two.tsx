@@ -8,7 +8,7 @@ import NextPageNull from "@/components/containers/home/NextPageNull";
 import HomeTwoPortfolio from "@/components/containers/home-two/HomeTwoPortfolio";
 import HomeTwoTestimonial from "@/components/containers/home-two/HomeTwoTestimonial";
 // import HomeTwoBlog from "@/components/containers/home-two/HomeTwoBlog";
-import HomeTwoCta from "@/components/containers/home-two/HomeTwoCta";
+// import HomeTwoCta from "@/components/containers/home-two/HomeTwoCta";
 
 const HomeTwo = () => {
   return (
@@ -20,7 +20,7 @@ const HomeTwo = () => {
       <HomeTwoPortfolio />
       <HomeTwoTestimonial />
       {/* <HomeTwoBlog /> */}
-      <HomeTwoCta />
+      {/* <HomeTwoCta /> */}
       <NextPageNull />
     </Layout>
   );

@@ -126,11 +126,11 @@ const FooterTwo = () => {
               <div className="section__content-cta">
                 <h2>
                   <Link
-                    href="mailto:info@gmail.com"
+                    href="mailto:kd@thysigma.com"
                     className="folks-text animated-text"
                     ref={animatedTextRef}
                   >
-                    info@gmail.com
+                    kd@thysigma.com
                     {animatedTextContent.split("").map((char, index) => (
                       <span
                         aria-hidden="true"
@@ -156,7 +156,7 @@ const FooterTwo = () => {
                   <i className="fa-brands fa-twitter"></i>
                   <span>Twitter</span>
                 </Link>
-                <Link href="https://www.pinterest.com/" target="_blank">
+                <Link href="https://www.linkedin.com/" target="_blank">
                   <i className="fa-brands fa-linkedin-in"></i>
                   <span>Linkedin</span>
                 </Link>

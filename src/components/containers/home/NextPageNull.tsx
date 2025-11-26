@@ -1,8 +1,8 @@
 import React from "react";
 import Link from "next/link";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay } from "swiper/modules";
-import "swiper/swiper-bundle.css";
+// import { Swiper, SwiperSlide } from "swiper/react";
+// import { Autoplay } from "swiper/modules";
+// import "swiper/swiper-bundle.css";
 
 const NextPageNull = () => {
   return (
@@ -19,7 +19,7 @@ const NextPageNull = () => {
           </div>
         </div>
       </div>
-      <div className="next__text-slider-w">
+      {/* <div className="next__text-slider-w">
         <Swiper
           slidesPerView="auto"
           spaceBetween={40}
@@ -156,7 +156,7 @@ const NextPageNull = () => {
             </div>
           </SwiperSlide>
         </Swiper>
-      </div>
+      </div> */}
       <div className="lines d-none d-lg-flex">
         <div className="line"></div>
         <div className="line"></div>

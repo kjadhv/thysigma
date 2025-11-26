@@ -62,24 +62,27 @@ const HeaderTwo = ({ openNav, handleNav, setOpenNav }: HeaderProps) => {
                   <div className="navbar__menu">
                     <ul>
                       <li className="navbar__item nav-fade">
-                        <Link href="/" style={{ paddingRight:"20px"}}>Home  </Link>
+                        <Link href="/" style={{ paddingRight:"20px"}}>HOME  </Link>
                       </li>
                       <li className="navbar__item nav-fade">
-                        <Link href="about-us">About Us</Link>
+                        <Link href="about-us">ABOUT US</Link>
                       </li>
-                      <li className="navbar__item navbar__item--has-children nav-fade">
+                      <li className="navbar__item nav-fade">
+                        <Link href="our-services" style={{ padding:"20px"}}>SERVICES</Link>
+                      </li>
+                      {/* <li className="navbar__item navbar__item--has-children nav-fade">
                         <button
                           aria-label="dropdown menu"
                           className="navbar__dropdown-label"
                         >
-                          Services
+                          SERVICES
                         </button>
-                        <ul className="navbar__sub-menu">
+                         <ul className="navbar__sub-menu">
                           <li>
-                            <Link href="our-services">Our Services</Link>
+                             <Link href="our-services">Our Services</Link>
                           </li>
-                        </ul>
-                      </li>
+                        </ul> 
+                      </li> */}
                       {/* <li className="navbar__item navbar__item--has-children nav-fade">
                         <button
                           aria-label="dropdown menu"

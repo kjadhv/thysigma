@@ -1,7 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import team from "public/images/team.jpg";
+import team from "public/images/wedo1.jpg";
 import star from "public/images/star.png";
 import dotlarge from "public/images/agency/dot-large.png";
 
@@ -12,7 +12,7 @@ const HomeTwoAward = () => {
         <div className="row gaper align-items-center">
           <div className="col-12 col-lg-6">
             <div className="team dir-rtl">
-              <Image src={team} alt="Image"  width={800}     // decrease size here
+              <Image src={team} alt="Image"  width={900}     // decrease size here
   height={550} className="unset fade-left" />
             </div>
           </div>

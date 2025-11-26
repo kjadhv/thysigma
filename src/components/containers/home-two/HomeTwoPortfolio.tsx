@@ -4,11 +4,12 @@ import Link from "next/link";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
 import "swiper/swiper-bundle.css";
-import one from "public/images/editing.jpg";
-import two from "public/images/stream.jpg";
-import three from "public/images/process.jpg";
-import four from "public/images/media.png";
-import five from "public/images/socialm.png";
+import one from "public/images/vpr.jpg";
+import two from "public/images/lives.jpg";
+import three from "public/images/eventm.jpg";
+import four from "public/images/mediat.jpg";
+import five from "public/images/sm.jpg";
+import six from "public/images/ve2.png";
 
 const HomeTwoPortfolio = () => {
   const [activeFilter, setActiveFilter] = useState("*");
@@ -256,7 +257,7 @@ const HomeTwoPortfolio = () => {
           >
             <div className="portfolio__single topy-tilt fade-top">
               <Link href="portfolio">
-                <Image src={one} alt="Image" />
+                <Image src={six} alt="Image" />
               </Link>
               <div className="portfolio__single-content">
                 <Link href="portfolio">
