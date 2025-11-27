@@ -4,23 +4,44 @@ import HomeTwoBanner from "@/components/layout/banner/HomeTwoBanner";
 import HomeTwoAward from "@/components/containers/home-two/HomeTwoAward";
 import HomeTwoOffer from "@/components/containers/home-two/HomeTwoOffer";
 import HomeTwoModal from "@/components/containers/home-two/HomeTwoModal";
-import NextPageNull from "@/components/containers/home/NextPageNull";
 import HomeTwoPortfolio from "@/components/containers/home-two/HomeTwoPortfolio";
 import HomeTwoTestimonial from "@/components/containers/home-two/HomeTwoTestimonial";
-// import HomeTwoBlog from "@/components/containers/home-two/HomeTwoBlog";
-// import HomeTwoCta from "@/components/containers/home-two/HomeTwoCta";
+import NextPageNull from "@/components/containers/home/NextPageNull";
+
+// ⬇️ this is your CONTACT US *MEDIA* swiper
+// import HomeTwoContactMedia from "@/components/containers/ContactMain";
+ // 👆 use YOUR REAL FILE NAME here
 
 const HomeTwo = () => {
   return (
     <Layout header={2} footer={2} video={true}>
-  <HomeTwoBanner />
+      <HomeTwoBanner />
+
+      {/* ✅ BLACK – NO PARALLAX */}
       <HomeTwoAward />
-      <HomeTwoOffer />
-      <HomeTwoModal />
-      <HomeTwoPortfolio />
-      <HomeTwoTestimonial />
-      {/* <HomeTwoBlog /> */}
-      {/* <HomeTwoCta /> */}
+
+      {/* ========== PARALLAX ZONE START ========== */}
+      <section
+        className="services-parallax-wrapper"
+        style={{
+          position: "relative",
+          isolation: "isolate",
+          // zIndex: 1,
+        }}
+      >
+        {/* ✅ Background image */}
+        <HomeTwoModal />
+
+        {/* ✅ Parallax-covered sections ONLY */}
+        <HomeTwoOffer />
+        <HomeTwoPortfolio />
+        {/* <HomeTwoContactMedia />   ✅ media contact swiper */}
+      </section>
+      {/* ========== PARALLAX ZONE END ========== */}
+
+      {/* ❌ NO PARALLAX BELOW */}
+      {/* <HomeTwoPortfolio /> */}
+      <HomeTwoTestimonial />     {/* ✅ stays clean */}
       <NextPageNull />
     </Layout>
   );

@@ -12,29 +12,29 @@ import avatar from "public/images/testimonial/avatar.jpg";
 gsap.registerPlugin(ScrollTrigger);
 const HomeTwoTestimonial = () => {
   useEffect(() => {
-    const device_width = window.innerWidth;
+    // const device_width = window.innerWidth;
 
-    if (
-      document.querySelectorAll(".testimonial-g-con").length > 0 &&
-      device_width > 576
-    ) {
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: ".testimonial-two",
-          start: "center center",
-          end: "+=100%",
-          scrub: true,
-          pin: false,
-        },
-      });
+    // if (
+    //   document.querySelectorAll(".testimonial-g-con").length > 0 &&
+    //   device_width > 576
+    // ) {
+    //   const tl = gsap.timeline({
+    //     scrollTrigger: {
+    //       trigger: ".testimonial-two",
+    //       start: "center center",
+    //       end: "+=100%",
+    //       scrub: true,
+    //       pin: false,
+    //     },
+    //   });
 
-      tl.to(".testimonial-g-con", {
-        opacity: 0,
-        scale: 1,
-        y: "-100%",
-        duration: 1,
-      });
-    }
+    //   tl.to(".testimonial-g-con", {
+    //     opacity: 0,
+    //     scale: 1,
+    //     y: "-100%",
+    //     duration: 1,
+    //   });
+    // }
   }, []);
   return (
     <section className="section testimonial-two">

@@ -7,13 +7,18 @@ import dotlarge from "public/images/agency/dot-large.png";
 
 const HomeTwoAward = () => {
   return (
-    <section className="section award">
+    <section className="section award" style={{ background: "#000" }}>
       <div className="container">
         <div className="row gaper align-items-center">
           <div className="col-12 col-lg-6">
             <div className="team dir-rtl">
-              <Image src={team} alt="Image"  width={900}     // decrease size here
-  height={550} className="unset fade-left" />
+              <Image 
+                src={team} 
+                alt="Image" 
+                width={900}
+                height={550} 
+                className="unset fade-left" 
+              />
             </div>
           </div>
           <div className="col-12 col-lg-6 col-xxl-5 offset-xxl-1">

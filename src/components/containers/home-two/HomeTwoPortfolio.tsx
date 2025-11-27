@@ -1,9 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 import Image from "next/image";
-import Link from "next/link";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay } from "swiper/modules";
-import "swiper/swiper-bundle.css";
+
 import one from "public/images/vpr.jpg";
 import two from "public/images/lives.jpg";
 import three from "public/images/eventm.jpg";
@@ -12,265 +9,168 @@ import five from "public/images/sm.jpg";
 import six from "public/images/ve2.png";
 
 const HomeTwoPortfolio = () => {
-  const [activeFilter, setActiveFilter] = useState("*");
-
-  const handleTabClick = (filter: any) => {
-    setActiveFilter(filter);
-  };
   return (
-    <section className="section portfolio portfolio-two portfolio-filter fade-wrapper">
-      <div className="portfolio__text-slider-w">
-        <Swiper
-          slidesPerView="auto"
-          spaceBetween={40}
-          speed={5000}
-          loop={true}
-          centeredSlides={true}
-          modules={[Autoplay]}
-          autoplay={{
-            delay: 1,
-            disableOnInteraction: false,
-            pauseOnMouseEnter: true,
-            reverseDirection: false,
-          }}
-          className="portfolio__text-slider"
-        >
-          <SwiperSlide>
-            <div className="portfolio__text-slider-single">
-              <h2 className="h1">
-                <Link href="portfolio">
-                  Media Service
-                  <i className="fa-sharp fa-solid fa-arrow-down-right"></i>
-                </Link>
-              </h2>
-            </div>
-          </SwiperSlide>
-          <SwiperSlide>
-            <div className="portfolio__text-slider-single">
-              <h2 className="h1 str">
-                <Link href="portfolio">
-                  Contact Us
-                  <i className="fa-sharp fa-solid fa-arrow-down-right"></i>
-                </Link>
-              </h2>
-            </div>
-          </SwiperSlide>
-          <SwiperSlide>
-            <div className="portfolio__text-slider-single">
-              <h2 className="h1">
-                <Link href="portfolio">
-                  Media Service
-                  <i className="fa-sharp fa-solid fa-arrow-down-right"></i>
-                </Link>
-              </h2>
-            </div>
-          </SwiperSlide>
-          <SwiperSlide>
-            <div className="portfolio__text-slider-single">
-              <h2 className="h1 str">
-                <Link href="portfolio">
-                  Contact Us
-                  <i className="fa-sharp fa-solid fa-arrow-down-right"></i>
-                </Link>
-              </h2>
-            </div>
-          </SwiperSlide>
-          <SwiperSlide>
-            <div className="portfolio__text-slider-single">
-              <h2 className="h1">
-                <Link href="portfolio">
-                  Media Service
-                  <i className="fa-sharp fa-solid fa-arrow-down-right"></i>
-                </Link>
-              </h2>
-            </div>
-          </SwiperSlide>
-          <SwiperSlide>
-            <div className="portfolio__text-slider-single">
-              <h2 className="h1 str">
-                <Link href="portfolio">
-                  Contact Us
-                  <i className="fa-sharp fa-solid fa-arrow-down-right"></i>
-                </Link>
-              </h2>
-            </div>
-          </SwiperSlide>
-          <SwiperSlide>
-            <div className="portfolio__text-slider-single">
-              <h2 className="h1">
-                <Link href="portfolio">
-                  Media Service
-                  <i className="fa-sharp fa-solid fa-arrow-down-right"></i>
-                </Link>
-              </h2>
-            </div>
-          </SwiperSlide>
-        </Swiper>
-      </div>
+    <section className="section portfolio portfolio-two force-normal isolate">
       <div className="container">
-        <div className="row justify-content-center">
-          <div className="col-12 col-lg-6 col-xl-4 text-center">
-            <div className="portfolio-two__filter-btn section__header g-ind">
-              <button
-                aria-label="Filter Portfolio"
-                className={activeFilter === "*" ? "active" : ""}
-                onClick={() => handleTabClick("*")}
-              >
-                <span>01</span>
-                Discover
-              </button>
-              <button
-                aria-label="Filter Portfolio"
-                className={activeFilter === ".design" ? "active" : ""}
-                onClick={() => handleTabClick(".design")}
-              >
-                <span>02</span>
-                Design
-              </button>
-              <button
-                aria-label="Filter Portfolio"
-                className={activeFilter === ".development" ? "active" : ""}
-                onClick={() => handleTabClick(".development")}
-              >
-                <span>03</span>
-                Development
-              </button>
-              <button
-                aria-label="Filter Portfolio"
-                className={activeFilter === ".technology" ? "active" : ""}
-                onClick={() => handleTabClick(".technology")}
-              >
-                <span>04</span>
-                Deliver
-              </button>
-            </div>
-          </div>
-        </div>
-        <div className="row masonry-grid">
-          <div
-            className={`col-12 col-md-6 col-xl-4 filter-item-space grid-item-main technology ${
-              activeFilter === ".technology" || activeFilter === "*"
-                ? ""
-                : "hidden"
-            }`}
-          >
-            <div className="portfolio__single portfolio__single-active topy-tilt fade-top">
-              <Link href="portfolio">
-                <Image src={one} alt="Image" />
-              </Link>
-              <div className="portfolio__single-content">
-                <Link href="portfolio">
-                  <i className="fa-sharp fa-solid fa-arrow-up-right"></i>
-                </Link>
-                <h4>
-                  <Link href="portfolio">Video Production</Link>
-                </h4>
+        <div className="row">
+
+          {/* LEFT */}
+          <div className="col-12">
+            <div className="item-row left">
+              <Image src={one} alt="Video Production" width={400} height={400} />
+              <div className="text-wrap">
+                <p className="side-text">Video Production</p>
+                <p className="side-desc">
+                  We create high-quality videos that tell your story with impact.
+                </p>
               </div>
             </div>
           </div>
-          <div
-            className={`col-12 col-md-6 col-xl-4 filter-item-space grid-item-main design ${
-              activeFilter === ".design" || activeFilter === "*" ? "" : "hidden"
-            }`}
-          >
-            <div className="portfolio__single topy-tilt fade-top">
-              <Link href="portfolio">
-                <Image src={two} alt="Image" />
-              </Link>
-              <div className="portfolio__single-content">
-                <Link href="portfolio">
-                  <i className="fa-sharp fa-solid fa-arrow-up-right"></i>
-                </Link>
-                <h4>
-                  <Link href="portfolio">Live Streaming</Link>
-                </h4>
+
+          {/* RIGHT */}
+          <div className="col-12">
+            <div className="item-row right">
+              <div className="text-wrap">
+                <p className="side-text">Live Streaming</p>
+                <p className="side-desc">
+                  We deliver seamless live streaming experiences for any audience.
+                </p>
+              </div>
+              <Image src={two} alt="Live Streaming" width={400} height={400} />
+            </div>
+          </div>
+
+          {/* LEFT */}
+          <div className="col-12">
+            <div className="item-row left">
+              <Image src={three} alt="Event Management" width={400} height={400} />
+              <div className="text-wrap">
+                <p className="side-text">Event Management</p>
+                <p className="side-desc">
+                  We plan and execute events with precision and creativity.
+                </p>
               </div>
             </div>
           </div>
-          <div
-            className={`col-12 col-md-6 col-xl-4 filter-item-space grid-item-main development ${
-              activeFilter === ".development" || activeFilter === "*"
-                ? ""
-                : "hidden"
-            }`}
-          >
-            <div className="portfolio__single topy-tilt fade-top">
-              <Link href="portfolio">
-                <Image src={three} alt="Image" />
-              </Link>
-              <div className="portfolio__single-content">
-                <Link href="portfolio">
-                  <i className="fa-sharp fa-solid fa-arrow-up-right"></i>
-                </Link>
-                <h4>
-                  <Link href="portfolio">Event Management</Link>
-                </h4>
+
+          {/* RIGHT */}
+          <div className="col-12">
+            <div className="item-row right">
+              <div className="text-wrap">
+                <p className="side-text">Media Technologies</p>
+                <p className="side-desc">
+                  We use advanced media technologies to enhance digital experiences.
+                </p>
+              </div>
+              <Image src={four} alt="Media Technologies" width={400} height={400} />
+            </div>
+          </div>
+
+          {/* LEFT */}
+          <div className="col-12">
+            <div className="item-row left">
+              <Image src={five} alt="Social Media" width={400} height={400} />
+              <div className="text-wrap">
+                <p className="side-text">Social Media</p>
+                <p className="side-desc">
+                  We grow your brand through engaging and strategic social media.
+                </p>
               </div>
             </div>
           </div>
-          <div
-            className={`col-12 col-md-6 col-xl-4 filter-item-space grid-item-main technology ${
-              activeFilter === ".technology" || activeFilter === "*"
-                ? ""
-                : "hidden"
-            }`}
-          >
-            <div className="portfolio__single topy-tilt fade-top">
-              <Link href="portfolio">
-                <Image src={four} alt="Image" />
-              </Link>
-              <div className="portfolio__single-content">
-                <Link href="portfolio">
-                  <i className="fa-sharp fa-solid fa-arrow-up-right"></i>
-                </Link>
-                <h4>
-                  <Link href="portfolio">Media Technologies</Link>
-                </h4>
+
+          {/* RIGHT */}
+          <div className="col-12">
+            <div className="item-row right">
+              <div className="text-wrap">
+                <p className="side-text">Video Editing</p>
+                <p className="side-desc">
+                  We craft polished edits that bring your visuals to life.
+                </p>
               </div>
+              <Image src={six} alt="Video Editing" width={400} height={400} />
             </div>
           </div>
-          <div
-            className={`col-12 col-md-6 col-xl-4 filter-item-space grid-item-main design ${
-              activeFilter === ".design" || activeFilter === "*" ? "" : "hidden"
-            }`}
-          >
-            <div className="portfolio__single topy-tilt fade-top">
-              <Link href="portfolio">
-                <Image src={five} alt="Image" />
-              </Link>
-              <div className="portfolio__single-content">
-                <Link href="portfolio">
-                  <i className="fa-sharp fa-solid fa-arrow-up-right"></i>
-                </Link>
-                <h4>
-                  <Link href="portfolio">Social Media</Link>
-                </h4>
-              </div>
-            </div>
-          </div>
-          <div
-            className={`col-12 col-md-6 col-xl-4 filter-item-space grid-item-main development ${
-              activeFilter === ".development" || activeFilter === "*"
-                ? ""
-                : "hidden"
-            }`}
-          >
-            <div className="portfolio__single topy-tilt fade-top">
-              <Link href="portfolio">
-                <Image src={six} alt="Image" />
-              </Link>
-              <div className="portfolio__single-content">
-                <Link href="portfolio">
-                  <i className="fa-sharp fa-solid fa-arrow-up-right"></i>
-                </Link>
-                <h4>
-                  <Link href="portfolio">Video Editing</Link>
-                </h4>
-              </div>
-            </div>
-          </div>
+
         </div>
       </div>
+
+      {/* ✅ FINAL MOBILE ORDER + SAFETY STYLES */}
+      <style jsx global>{`
+        .isolate {
+          isolation: isolate;
+          position: relative;
+          z-index: 1;
+        }
+
+        .force-normal,
+        .force-normal * {
+          animation: none !important;
+          transform: none !important;
+          transition: none !important;
+        }
+
+        .force-normal img {
+          opacity: 1 !important;
+          filter: brightness(1) contrast(1) saturate(1) !important;
+          mix-blend-mode: normal !important;
+          position: relative;
+          z-index: 2;
+        }
+
+        .text-wrap {
+          position: relative;
+          z-index: 3;
+          max-width: 380px;
+        }
+
+        .side-text {
+          color: #ffffff;
+          font-size: 28px;
+          font-weight: 500;
+          margin-bottom: 6px;
+          white-space: nowrap;
+        }
+
+        .side-desc {
+          color: #dcdcdc;
+          font-size: 20px;
+          line-height: 1.5;
+        }
+
+        .item-row {
+          display: flex;
+          align-items: center;
+          gap: 500px;
+          margin-bottom: 160px;
+        }
+
+        .item-row.left {
+          justify-content: flex-start;
+        }
+
+        .item-row.right {
+          justify-content: flex-end;
+        }
+
+        /* ✅ MOBILE FIX — IMAGE FIRST, TEXT BELOW */
+        @media (max-width: 1024px) {
+          .item-row {
+            flex-direction: column;
+            gap: 20px;
+            text-align: center;
+          }
+
+          .item-row img {
+            order: 1;
+          }
+
+          .text-wrap {
+            order: 2;
+            max-width: 100%;
+          }
+        }
+      `}</style>
     </section>
   );
 };
