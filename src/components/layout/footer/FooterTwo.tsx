@@ -106,7 +106,14 @@ const FooterTwo = () => {
   }, []);
 
   return (
-    <footer className="footer-two section pb-0">
+    <footer 
+      className="footer-two section pb-0" 
+      style={{
+        background: "#000",
+        position: "relative",
+        zIndex: 10,
+      }}
+    >
       <div className="container">
         <div className="row gaper">
           <div className="col-12 col-lg-5 col-xl-4">
@@ -148,26 +155,10 @@ const FooterTwo = () => {
           <div className="col-12 col-lg-7 col-xl-7 offset-xl-1 col-xxl-5 offset-xxl-3">
             <div className="footer-two__right">
               <div className="social justify-content-start justify-content-lg-start">
-                <Link href="https://www.facebook.com/" target="_blank">
-                  <i className="fa-brands fa-facebook-f"></i>
-                  <span>Facebook</span>
-                </Link>
-                <Link href="https://www.twitter.com/" target="_blank">
-                  <i className="fa-brands fa-twitter"></i>
-                  <span>Twitter</span>
-                </Link>
                 <Link href="https://www.linkedin.com/" target="_blank">
                   <i className="fa-brands fa-linkedin-in"></i>
                   <span>Linkedin</span>
                 </Link>
-                <Link href="https://www.instagram.com/" target="_blank">
-                  <i className="fa-brands fa-instagram"></i>
-                  <span>Instagram</span>
-                </Link>
-                {/* <Link href="https://www.dribble.com/" target="_blank">
-                  <i className="fa-light fa-basketball"></i>
-                  <span>Dribble</span>
-                </Link> */}
               </div>
               <div className="footer__single-meta section__content-cta">
                 <Link
@@ -220,7 +211,6 @@ const FooterTwo = () => {
                 <li>
                   <Link href="our-services">Services</Link>
                 </li>
-                {/* Blog link removed */}
                 <li>
                   <Link href="contact-us">Contact</Link>
                 </li>

@@ -95,7 +95,7 @@ const HomeTwoPortfolio = () => {
         </div>
       </div>
 
-      {/* ✅ FINAL MOBILE ORDER + SAFETY STYLES */}
+      {/* ✅ FINAL STYLES (TRUE SINGLE LINE) */}
       <style jsx global>{`
         .isolate {
           isolation: isolate;
@@ -118,30 +118,36 @@ const HomeTwoPortfolio = () => {
           z-index: 2;
         }
 
+        /* ✅ REMOVE WIDTH LIMIT */
         .text-wrap {
           position: relative;
           z-index: 3;
-          max-width: 380px;
+          max-width: none; /* ✅ KEY FIX */
+        }
+
+        /* ✅ FORCE SINGLE LINE */
+        .side-text,
+        .side-desc {
+          white-space: nowrap;
         }
 
         .side-text {
           color: #ffffff;
-          font-size: 28px;
-          font-weight: 500;
+          font-size: 35px;
+          font-weight: 600;
           margin-bottom: 6px;
-          white-space: nowrap;
         }
 
         .side-desc {
           color: #dcdcdc;
-          font-size: 20px;
-          line-height: 1.5;
+          font-size: 30px;
         }
 
+        /* ✅ SMART GAP */
         .item-row {
           display: flex;
           align-items: center;
-          gap: 500px;
+          gap: clamp(80px, 20vw, 100px); /* ✅ responsive */
           margin-bottom: 160px;
         }
 
@@ -153,11 +159,11 @@ const HomeTwoPortfolio = () => {
           justify-content: flex-end;
         }
 
-        /* ✅ MOBILE FIX — IMAGE FIRST, TEXT BELOW */
+        /* ✅ MOBILE + iPAD: STACK & ALLOW WRAP */
         @media (max-width: 1024px) {
           .item-row {
             flex-direction: column;
-            gap: 20px;
+            gap: 24px;
             text-align: center;
           }
 
@@ -168,6 +174,19 @@ const HomeTwoPortfolio = () => {
           .text-wrap {
             order: 2;
             max-width: 100%;
+          }
+
+          .side-text,
+          .side-desc {
+            white-space: normal; /* ✅ allow wrap */
+          }
+
+          .side-text {
+            font-size: 26px;
+          }
+
+          .side-desc {
+            font-size: 18px;
           }
         }
       `}</style>
