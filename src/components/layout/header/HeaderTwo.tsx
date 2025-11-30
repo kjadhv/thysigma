@@ -52,7 +52,15 @@ const HeaderTwo = ({ openNav, handleNav, setOpenNav }: HeaderProps) => {
           <div className="container">
             <div className="row">
               <div className="col-12">
-                <nav className="navbar p-0">
+                <nav
+  className="navbar p-0"
+  style={{
+    minHeight: "90px",
+    display: "flex",
+    alignItems: "center",
+  }}
+>
+
                   <div className="navbar__logo">
                     <Link href="/" aria-label="go to home">
                       <Image src={logoSrc} priority alt="Image"  width={160}       // reduce size here
@@ -69,6 +77,12 @@ const HeaderTwo = ({ openNav, handleNav, setOpenNav }: HeaderProps) => {
                       </li>
                       <li className="navbar__item nav-fade">
                         <Link href="our-services" style={{ padding:"20px"}}>SERVICES</Link>
+                      </li>
+                      <li className="navbar__item nav-fade">
+                        <Link href="portfolio" style={{ paddingRight:"20px"}}>PORTFOLIO</Link>
+                      </li>
+                      <li className="navbar__item nav-fade">
+                        <Link href="faq">FAQ</Link>
                       </li>
                       {/* <li className="navbar__item navbar__item--has-children nav-fade">
                         <button
@@ -99,7 +113,7 @@ const HeaderTwo = ({ openNav, handleNav, setOpenNav }: HeaderProps) => {
                           </li>
                         </ul>
                       </li> */}
-                      <li className="navbar__item navbar__item--has-children nav-fade">
+                      {/* <li className="navbar__item navbar__item--has-children nav-fade">
                         <button
                           aria-label="dropdown menu"
                           className="navbar__dropdown-label"
@@ -109,26 +123,26 @@ const HeaderTwo = ({ openNav, handleNav, setOpenNav }: HeaderProps) => {
                         <ul className="navbar__sub-menu">
                           <li>
                             <Link href="faq">FAQ</Link>
-                          </li>
+                          </li> */}
                           {/* <li>
                             <Link href="404">Error</Link>
                           </li> */}
-                          <li>
+                          {/* <li>
                             <Link href="our-story">Our Story</Link>
-                          </li>
-                          <li>
+                          </li> */}
+                          {/* <li>
                             <Link href="portfolio">Portfolio</Link>
-                          </li>
-                          <li>
+                          </li> */}
+                          {/* <li>
                             <Link href="client-feedback">Testimonials</Link>
-                          </li>
-                          <li>
+                          </li> */}
+                          {/* <li>
                             <Link href="contact-us">Contact Us</Link>
-                          </li>
+                          </li> */}
                         </ul>
-                      </li>
+                      {/* </li> */}
                       {/* Blog removed per project requirement */}
-                    </ul>
+                    {/* </ul> */}
                   </div>
                   <div className="navbar__options">
                     <div className="navbar__mobile-options d-none d-sm-flex">

@@ -17,8 +17,8 @@ const OurAchievement = () => {
           <div className="col-12 col-lg-8">
             <div className="section__header text-center">
               <span className="sub-title">
-                Achievements
-                <i className="fa-solid fa-arrow-right"></i>
+                We Provide
+                {/* <i className="fa-solid fa-arrow-right"></i> */}
               </span>
               <h2 className="title title-anim">Achievements</h2>
             </div>
