@@ -7,7 +7,7 @@ import HomeTwoModal from "@/components/containers/home-two/HomeTwoModal";
 import HomeTwoPortfolio from "@/components/containers/home-two/HomeTwoPortfolio";
 import HomeSponsor from "@/components/containers/home/HomeSponsor";
 // import HomeTwoTestimonial from "@/components/containers/home-two/HomeTwoTestimonial";
-import NextPageNull from "@/components/containers/home/NextPageNull";
+// import NextPageNull from "@/components/containers/home/NextPageNull";
 import ContactMain from "@/components/containers/ContactMain";
 
 // ⬇️ this is your CONTACT US *MEDIA* swiper
@@ -45,7 +45,7 @@ const HomeTwo = () => {
       {/* <HomeTwoPortfolio /> */}
       <HomeSponsor />
       {/* <HomeTwoTestimonial />     ✅ stays clean */}
-      <NextPageNull />
+      {/* <NextPageNull /> */}
       <ContactMain />
     </Layout>
   );
