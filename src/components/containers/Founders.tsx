@@ -1,8 +1,8 @@
 import React from "react";
 import Image from "next/image";
 
-import founder1 from "public/images/kdsir.jpeg";
-import founder2 from "public/images/ymam.jpeg";
+import founder1 from "public/images/sir.png";
+import founder2 from "public/images/mam.png";
 
 const founders = [
   {
@@ -60,7 +60,7 @@ const founders = [
 
 const Founders = () => {
   return (
-    <section style={{ padding: "80px 0", background: "#2b2a2a" }}>
+    <section style={{ padding: "80px 0", background: "transparent" }}>
       <div className="container" style={{ maxWidth: "1400px" }}>
 
         {founders.map((founder, index) => {

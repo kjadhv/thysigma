@@ -3,8 +3,8 @@ import Link from "next/link";
 import Image from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
-import thumbone from "public/images/media.png";
-import thumbtwo from "public/images/like.png";
+import thumbone from "public/images/arrows.png";
+import thumbtwo from "public/images/ooo.png";
 import star from "public/images/star.png";
 import dotlarge from "public/images/agency/dot-large.png";
 
@@ -74,7 +74,12 @@ const Agency = () => {
   }, []);
 
   return (
-    <section className="section agency">
+    <section className="section agency about-trigger"
+     style={{
+    background: "transparent",
+    position: "relative",
+    zIndex: 2,
+  }}>
       <div className="container">
         <div className="row gaper align-items-center">
           <div className="col-12 col-lg-6">
