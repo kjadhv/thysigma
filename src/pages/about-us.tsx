@@ -4,6 +4,8 @@ import CmnBanner from "@/components/layout/banner/CmnBanner";
 import HomeTwoModal from "@/components/containers/home-two/HomeTwoModal";
 import Agency from "@/components/containers/home/Agency";
 import OurMission from "@/components/containers/OurMission";
+import StatsCounter from "@/components/containers/StatsCounter";
+import Founders from "@/components/containers/Founders";
 import HomeTestimonial from "@/components/containers/home/HomeTestimonial";
 import OurAchievement from "@/components/containers/OurAchievement";
 // import AboutSponsor from "@/components/containers/home-three/AboutSponsor";
@@ -17,6 +19,8 @@ const AboutUs = () => {
       <HomeTwoModal />
       <Agency />
       <OurMission />
+      <StatsCounter />
+      <Founders />
       <HomeTestimonial />
       <OurAchievement />
       {/* <AboutSponsor /> */}

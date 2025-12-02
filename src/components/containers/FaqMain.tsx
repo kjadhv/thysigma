@@ -33,7 +33,7 @@ const FaqMain = () => {
                     aria-expanded="true"
                     aria-controls="collapseOne"
                   >
-                    I&apos;m a total beginner. Can I still follow along?
+                    What is the cost of professional event livestreaming services in India?
                   </button>
                 </h5>
                 <div
@@ -46,10 +46,7 @@ const FaqMain = () => {
                 >
                   <div className="accordion-body">
                     <p>
-                      We have facility to produce advance work various
-                      industrial applications based on specially developed
-                      technol-ogy. We are also ready to developement by
-                      according to users changing needs. Infrastructure.
+                      Thy Sigma provides broadcast-quality livestreaming services starting from ₹1,00,000, depending on the event size, number of cameras, and technical setup. Our pricing includes multi-camera production, audio management, backup streaming, and real-time monitoring.
                     </p>
                   </div>
                 </div>
@@ -72,7 +69,7 @@ const FaqMain = () => {
                     aria-expanded="false"
                     aria-controls="collapseTwo"
                   >
-                    Will you be updating the program?
+                    Do you offer corporate event videography and photography packages?
                   </button>
                 </h5>
                 <div
@@ -85,10 +82,8 @@ const FaqMain = () => {
                 >
                   <div className="accordion-body">
                     <p>
-                      We have facility to produce advance work various
-                      industrial applications based on specially developed
-                      technol-ogy. We are also ready to developement by
-                      according to users changing needs. Infrastructure.
+Yes. We provide corporate event photography and videography packages that include coverage, editing, highlight reels, and social media content. Our team handles conferences, expos, award shows, product launches, and hybrid events.
+
                     </p>
                   </div>
                 </div>
@@ -111,7 +106,7 @@ const FaqMain = () => {
                     aria-expanded="false"
                     aria-controls="collapseThree"
                   >
-                    Can I get an invoice for my purchase?
+                   Which events do you provide livestreaming services for?
                   </button>
                 </h5>
                 <div
@@ -124,10 +119,7 @@ const FaqMain = () => {
                 >
                   <div className="accordion-body">
                     <p>
-                      We have facility to produce advance work various
-                      industrial applications based on specially developed
-                      technol-ogy. We are also ready to developement by
-                      according to users changing needs. Infrastructure.
+                     We offer livestreaming for corporate events, award shows, expos, weddings, government events, educational fairs, seminars, webinars, and trade exhibitions. We support streaming on YouTube, Facebook, Zoom, Google Meet, Teams, and private RTMP servers.
                     </p>
                   </div>
                 </div>
@@ -150,7 +142,7 @@ const FaqMain = () => {
                     aria-expanded="false"
                     aria-controls="collapseFour"
                   >
-                    What is global search engine optimization?
+                   Do you provide drone videography for events?
                   </button>
                 </h5>
                 <div
@@ -163,10 +155,7 @@ const FaqMain = () => {
                 >
                   <div className="accordion-body">
                     <p>
-                      We have facility to produce advance work various
-                      industrial applications based on specially developed
-                      technol-ogy. We are also ready to developement by
-                      according to users changing needs. Infrastructure.
+                     Yes. Thy Sigma provides drone videography and aerial photography services, subject to venue permissions. Drone footage adds a cinematic value to weddings, outdoor events, expos, and public gatherings.
                     </p>
                   </div>
                 </div>

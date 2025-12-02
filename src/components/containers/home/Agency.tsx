@@ -95,17 +95,16 @@ const Agency = () => {
           </div>
           <div className="col-12 col-lg-6">
             <div className="agency__content section__content">
-              <span className="sub-title">
+              {/* <span className="sub-title">
                 WELCOME
                 <i className="fa-solid fa-arrow-right"></i>
-              </span>
+              </span> */}
               <h2 className="title title-anim">
-                We provide <span>Media Services</span>
+                Who <span>We Are</span>
               </h2>
               <div className="paragraph">
                 <p>
-                  BRING TO EMPOWER BRANDS, CREATORS, AND EVENTS WITH IMPACTFUL VISUAL STORYTELLING -- BLENDING CREATIVITY, TECHNOLOGY, AND STRATEGY TO PRODUCE WORLD-CLASS MEDIA EXPERIENCE THAT ENGAGE, INSPIRE, AND DELIVER RESULTS.
-                </p>
+                 We are a collective pf passionate individuals who have hone their skills for years, and studied the market to deliver what works best.  </p>
               </div>
               <div className="skill-wrap">
                 <div className="skill-bar-single d-none">

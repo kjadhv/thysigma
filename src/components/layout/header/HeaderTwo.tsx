@@ -3,7 +3,6 @@ import Link from "next/link";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import logo from "public/images/logo.png";
-// import logoLight from "public/images/logo-light.png";
 import Offcanvas from "./Offcanvas";
 
 interface HeaderProps {
@@ -14,156 +13,122 @@ interface HeaderProps {
 
 const HeaderTwo = ({ openNav, handleNav, setOpenNav }: HeaderProps) => {
   const [scrolled, setScrolled] = useState(false);
+  const router = useRouter();
 
   useEffect(() => {
     const handleScroll = () => {
-      const scrollPosition = window.scrollY;
-      if (scrollPosition > 50) {
-        setScrolled(true);
-      } else {
-        setScrolled(false);
-      }
+      setScrolled(window.scrollY > 50);
     };
 
     window.addEventListener("scroll", handleScroll);
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const defaultClasses = "primary-navbar cmn-nav";
+  const navItems = [
+    { label: "HOME", href: "/" },
+    { label: "ABOUT US", href: "/about-us" },
+    { label: "SERVICES", href: "/our-services" },
+    { label: "PORTFOLIO", href: "/portfolio" },
+    { label: "FAQ", href: "/faq" },
+  ];
 
-  const combinedClasses = `${
-    scrolled ? " navbar-active" : " "
-  } ${defaultClasses}`;
-
-  let logoSrc = logo;
-
-  // const router = useRouter();
-  // if (router.pathname === "/index-two-light") {
-  //   logoSrc = logoLight;
-  // }
+  const isActive = (href: string) => router.pathname === href;
 
   return (
     <>
       <header className="header">
-        <div className={combinedClasses}>
+        <div className={`${scrolled ? "navbar-active" : ""} primary-navbar cmn-nav`}>
           <div className="container">
-            <div className="row">
-              <div className="col-12">
-                <nav
-  className="navbar p-0"
-  style={{
-    minHeight: "90px",
-    display: "flex",
-    alignItems: "center",
-  }}
->
-
-                  <div className="navbar__logo">
-                    <Link href="/" aria-label="go to home">
-                      <Image src={logoSrc} priority alt="Image"  width={160}       // reduce size here
-  height={40}  />
-                    </Link>
-                  </div>
-                  <div className="navbar__menu">
-                    <ul>
-                      <li className="navbar__item nav-fade">
-                        <Link href="/" style={{ paddingRight:"20px"}}>HOME  </Link>
-                      </li>
-                      <li className="navbar__item nav-fade">
-                        <Link href="about-us">ABOUT US</Link>
-                      </li>
-                      <li className="navbar__item nav-fade">
-                        <Link href="our-services" style={{ padding:"20px"}}>SERVICES</Link>
-                      </li>
-                      <li className="navbar__item nav-fade">
-                        <Link href="portfolio" style={{ paddingRight:"20px"}}>PORTFOLIO</Link>
-                      </li>
-                      <li className="navbar__item nav-fade">
-                        <Link href="faq">FAQ</Link>
-                      </li>
-                      {/* <li className="navbar__item navbar__item--has-children nav-fade">
-                        <button
-                          aria-label="dropdown menu"
-                          className="navbar__dropdown-label"
-                        >
-                          SERVICES
-                        </button>
-                         <ul className="navbar__sub-menu">
-                          <li>
-                             <Link href="our-services">Our Services</Link>
-                          </li>
-                        </ul> 
-                      </li> */}
-                      {/* <li className="navbar__item navbar__item--has-children nav-fade">
-                        <button
-                          aria-label="dropdown menu"
-                          className="navbar__dropdown-label"
-                        >
-                          Projects
-                        </button>
-                        <ul className="navbar__sub-menu">
-                          <li>
-                            <Link href="our-projects">Our Projects</Link>
-                          </li>
-                          <li>
-                            <Link href="project-single">Project Details</Link>
-                          </li>
-                        </ul>
-                      </li> */}
-                      {/* <li className="navbar__item navbar__item--has-children nav-fade">
-                        <button
-                          aria-label="dropdown menu"
-                          className="navbar__dropdown-label"
-                        >
-                          Pages
-                        </button>
-                        <ul className="navbar__sub-menu">
-                          <li>
-                            <Link href="faq">FAQ</Link>
-                          </li> */}
-                          {/* <li>
-                            <Link href="404">Error</Link>
-                          </li> */}
-                          {/* <li>
-                            <Link href="our-story">Our Story</Link>
-                          </li> */}
-                          {/* <li>
-                            <Link href="portfolio">Portfolio</Link>
-                          </li> */}
-                          {/* <li>
-                            <Link href="client-feedback">Testimonials</Link>
-                          </li> */}
-                          {/* <li>
-                            <Link href="contact-us">Contact Us</Link>
-                          </li> */}
-                        </ul>
-                      {/* </li> */}
-                      {/* Blog removed per project requirement */}
-                    {/* </ul> */}
-                  </div>
-                  <div className="navbar__options">
-                    <div className="navbar__mobile-options d-none d-sm-flex">
-                      <Link href="contact-us" className="btn btn--secondary">
-                        Let&apos;s Talk
-                      </Link>
-                    </div>
-                    <button
-                      className="open-mobile-menu d-flex d-xl-none"
-                      aria-label="toggle mobile menu"
-                      onClick={handleNav}
-                    >
-                      <i className="fa-light fa-bars-staggered"></i>
-                    </button>
-                  </div>
-                </nav>
+            <nav
+              className="navbar p-0"
+              style={{
+                minHeight: "90px",
+                display: "grid",
+                gridTemplateColumns: "auto 1fr auto",
+                alignItems: "center",
+              }}
+            >
+              {/* LOGO */}
+              <div className="navbar__logo">
+                <Link href="/" aria-label="go to home">
+                  <Image src={logo} alt="Logo" width={160} height={40} priority />
+                </Link>
               </div>
-            </div>
+
+              {/* CENTER MENU */}
+              <div
+                className="navbar__menu"
+                style={{
+                  display: "flex",
+                  justifyContent: "center",
+                }}
+              >
+                <ul
+                  style={{
+                    display: "flex",
+                    gap: "32px",
+                    alignItems: "center",
+                    margin: 0,
+                    padding: 0,
+                  }}
+                >
+                  {navItems.map((item) => (
+                    <li
+                      key={item.href}
+                      className="navbar__item nav-fade"
+                      style={{ position: "relative" }}
+                    >
+                      <Link
+                        href={item.href}
+                        style={{
+                          fontWeight: 600,
+                          paddingBottom: "6px",
+                          display: "inline-block",
+                        }}
+                      >
+                        {item.label}
+                      </Link>
+
+                      {/* ORANGE ACTIVE LINE */}
+                      {isActive(item.href) && (
+                        <span
+                          style={{
+                            position: "absolute",
+                            left: "0",
+                            bottom: "0",
+                            width: "100%",
+                            height: "3px",
+                            backgroundColor: "#ff7425",
+                            borderRadius: "2px",
+                          }}
+                        />
+                      )}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              {/* RIGHT OPTIONS */}
+              <div className="navbar__options">
+                <div className="navbar__mobile-options d-none d-sm-flex">
+                  <Link href="/contact-us" className="btn btn--secondary">
+                    Let&apos;s Talk
+                  </Link>
+                </div>
+
+                <button
+                  className="open-mobile-menu d-flex d-xl-none"
+                  aria-label="toggle mobile menu"
+                  onClick={handleNav}
+                >
+                  <i className="fa-light fa-bars-staggered"></i>
+                </button>
+              </div>
+            </nav>
           </div>
         </div>
       </header>
+
       <Offcanvas openNav={openNav} setOpenNav={setOpenNav} />
     </>
   );
