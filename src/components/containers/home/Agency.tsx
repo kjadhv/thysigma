@@ -1,165 +1,124 @@
-import React, { useEffect } from "react";
+import React from "react";
 import Link from "next/link";
 import Image from "next/image";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
-import thumbone from "public/images/arrows.png";
-import thumbtwo from "public/images/ooo.png";
-import star from "public/images/star.png";
+
+import arrows from "public/images/para1.jpg";
+import star from "public/images/wedo1.jpg";
+import videop from "public/images/videop.jpg";
+import ve1 from "public/images/ve1.jpg";
 import dotlarge from "public/images/agency/dot-large.png";
 
-gsap.registerPlugin(ScrollTrigger);
+const IMAGES = [arrows, star, videop, ve1];
+
 const Agency = () => {
-  useEffect(() => {
-    const percentElements = document.querySelectorAll("[data-percent]");
-
-    percentElements.forEach((el) => {
-      const skillBarPercent = el.querySelector(
-        ".skill-bar-percent"
-      ) as HTMLElement | null;
-      const percentValue = el.parentNode?.querySelector(
-        ".percent-value"
-      ) as HTMLElement | null;
-
-      if (skillBarPercent && percentValue) {
-        const percent = el.getAttribute("data-percent") || "0%";
-        skillBarPercent.style.width = percent;
-        percentValue.textContent = percent;
-      }
-    });
-
-    const axProgressBar = document.querySelectorAll(".skill-bar-single");
-    axProgressBar.forEach((element) => {
-      const skillBarPercent = element.querySelector(
-        ".skill-bar-percent"
-      ) as HTMLElement | null;
-      const percentValue = element.querySelector(
-        ".percent-value"
-      ) as HTMLElement | null;
-
-      if (skillBarPercent && percentValue) {
-        const target = percentValue.textContent || "0%";
-
-        const axBarTimeline = gsap.timeline({
-          defaults: {
-            duration: 2,
-          },
-          scrollTrigger: {
-            trigger: element,
-          },
-        });
-
-        axBarTimeline.fromTo(
-          skillBarPercent,
-          {
-            width: 0,
-          },
-          {
-            width: target,
-          }
-        );
-
-        axBarTimeline.from(
-          percentValue,
-          {
-            textContent: "0%",
-            snap: {
-              textContent: 5,
-            },
-          },
-          "<"
-        );
-      }
-    });
-  }, []);
-
   return (
-    <section className="section agency about-trigger"
-     style={{
-    background: "transparent",
-    position: "relative",
-    zIndex: 2,
-  }}>
+    <section
+      className="section agency about-trigger"
+      style={{
+        position: "relative",
+        paddingTop: "120px",
+        paddingBottom: "0px",   // ✅ REMOVE GAP
+        marginBottom: "0px",    // ✅ REMOVE GAP
+        zIndex: 2,
+        background: "transparent",
+      }}
+    >
       <div className="container">
-        <div className="row gaper align-items-center">
-          <div className="col-12 col-lg-6">
-            <div className="agency__thumb">
-              <Image
-                src={thumbone}
-                alt="Image"
-                className="thumb-one fade-left"
-                priority
-              />
-              <Image
-                src={thumbtwo}
-                alt="Image"
-                className="thumb-two fade-right"
-                priority
-              />
-            </div>
+        <div
+          style={{
+            border: "1px solid rgba(255,255,255,0.15)",
+            borderRadius: "24px",
+            padding: "30px",
+            overflow: "hidden",
+            marginBottom: "0px",
+          }}
+        >
+          {/* ===== TEXT ===== */}
+          <div style={{ marginBottom: "24px" }}>
+            <h2
+              style={{
+                fontSize: "48px",
+                fontWeight: 700,
+                marginBottom: "18px",
+                color: "#fff",
+              }}
+            >
+              Who We Are
+            </h2>
+
+            <p
+              style={{
+                fontSize: "18px",
+                lineHeight: "1.8",
+                color: "rgba(255,255,255,0.9)",
+                marginBottom: "16px",
+              }}
+            >
+              With our expertise in livestreaming, photography, videography, and post-production, we help event companies elevate their client offerings while reducing their operational burden. 
+            </p>
+
+            <Link href="/about-us" className="btn btn--primary">
+              Know More
+            </Link>
           </div>
-          <div className="col-12 col-lg-6">
-            <div className="agency__content section__content">
-              {/* <span className="sub-title">
-                WELCOME
-                <i className="fa-solid fa-arrow-right"></i>
-              </span> */}
-              <h2 className="title title-anim">
-                Who <span>We Are</span>
-              </h2>
-              <div className="paragraph">
-                <p>
-                 We are a collective pf passionate individuals who have hone their skills for years, and studied the market to deliver what works best.  </p>
-              </div>
-              <div className="skill-wrap">
-                <div className="skill-bar-single d-none">
-                  <div className="skill-bar-title">
-                    <p className="primary-text">Live Event</p>
-                  </div>
-                  <div className="skill-bar-wrapper" data-percent="75%">
-                    <div className="skill-bar">
-                      <div className="skill-bar-percent">
-                        <span className="percent-value"></span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="skill-bar-single">
-                  <div className="skill-bar-title">
-                    <p className="primary-text">Streaming</p>
-                  </div>
-                  <div className="skill-bar-wrapper" data-percent="75%">
-                    <div className="skill-bar">
-                      <div className="skill-bar-percent">
-                        <span className="percent-value"></span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="skill-bar-single">
-                  <div className="skill-bar-title">
-                    <p className="primary-text">Digital Marketing</p>
-                  </div>
-                  <div className="skill-bar-wrapper" data-percent="90%">
-                    <div className="skill-bar">
-                      <div className="skill-bar-percent">
-                        <span className="percent-value"></span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="section__content-cta">
-                <Link href="about-us" className="btn btn--primary">
-                  Know More
-                </Link>
-              </div>
+
+          {/* ===== INFINITE MARQUEE ===== */}
+          <div className="marquee">
+            <div className="marquee-track">
+              {[...Array(20)].flatMap((_, i) =>
+                IMAGES.map((img, idx) => (
+                  <div
+                    key={`${i}-${idx}`}
+                    className="marquee-item"
+                    style={{
+                      backgroundImage: `url(${img.src})`,
+                    }}
+                  />
+                ))
+              )}
             </div>
           </div>
         </div>
       </div>
-      <Image src={star} alt="Image" className="star" priority />
-      <Image src={dotlarge} alt="Image" className="dot-large" priority />
+
+      <Image src={dotlarge} alt="decor" className="dot-large" priority />
+
+      {/* ✅ MARQUEE STYLES */}
+      <style jsx>{`
+        .marquee {
+          width: 100%;
+          overflow: hidden;
+          margin-bottom: 0;
+          padding-bottom: 0;
+        }
+
+        .marquee-track {
+          display: flex;
+          width: max-content;
+          animation: marquee-scroll 60s linear infinite;
+          will-change: transform;
+        }
+
+        .marquee-item {
+          width: 200px;      /* ✅ UNCHANGED */
+          height: 160px;     /* ✅ UNCHANGED */
+          margin-right: 24px;
+          border-radius: 16px;
+          background-repeat: no-repeat;
+          background-position: center;
+          background-size: cover;
+          flex-shrink: 0;
+        }
+
+        @keyframes marquee-scroll {
+          from {
+            transform: translateX(0);
+          }
+          to {
+            transform: translateX(-50%);
+          }
+        }
+      `}</style>
     </section>
   );
 };
