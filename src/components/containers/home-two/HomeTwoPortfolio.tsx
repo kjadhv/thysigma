@@ -95,7 +95,6 @@ const HomeTwoPortfolio = () => {
         </div>
       </div>
 
-      {/* ✅ FINAL STYLES (TRUE SINGLE LINE) */}
       <style jsx global>{`
         .isolate {
           isolation: isolate;
@@ -118,14 +117,12 @@ const HomeTwoPortfolio = () => {
           z-index: 2;
         }
 
-        /* ✅ REMOVE WIDTH LIMIT */
         .text-wrap {
           position: relative;
           z-index: 3;
-          max-width: none; /* ✅ KEY FIX */
+          max-width: none;
         }
 
-        /* ✅ FORCE SINGLE LINE */
         .side-text,
         .side-desc {
           white-space: nowrap;
@@ -143,12 +140,11 @@ const HomeTwoPortfolio = () => {
           font-size: 30px;
         }
 
-        /* ✅ SMART GAP */
         .item-row {
           display: flex;
           align-items: center;
-          gap: clamp(80px, 20vw, 100px); /* ✅ responsive */
-          margin-bottom: 160px;
+          gap: clamp(80px, 20vw, 100px);
+          margin-bottom: 160px; /* PC & iPad unchanged */
         }
 
         .item-row.left {
@@ -159,7 +155,7 @@ const HomeTwoPortfolio = () => {
           justify-content: flex-end;
         }
 
-        /* ✅ MOBILE + iPAD: STACK & ALLOW WRAP */
+        /* ✅ MOBILE + IPAD STACK (existing behavior) */
         @media (max-width: 1024px) {
           .item-row {
             flex-direction: column;
@@ -178,7 +174,7 @@ const HomeTwoPortfolio = () => {
 
           .side-text,
           .side-desc {
-            white-space: normal; /* ✅ allow wrap */
+            white-space: normal;
           }
 
           .side-text {
@@ -187,6 +183,13 @@ const HomeTwoPortfolio = () => {
 
           .side-desc {
             font-size: 18px;
+          }
+        }
+
+        /* ✅ MOBILE ONLY – REDUCED SPACE BETWEEN SECTIONS */
+        @media (max-width: 767px) {
+          .item-row {
+            margin-bottom: 60px;
           }
         }
       `}</style>

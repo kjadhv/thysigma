@@ -1,6 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
+
 import phone from "public/images/phone.png";
 import mail from "public/images/mail.png";
 import location from "public/images/location.png";
@@ -10,11 +11,13 @@ const ContactMain = () => {
   return (
     <section className="section contact-m fade-wrapper">
       <div className="container">
-        <div className="row gaper">
-          <div className="col-12 col-sm-6 col-xl-3">
-            <div className="contact-m__single topy-tilt fade-top">
+
+        {/* ===== TOP 4 CONTACT BOXES ===== */}
+        <div className="row gaper contact-grid">
+          <div className="col-6 col-xl-3">
+            <div className="contact-m__single">
               <div className="thumb">
-                <Image src={phone} alt="Image" />
+                <Image src={phone} alt="Phone" />
               </div>
               <div className="content">
                 <h4>Phone</h4>
@@ -24,10 +27,11 @@ const ContactMain = () => {
               </div>
             </div>
           </div>
-          <div className="col-12 col-sm-6 col-xl-3">
-            <div className="contact-m__single topy-tilt fade-top">
+
+          <div className="col-6 col-xl-3">
+            <div className="contact-m__single">
               <div className="thumb">
-                <Image src={mail} alt="Image" />
+                <Image src={mail} alt="Mail" />
               </div>
               <div className="content">
                 <h4>Mail Address</h4>
@@ -44,84 +48,76 @@ const ContactMain = () => {
               </div>
             </div>
           </div>
-          <div className="col-12 col-sm-6 col-xl-3">
-            <div className="contact-m__single topy-tilt fade-top">
+
+          <div className="col-6 col-xl-3">
+            <div className="contact-m__single">
               <div className="thumb">
-                <Image src={location} alt="Image" />
+                <Image src={location} alt="Location" />
               </div>
               <div className="content">
                 <h4>Our Location</h4>
                 <p>
-                  <Link 
-  href="https://maps.app.goo.gl/HLh44sEA4SG5eg5c6" 
-  target="_blank"
->
-
-                    116, Shah Heritage, Seawoods West, 
-
-Navi Mumbai, India
+                  <Link
+                    href="https://maps.app.goo.gl/HLh44sEA4SG5eg5c6"
+                    target="_blank"
+                  >
+                    116, Shah Heritage, Seawoods West,
+                    Navi Mumbai, India
                   </Link>
                 </p>
               </div>
             </div>
           </div>
-          <div className="col-12 col-sm-6 col-xl-3">
-            <div className="contact-m__single topy-tilt fade-top">
+
+          <div className="col-6 col-xl-3">
+            <div className="contact-m__single">
               <div className="thumb">
-                <Image src={time} alt="Image" />
+                <Image src={time} alt="Office Time" />
               </div>
               <div className="content">
                 <h4>Office Hour</h4>
                 <p>Mon - Sat 09 am - 06pm</p>
-             
               </div>
             </div>
           </div>
         </div>
+
+        {/* ===== MAP + FORM ===== */}
         <div className="row">
           <div className="col-12">
             <div className="map-wrapper">
               <div className="row gaper">
-                <div className="col-12 col-lg-6">
-                  <div className="contact__map fade-top">
-                  <iframe
-  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3772.037495607369!2d73.01293177429983!3d19.018069353790462!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7c397f30d1ed1%3A0x60b36d6304bf2fb8!2sShah%20Heritage%20Chs%20Limited%2C%20Jairam%20Tukaram%20Tandel%20Marg%2C%20Seawoods%20West%2C%20Karave%20Nagar%2C%20Seawoods%2C%20Navi%20Mumbai%2C%20Maharashtra%20400706!5e0!3m2!1sen!2sin!4v1763654892890!5m2!1sen!2sin"
-  width="100%"
-  height="800"
-  style={{ border: "0" }}
-  allowFullScreen
-  loading="lazy"
-  referrerPolicy="no-referrer-when-downgrade"
-></iframe>
 
+                <div className="col-12 col-lg-6">
+                  <div className="contact__map">
+                    <iframe
+                      src="https://www.google.com/maps?q=Shah+Heritage+Seawoods+Navi+Mumbai&output=embed"
+                      width="100%"
+                      height="800"
+                      style={{ border: 0 }}
+                      loading="lazy"
+                    />
                   </div>
                 </div>
+
                 <div className="col-12 col-lg-6">
-                  <div className="contact-main__form  fade-top">
+                  <div className="contact-main__form">
                     <h3>Leave A Message</h3>
+
                     <form
                       action="#"
                       method="post"
                       className="section__content-cta"
                     >
                       <div className="group-wrapper">
-                        <div className="group-input ">
-                          <input
-                            type="text"
-                            name="contact-name"
-                            id="contactName"
-                            placeholder="Name"
-                          />
+                        <div className="group-input">
+                          <input type="text" placeholder="Name" />
                         </div>
-                        <div className="group-input ">
-                          <input
-                            type="email"
-                            name="contact-email"
-                            id="contactEmail"
-                            placeholder="Email"
-                          />
+                        <div className="group-input">
+                          <input type="email" placeholder="Email" />
                         </div>
                       </div>
+
                       <div className="group-input drt">
                         <select className="subject">
                           <option data-display="Subject">Subject</option>
@@ -131,13 +127,11 @@ Navi Mumbai, India
                           <option value="4">Support</option>
                         </select>
                       </div>
-                      <div className="group-input ">
-                        <textarea
-                          name="contact-message"
-                          id="contactMessage"
-                          placeholder="Message"
-                        ></textarea>
+
+                      <div className="group-input">
+                        <textarea placeholder="Message"></textarea>
                       </div>
+
                       <div className="form-cta justify-content-start">
                         <button type="submit" className="btn btn--primary">
                           Send Message
@@ -146,11 +140,125 @@ Navi Mumbai, India
                     </form>
                   </div>
                 </div>
+
               </div>
             </div>
           </div>
         </div>
+
       </div>
+
+      {/* ✅ INLINE FIXES */}
+      <style jsx>{`
+        /* ================= MOBILE (UNCHANGED & WORKING) ================= */
+        @media (max-width: 767px) {
+          .contact-m {
+            position: relative;
+            z-index: 0;
+          }
+
+          .contact-m::before,
+          .contact-m::after,
+          .fade-wrapper::before,
+          .fade-wrapper::after {
+            z-index: -1 !important;
+          }
+
+          .contact-m .container,
+          .contact-m .row,
+          .contact-m__single,
+          .contact-main__form,
+          .contact__map {
+            position: relative;
+            z-index: 2;
+          }
+
+          .contact-m__single {
+            padding: 8px;
+          }
+
+          .contact-m__single .thumb img {
+            max-width: 40px;
+          }
+
+          .contact-m__single h4 {
+            font-size: 14px;
+            margin-bottom: 2px;
+          }
+
+          .contact-m__single p {
+            font-size: 12px;
+            line-height: 1.25;
+            margin-bottom: 2px;
+          }
+
+          .contact-main__form {
+            padding: 8px;
+          }
+
+          .contact-main__form h3 {
+            font-size: 16px;
+            margin-bottom: 6px;
+          }
+
+          .group-wrapper {
+            gap: 5px;
+          }
+
+          .group-input {
+            margin-bottom: 5px;
+          }
+
+          .contact-main__form input,
+          .contact-main__form select,
+          .contact-main__form textarea {
+            padding: 6px;
+            font-size: 13px;
+          }
+
+          .contact-main__form textarea {
+            min-height: 60px;
+          }
+
+          .form-cta {
+            margin-top: 6px;
+          }
+
+          .btn--primary {
+            padding: 6px 12px;
+            font-size: 13px;
+          }
+        }
+
+        /* ================= PC + iPAD OVERLAP FIX ================= */
+        @media (min-width: 768px) {
+          .contact-m {
+            position: relative;
+            z-index: 0;
+          }
+
+          .contact-m::before,
+          .contact-m::after,
+          .fade-wrapper::before,
+          .fade-wrapper::after {
+            z-index: -1 !important;
+          }
+
+          .contact-m .container,
+          .contact-m .row,
+          .contact-m__single,
+          .map-wrapper,
+          .contact__map,
+          .contact-main__form {
+            position: relative;
+            z-index: 2;
+          }
+
+          .contact__map iframe {
+            display: block;
+          }
+        }
+      `}</style>
     </section>
   );
 };

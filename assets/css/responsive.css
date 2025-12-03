@@ -23,8 +23,8 @@
 }
 
  
-/* Tablet desktop :768px. */
-@media (min-width: 768px) and (max-width: 991px) {
+/* Tablet desktop :768px (treat 768px as desktop/iPad — narrow devices start at 769) */
+@media (min-width: 769px) and (max-width: 991px) {
     .main-content {
         padding-top: 0;
         padding-left: 0;
@@ -58,8 +58,8 @@
  
 }
  
-/* Large Mobile :480px. */
+/* Large Mobile :480px.
 @media only screen and (min-width: 480px) and (max-width: 767px) {
 .container {width:450px}
  
-}
+} */

@@ -4,17 +4,30 @@ import Image from "next/image";
 import missionImg from "public/images/wedo.jpg";
 import visionImg from "public/images/quality.jpg";
 import teamImg from "public/images/paraimg.jpeg";
+import WhyChooseUs from "./WhyChooseUs";
 
 const OurMission = () => {
   const missionRef = useRef<HTMLDivElement>(null);
   const visionRef = useRef<HTMLDivElement>(null);
   const teamRef = useRef<HTMLDivElement>(null);
-  const whyRef = useRef<HTMLDivElement>(null);
 
   const [missionVisible, setMissionVisible] = useState(false);
   const [visionVisible, setVisionVisible] = useState(false);
   const [teamVisible, setTeamVisible] = useState(false);
-  const [whyVisible, setWhyVisible] = useState(false);
+
+  const [isMobile, setIsMobile] = useState(false);
+  const [isIpad, setIsIpad] = useState(false);
+
+  useEffect(() => {
+    const check = () => {
+      const w = window.innerWidth;
+      setIsMobile(w <= 767);
+      setIsIpad(w >= 768 && w <= 1024);
+    };
+    check();
+    window.addEventListener("resize", check);
+    return () => window.removeEventListener("resize", check);
+  }, []);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -22,17 +35,10 @@ const OurMission = () => {
         entries.forEach((entry) => {
           if (entry.target === missionRef.current)
             setMissionVisible(entry.isIntersecting);
-
           if (entry.target === visionRef.current)
             setVisionVisible(entry.isIntersecting);
-
-          // ✅ Team Tribe – animate ONCE
           if (entry.target === teamRef.current && entry.isIntersecting)
             setTeamVisible(true);
-
-          // ✅ Why Choose Us – repeat
-          if (entry.target === whyRef.current)
-            setWhyVisible(entry.isIntersecting);
         });
       },
       { threshold: 0.35 }
@@ -41,7 +47,6 @@ const OurMission = () => {
     missionRef.current && observer.observe(missionRef.current);
     visionRef.current && observer.observe(visionRef.current);
     teamRef.current && observer.observe(teamRef.current);
-    whyRef.current && observer.observe(whyRef.current);
 
     return () => observer.disconnect();
   }, []);
@@ -49,36 +54,48 @@ const OurMission = () => {
   return (
     <section
       style={{
-        paddingTop: "100px",
-        paddingBottom: "10px",
+        paddingTop: isIpad ? "60px" : "100px",
+        paddingBottom: "40px",
         position: "relative",
         zIndex: 2,
       }}
     >
       <div className="container">
 
-        {/* ================= HEADING ================= */}
-        <div style={{ textAlign: "center", marginBottom: "40px" }}>
-          <h2 style={{ fontSize: "56px", fontWeight: 700, color: "#fff" }}>
+        {/* ===== HEADING ===== */}
+        <div style={{ textAlign: "center", marginBottom: isIpad ? "24px" : "40px" }}>
+          <h2
+            style={{
+              fontSize: isMobile ? "30px" : isIpad ? "34px" : "56px",
+              fontWeight: 700,
+              color: "#fff",
+            }}
+          >
             OUR MISSION AND VISION
           </h2>
         </div>
 
-        {/* ================= MISSION ================= */}
+        {/* ===== MISSION ===== */}
         <div
           ref={missionRef}
           style={{
             position: "relative",
-            width: "720px",
-            height: "380px",
-            marginBottom: "80px",
+            width: isMobile ? "100%" : isIpad ? "480px" : "720px",
+            marginBottom: isIpad ? "32px" : "70px",
           }}
         >
           <div
             style={{
-              position: "absolute",
+              position: isMobile ? "relative" : "absolute",
               inset: 0,
-              transform: missionVisible ? "translateX(100%)" : "translateX(0)",
+              height: isMobile ? "220px" : isIpad ? "120px" : "100%",
+              transform: missionVisible
+                ? isMobile
+                  ? "translateY(0)"
+                  : "translateX(100%)"
+                : isMobile
+                ? "translateY(100%)"
+                : "translateX(0)",
               transition: "1s cubic-bezier(0.4,0,0.2,1)",
               overflow: "hidden",
             }}
@@ -89,38 +106,43 @@ const OurMission = () => {
           <div
             style={{
               position: "relative",
-              border: "4px solid #fff",
-              padding: "70px",
-              height: "100%",
+              border: isMobile ? "2px solid #fff" : isIpad ? "2px solid #fff" : "4px solid #fff",
+              padding: isMobile ? "26px" : isIpad ? "24px" : "70px",
               color: "#fff",
             }}
           >
-            <h3 style={{ fontSize: "42px", marginBottom: "26px" }}>
+            <h3 style={{ fontSize: isMobile ? "24px" : isIpad ? "26px" : "42px" }}>
               Our Mission →
             </h3>
-            <p style={{ fontSize: "22px", lineHeight: "1.9" }}>
+            <p style={{ fontSize: isMobile ? "15px" : "22px", lineHeight: "1.6" }}>
               Deliver high-quality media and livestreaming solutions that transform
               every event into a compelling digital experience.
             </p>
           </div>
         </div>
 
-        {/* ================= VISION ================= */}
+        {/* ===== VISION ===== */}
         <div
           ref={visionRef}
           style={{
             position: "relative",
-            width: "720px",
-            height: "380px",
-            marginLeft: "auto",
-            marginBottom: "90px",
+            width: isMobile ? "100%" : isIpad ? "480px" : "720px",
+            marginLeft: isMobile ? "0" : "auto",
+            marginBottom: isIpad ? "32px" : "70px",
           }}
         >
           <div
             style={{
-              position: "absolute",
+              position: isMobile ? "relative" : "absolute",
               inset: 0,
-              transform: visionVisible ? "translateX(-100%)" : "translateX(0)",
+              height: isMobile ? "220px" : isIpad ? "120px" : "100%",
+              transform: visionVisible
+                ? isMobile
+                  ? "translateY(0)"
+                  : "translateX(-100%)"
+                : isMobile
+                ? "translateY(100%)"
+                : "translateX(0)",
               transition: "1s cubic-bezier(0.4,0,0.2,1)",
               overflow: "hidden",
             }}
@@ -131,174 +153,49 @@ const OurMission = () => {
           <div
             style={{
               position: "relative",
-              border: "4px solid #fff",
-              padding: "70px",
-              height: "100%",
+              border: isMobile ? "2px solid #fff" : isIpad ? "2px solid #fff" : "4px solid #fff",
+              padding: isMobile ? "26px" : isIpad ? "24px" : "70px",
               color: "#fff",
               textAlign: "right",
             }}
           >
-            <h3 style={{ fontSize: "42px", marginBottom: "26px" }}>
+            <h3 style={{ fontSize: isMobile ? "24px" : "42px" }}>
               ← Our Vision
             </h3>
-            <p style={{ fontSize: "22px", lineHeight: "1.9" }}>
+            <p style={{ fontSize: isMobile ? "15px" : "22px", lineHeight: "1.6" }}>
               We envision ourselves as a trusted creative partner, narrating stories
               where EVERY. FRAME. MATTERS.
             </p>
           </div>
         </div>
 
-        {/* ================= TEAM TRIBE ================= */}
+        {/* ===== TEAM ===== */}
         <div ref={teamRef} style={{ textAlign: "center", color: "#fff" }}>
-          <h2
-            style={{
-              fontSize: "48px",
-              marginBottom: "50px",
-              opacity: teamVisible ? 1 : 0,
-              transform: teamVisible ? "translateY(0)" : "translateY(-20px)",
-              transition: "0.6s ease",
-            }}
-          >
+          <h2 style={{ fontSize: isMobile ? "28px" : "48px" }}>
             Our Team & Tribe
           </h2>
 
-          {/* ✅ IMAGE WITH SAME BORDER STYLE */}
           <div
             style={{
               position: "relative",
               width: "100%",
-              height: "420px",
-              marginBottom: "50px",
-              opacity: teamVisible ? 1 : 0,
-              transform: teamVisible ? "translateY(0)" : "translateY(-40px)",
-              transition: "0.8s ease",
+              height: isMobile ? "260px" : "420px",
+              marginBottom: "24px",
             }}
           >
-            <div
-              style={{
-                position: "absolute",
-                inset: 0,
-                overflow: "hidden",
-              }}
-            >
-              <Image src={teamImg} alt="Team Tribe" fill style={{ objectFit: "cover" }} />
-            </div>
-
-            <div
-              style={{
-                position: "relative",
-                border: "4px solid #fff",
-                height: "100%",
-                pointerEvents: "none",
-              }}
-            />
+            <Image src={teamImg} alt="Team" fill style={{ objectFit: "cover" }} />
+            <div style={{ position: "absolute", inset: 0, border: isMobile ? "2px solid #fff" : "4px solid #fff" }} />
           </div>
 
-          <p
-            style={{
-              maxWidth: "75%",
-              margin: "0 auto",
-              fontSize: "22px",
-              lineHeight: "1.9",
-              opacity: teamVisible ? 1 : 0,
-              transform: teamVisible ? "translateY(0)" : "translateY(-30px)",
-              transition: "0.8s ease",
-            }}
-          >
+          <p style={{ maxWidth: "90%", margin: "0 auto", fontSize: isMobile ? "15px" : "22px", lineHeight: "1.7" }}>
             We are a collective of passionate individuals who have honed their skills
             for years and studied the market to deliver what truly works best.
           </p>
         </div>
-
-        {/* ================= WHY CHOOSE US ================= */}
-        <div
-          ref={whyRef}
-          style={{
-            marginTop: "60px",
-            opacity: whyVisible ? 1 : 0,
-            transform: whyVisible ? "translateY(0)" : "translateY(20px)",
-            transition: "0.6s ease",
-          }}
-        >
-          <div
-            style={{
-              border: "4px solid rgba(255,255,255,0.15)",
-              borderRadius: "24px",
-              padding: "48px",
-              color: "#fff",
-              width: "100%",
-            }}
-          >
-            <h2 style={{ fontSize: "46px", marginBottom: "20px", textAlign: "center" }}>
-              Why Choose Us
-            </h2>
-
-            <p
-              style={{
-                fontSize: "20px",
-                lineHeight: "1.7",
-                maxWidth: "1000px",
-                margin: "0 auto 24px",
-                textAlign: "center",
-              }}
-            >
-              Because with <strong>16+ years of media-tech expertise</strong>, we deliver
-              quality you can see and reliability you can feel.
-            </p>
-
-            <p
-              style={{
-                fontSize: "18px",
-                lineHeight: "1.7",
-                color: "rgba(255,255,255,0.9)",
-                maxWidth: "1000px",
-                margin: "0 auto 40px",
-                textAlign: "center",
-              }}
-            >
-              Thy Sigma positions itself as a premium yet accessible media-tech partner
-              for flawless execution, creative storytelling, and dependable delivery.
-            </p>
-
-            <div
-              style={{
-                display: "grid",
-                gridTemplateColumns: "1fr 1fr",
-                gap: "60px",
-                maxWidth: "1100px",
-                margin: "0 auto 40px",
-              }}
-            >
-              <p style={{ fontSize: "18px", lineHeight: "1.8" }}>
-                With expertise in livestreaming, photography, videography, and
-                post-production, we help event companies elevate their client offerings
-                while reducing their operational burden.
-              </p>
-
-              <p style={{ fontSize: "18px", lineHeight: "1.8" }}>
-                Content repurposing, subtitling, distribution, video reliability
-                engineering, audio engineering, and more — giving you comprehensive
-                solutions with one trusted partner.
-              </p>
-            </div>
-
-            <p
-              style={{
-                fontSize: "20px",
-                fontStyle: "italic",
-                textAlign: "center",
-                maxWidth: "1000px",
-                margin: "0 auto",
-              }}
-            >
-              Choosing us means gaining a reliable production team that turns every
-              event into a digital masterpiece.
-            </p>
-          </div>
-        </div>
-
+<WhyChooseUs />
       </div>
     </section>
+    
   );
 };
 

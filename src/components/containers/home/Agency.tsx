@@ -17,44 +17,22 @@ const Agency = () => {
       style={{
         position: "relative",
         paddingTop: "120px",
-        paddingBottom: "0px",   // ✅ REMOVE GAP
-        marginBottom: "0px",    // ✅ REMOVE GAP
+        paddingBottom: "0px",
+        marginBottom: "0px",
         zIndex: 2,
         background: "transparent",
       }}
     >
       <div className="container">
-        <div
-          style={{
-            border: "1px solid rgba(255,255,255,0.15)",
-            borderRadius: "24px",
-            padding: "30px",
-            overflow: "hidden",
-            marginBottom: "0px",
-          }}
-        >
+        <div className="agency-box">
           {/* ===== TEXT ===== */}
-          <div style={{ marginBottom: "24px" }}>
-            <h2
-              style={{
-                fontSize: "48px",
-                fontWeight: 700,
-                marginBottom: "18px",
-                color: "#fff",
-              }}
-            >
-              Who We Are
-            </h2>
+          <div className="agency-text">
+            <h2>Who We Are</h2>
 
-            <p
-              style={{
-                fontSize: "18px",
-                lineHeight: "1.8",
-                color: "rgba(255,255,255,0.9)",
-                marginBottom: "16px",
-              }}
-            >
-              With our expertise in livestreaming, photography, videography, and post-production, we help event companies elevate their client offerings while reducing their operational burden. 
+            <p>
+              With our expertise in livestreaming, photography, videography, and
+              post-production, we help event companies elevate their client
+              offerings while reducing their operational burden.
             </p>
 
             <Link href="/about-us" className="btn btn--primary">
@@ -70,9 +48,7 @@ const Agency = () => {
                   <div
                     key={`${i}-${idx}`}
                     className="marquee-item"
-                    style={{
-                      backgroundImage: `url(${img.src})`,
-                    }}
+                    style={{ backgroundImage: `url(${img.src})` }}
                   />
                 ))
               )}
@@ -83,25 +59,45 @@ const Agency = () => {
 
       <Image src={dotlarge} alt="decor" className="dot-large" priority />
 
-      {/* ✅ MARQUEE STYLES */}
       <style jsx>{`
+        /* ================= DESKTOP / IPAD (UNCHANGED) ================= */
+
+        .agency-box {
+          border: 1px solid rgba(255, 255, 255, 0.15);
+          border-radius: 24px;
+          padding: 30px;
+          overflow: hidden;
+          margin-bottom: 0;
+        }
+
+        .agency-text h2 {
+          font-size: 48px;
+          font-weight: 700;
+          margin-bottom: 18px;
+          color: #fff;
+        }
+
+        .agency-text p {
+          font-size: 18px;
+          line-height: 1.8;
+          color: rgba(255, 255, 255, 0.9);
+          margin-bottom: 16px;
+        }
+
         .marquee {
           width: 100%;
           overflow: hidden;
-          margin-bottom: 0;
-          padding-bottom: 0;
         }
 
         .marquee-track {
           display: flex;
           width: max-content;
           animation: marquee-scroll 60s linear infinite;
-          will-change: transform;
         }
 
         .marquee-item {
-          width: 200px;      /* ✅ UNCHANGED */
-          height: 160px;     /* ✅ UNCHANGED */
+          width: 200px;
+          height: 160px;
           margin-right: 24px;
           border-radius: 16px;
           background-repeat: no-repeat;
@@ -116,6 +112,46 @@ const Agency = () => {
           }
           to {
             transform: translateX(-50%);
+          }
+        }
+
+        /* ================= MOBILE ONLY ================= */
+
+        @media (max-width: 767px) {
+          section {
+            padding-top: 60px !important;
+          }
+
+          .agency-box {
+            padding: 16px;
+            border-radius: 16px;
+          }
+
+          .agency-text h2 {
+            font-size: 26px;
+            margin-bottom: 10px;
+          }
+
+          .agency-text p {
+            font-size: 14px;
+            line-height: 1.6;
+            margin-bottom: 12px;
+          }
+
+          .btn {
+            font-size: 14px;
+            padding: 8px 14px;
+          }
+
+          .marquee-item {
+            width: 120px;
+            height: 90px;
+            margin-right: 12px;
+            border-radius: 10px;
+          }
+
+          .marquee-track {
+            animation-duration: 40s;
           }
         }
       `}</style>

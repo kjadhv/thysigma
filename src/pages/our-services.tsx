@@ -10,6 +10,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 import "swiper/swiper-bundle.css";
 import grp from "public/images/process.jpg";
+import ContactMain from "@/components/containers/ContactMain";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -273,7 +274,7 @@ const OurServices = () => {
 
       {/* FlipBook Section */}
       <FlipBook />
-
+      <ContactMain />
     </Layout>
   );
 };

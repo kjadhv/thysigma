@@ -28,7 +28,7 @@ const logoData = [
   { img: ten, name: "SNDT Xuberance" },
 ];
 
-const HomeSponsor = () => {
+export default function HomeSponsor() {
   return (
     <section
       className="sponsor section pb-0"
@@ -45,99 +45,92 @@ const HomeSponsor = () => {
     >
       <div className="container-fluid">
         <Swiper
-          slidesPerView={1}
-          spaceBetween={30}
-          speed={3000}
           loop
+          speed={3000}
           modules={[Autoplay]}
-          autoplay={{
-            delay: 0,
-            disableOnInteraction: false,
-          }}
+          autoplay={{ delay: 0, disableOnInteraction: false }}
+          spaceBetween={30}
           breakpoints={{
             1400: { slidesPerView: 6 },
             1200: { slidesPerView: 5 },
             992: { slidesPerView: 4 },
-            576: { slidesPerView: 3 },
+            768: { slidesPerView: 5 },
+            0: { slidesPerView: 3 },
           }}
         >
           {[...logoData, ...logoData].map((item, index) => (
             <SwiperSlide key={index}>
-              <div className="uniform-logo">
-                {/* ✅ IMAGE AREA */}
-                <div className="logo-img">
-                  <Image
-                    src={item.img}
-                    alt={item.name}
-                    fill
-                    sizes="180px"
-                    style={{ objectFit: "contain" }}
-                  />
-                </div>
-
-                {/* ✅ TEXT BELOW IMAGE */}
-                <p className="logo-text">{item.name}</p>
+              <div className="logo-box">
+                <Image
+                  src={item.img}
+                  alt={item.name}
+                  width={120}   // ✅ Desktop size SAME as before
+                  height={70}
+                  style={{ objectFit: "contain" }}
+                />
+                <p>{item.name}</p>
               </div>
             </SwiperSlide>
           ))}
         </Swiper>
       </div>
 
-      {/* ✅ FIXED & CLEAN CSS */}
+      {/* ✅ INLINE CSS */}
       <style jsx global>{`
-        .uniform-logo {
-          width: 100%;
+        /* ---------- DESKTOP (UNCHANGED) ---------- */
+        .logo-box {
           display: flex;
           flex-direction: column;
           align-items: center;
+          justify-content: center;
         }
 
-        /* ✅ Logo size stays SAME */
-        .logo-img {
-          position: relative;
-          height: 130px;   /* logo visual height */
-          width: 100%;
-        }
-
-        .logo-img img {
-          opacity: 1 !important;
-          filter: none !important;
-          transform: none !important;
-        }
-
-        /* ✅ Text clearly below logo */
-        .logo-text {
+        .logo-box p {
           margin-top: 10px;
-          font-size: 16px;
-          color: #ffffff;
+          font-size: 16px; /* ✅ SAME as before */
+          color: #fff;
           font-weight: 500;
           text-align: center;
           white-space: nowrap;
         }
 
-        .swiper-slide {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-        }
-
-        /* ✅ Mobile */
-        @media (max-width: 768px) {
-          .logo-img {
-            height: 85px;
+        /* ---------- iPAD ---------- */
+        @media (max-width: 1024px) {
+          .logo-box img {
+            width: 90px !important;
+            height: 52px !important;
           }
 
-          .logo-text {
-            font-size: 13px;
+          .logo-box p {
+            font-size: 13px !important;
+            margin-top: 6px;
+          }
+        }
+
+        /* ---------- MOBILE ---------- */
+        @media (max-width: 767px) {
+          .swiper-slide {
+            width: auto !important;
+            padding: 0 4px !important;
+          }
+
+          .logo-box img {
+            width: 64px !important;
+            height: 36px !important;
+          }
+
+          .logo-box p {
+            font-size: 10px !important;
+            margin-top: 2px;
           }
 
           .sponsor {
-            min-height: 220px;
+            padding-top: 10px !important;
+            padding-bottom: 12px !important;
+            min-height: 160px !important;
           }
         }
       `}</style>
     </section>
   );
-};
-
-export default HomeSponsor;
+}

@@ -202,18 +202,32 @@ const Founders = () => {
 
       {/* MOBILE */}
       <style jsx>{`
-        @media (max-width: 575px) {
+        @media (max-width: 767px) {
           section {
             padding: 50px 0;
           }
 
           h2 {
-            font-size: 32px !important;
+            font-size: 36px !important;
             text-align: center;
           }
 
           p {
             text-align: center;
+            font-size: 16px !important;
+          }
+
+          .row {
+            margin-bottom: 40px !important;
+          }
+
+          .work-grid {
+            grid-template-columns: repeat(2, 1fr) !important;
+          }
+
+          .founder-divider {
+            margin: 0 auto 40px auto !important;
+            height: 8px !important;
           }
         }
       `}</style>

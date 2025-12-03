@@ -1,30 +1,31 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import logo from "public/images/logo.png";
-import Offcanvas from "./Offcanvas";
 
-interface HeaderProps {
+interface NavItem {
+  label: string;
+  href: string;
+}
+
+interface HeaderTwoProps {
   openNav: boolean;
   setOpenNav: (value: boolean) => void;
   handleNav: () => void;
 }
 
-const HeaderTwo = ({ openNav, handleNav, setOpenNav }: HeaderProps) => {
-  const [scrolled, setScrolled] = useState(false);
+const HeaderTwo = ({ openNav, setOpenNav, handleNav }: HeaderTwoProps) => {
+  const [scrolled, setScrolled] = React.useState(false);
   const router = useRouter();
 
   useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 50);
-    };
-
+    const handleScroll = () => setScrolled(window.scrollY > 50);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const navItems = [
+  const navItems: NavItem[] = [
     { label: "HOME", href: "/" },
     { label: "ABOUT US", href: "/about-us" },
     { label: "SERVICES", href: "/our-services" },
@@ -50,18 +51,21 @@ const HeaderTwo = ({ openNav, handleNav, setOpenNav }: HeaderProps) => {
             >
               {/* LOGO */}
               <div className="navbar__logo">
-                <Link href="/" aria-label="go to home">
-                  <Image src={logo} alt="Logo" width={160} height={40} priority />
+                <Link href="/" aria-label="home">
+                  <Image
+                    src={logo}
+                    alt="Logo"
+                    width={160}
+                    height={40}
+                    priority
+                  />
                 </Link>
               </div>
 
-              {/* CENTER MENU */}
+              {/* CENTER MENU — PC ONLY */}
               <div
-                className="navbar__menu"
-                style={{
-                  display: "flex",
-                  justifyContent: "center",
-                }}
+                className="navbar__menu d-none d-xl-flex"
+                style={{ justifyContent: "center" }}
               >
                 <ul
                   style={{
@@ -73,11 +77,7 @@ const HeaderTwo = ({ openNav, handleNav, setOpenNav }: HeaderProps) => {
                   }}
                 >
                   {navItems.map((item) => (
-                    <li
-                      key={item.href}
-                      className="navbar__item nav-fade"
-                      style={{ position: "relative" }}
-                    >
+                    <li key={item.href} style={{ position: "relative" }}>
                       <Link
                         href={item.href}
                         style={{
@@ -89,17 +89,15 @@ const HeaderTwo = ({ openNav, handleNav, setOpenNav }: HeaderProps) => {
                         {item.label}
                       </Link>
 
-                      {/* ORANGE ACTIVE LINE */}
                       {isActive(item.href) && (
                         <span
                           style={{
                             position: "absolute",
-                            left: "0",
-                            bottom: "0",
+                            left: 0,
+                            bottom: 0,
                             width: "100%",
                             height: "3px",
                             backgroundColor: "#ff7425",
-                            borderRadius: "2px",
                           }}
                         />
                       )}
@@ -108,20 +106,29 @@ const HeaderTwo = ({ openNav, handleNav, setOpenNav }: HeaderProps) => {
                 </ul>
               </div>
 
-              {/* RIGHT OPTIONS */}
-              <div className="navbar__options">
-                <div className="navbar__mobile-options d-none d-sm-flex">
+              {/* RIGHT SIDE */}
+              <div className="navbar__options d-flex align-items-center">
+                {/* PC BUTTON */}
+                <div className="d-none d-xl-flex">
                   <Link href="/contact-us" className="btn btn--secondary">
                     Let&apos;s Talk
                   </Link>
                 </div>
 
+                {/* MOBILE HAMBURGER */}
                 <button
-                  className="open-mobile-menu d-flex d-xl-none"
-                  aria-label="toggle mobile menu"
-                  onClick={handleNav}
+                  aria-label="menu"
+                  onClick={() => handleNav()}
+                  className="mobile-hamburger d-flex d-xl-none"
+                  style={{
+                    background: "transparent",
+                    border: "none",
+                    fontSize: "24px",
+                    cursor: "pointer",
+                    padding: 0,
+                  }}
                 >
-                  <i className="fa-light fa-bars-staggered"></i>
+                  ☰
                 </button>
               </div>
             </nav>
@@ -129,7 +136,98 @@ const HeaderTwo = ({ openNav, handleNav, setOpenNav }: HeaderProps) => {
         </div>
       </header>
 
-      <Offcanvas openNav={openNav} setOpenNav={setOpenNav} />
+      {/* MOBILE MENU */}
+        <div
+        style={{
+          position: "fixed",
+          top: 0,
+          right: 0,
+          width: "260px",
+          height: "100vh",
+          background: "#000",
+            transform: openNav ? "translateX(0)" : "translateX(100%)",
+          transition: "0.3s ease",
+          zIndex: 2000,
+          padding: "24px",
+        }}
+      >
+        <button
+          onClick={() => setOpenNav(false)}
+          style={{
+            position: "absolute",
+            top: "14px",
+            right: "14px",
+            background: "transparent",
+            border: "none",
+            color: "#fff",
+            fontSize: "24px",
+            cursor: "pointer",
+          }}
+        >
+          ✕
+        </button>
+
+        <ul style={{ listStyle: "none", padding: 0, marginTop: "60px" }}>
+          {navItems.map((item) => (
+            <li key={item.href} style={{ marginBottom: "16px" }}>
+              <Link
+                href={item.href}
+                onClick={() => setOpenNav(false)}
+                style={{
+                  color: "#fff",
+                  fontSize: "14px",
+                  fontWeight: 500,
+                  textDecoration: "none",
+                }}
+              >
+                {item.label}
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      {/* MOBILE-ONLY STYLES */}
+      <style jsx>{`
+        @media (max-width: 768px) {
+          .navbar {
+            min-height: 60px !important;
+            padding-top: 8px !important;
+            padding-bottom: 8px !important;
+            grid-template-columns: auto 1fr !important;
+          }
+
+          .navbar__logo {
+            padding-left: 0 !important;
+          }
+
+          .navbar__logo img {
+            width: 120px !important;
+            height: auto !important;
+          }
+
+          .navbar__options {
+            justify-self: end !important;
+          }
+
+          .mobile-hamburger {
+            position: fixed !important;
+            top: 18px !important;
+            right: 16px !important;
+            z-index: 1000 !important;
+            color: #fff !important;
+          }
+
+          .container {
+            padding-left: 16px !important;
+            padding-right: 16px !important;
+          }
+
+          .primary-navbar {
+            padding: 0 !important;
+          }
+        }
+      `}</style>
     </>
   );
 };
