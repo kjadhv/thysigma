@@ -1,6 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
+
 import team from "public/images/wedo1.jpg";
 import star from "public/images/star.png";
 import dotlarge from "public/images/agency/dot-large.png";
@@ -9,10 +10,10 @@ const HomeTwoAward = () => {
   return (
     <section className="section award" style={{ background: "#000" }}>
       <div className="container">
-        <div className="row gaper align-items-center">
+        <div className="row gaper align-items-center award-row">
 
           {/* IMAGE */}
-          <div className="col-12 col-lg-6">
+          <div className="col-12 col-lg-6 award-image">
             <div className="team">
               <div className="team-img-wrapper">
                 <Image
@@ -27,7 +28,7 @@ const HomeTwoAward = () => {
           </div>
 
           {/* CONTENT */}
-          <div className="col-12 col-lg-6 col-xxl-5 offset-xxl-1">
+          <div className="col-12 col-lg-6 col-xxl-5 offset-xxl-1 award-content">
             <div className="award__content section__content">
               <span className="sub-title">
                 WE PROUD THAT <i className="fa-solid fa-arrow-right"></i>
@@ -81,13 +82,12 @@ const HomeTwoAward = () => {
       <Image src={dotlarge} alt="dot" className="dot" />
       <Image src={dotlarge} alt="dot" className="dot-two" />
 
-      {/* STYLES */}
+      {/* ✅ STYLES */}
       <style jsx>{`
-        /* DESKTOP – unchanged */
+        /* ================= DESKTOP + iPAD (UNCHANGED) ================= */
         @media (min-width: 769px) {
           .team-img-wrapper {
             width: 100%;
-            height: auto;
             aspect-ratio: 900 / 550;
             position: relative;
           }
@@ -97,43 +97,77 @@ const HomeTwoAward = () => {
           }
         }
 
-        /* MOBILE – unchanged */
+        /* ================= MOBILE ONLY ================= */
         @media (max-width: 768px) {
-          .team {
-            margin-bottom: 30px;
+
+          .award-row {
+            flex-direction: column;
           }
 
+          .award-image {
+            order: 1;
+          }
+
+          .award-content {
+            order: 2;
+          }
+
+          /* IMAGE */
           .team-img-wrapper {
             width: 100%;
             height: 200px;
             position: relative;
-            background: #000;
+            margin-bottom: 18px;
           }
 
           .team-img {
-            object-fit: contain !important;
-            object-position: center;
+            object-fit: cover;
           }
 
+          /* TEXT */
+          .award__content {
+            text-align: left;
+          }
+
+          .sub-title {
+            margin-bottom: 10px;
+            display: inline-flex;
+          }
+
+          .title {
+            font-size: 28px;
+            margin-bottom: 12px;
+          }
+
+          .paragraph p {
+            font-size: 14px;
+            line-height: 1.6;
+            margin-bottom: 20px;
+          }
+
+          /* CREATE / BUILD / ELEVATE */
           .award__content-meta {
             display: flex;
-            flex-direction: column;
-            position: relative;
-            padding-left: 20px;
+            justify-content: space-between;
+            gap: 12px;
           }
 
           .award__content-meta::before {
-            content: "";
-            position: absolute;
-            left: 0;
-            top: 0;
-            bottom: 0;
-            width: 2px;
-            background: #ff7425;
+            display: none;
           }
 
-          .award__content-meta .single {
-            padding: 16px 0;
+          .award__content-meta .single h4 {
+            font-size: 14px;
+          }
+
+          .award__content-meta .single p {
+            font-size: 13px;
+          }
+
+          /* ✅ REDUCE SPACE BELOW KNOW MORE */
+          .section__content-cta {
+            margin-top: 14px;
+            margin-bottom: 6px; /* ✅ this line fixes it */
           }
         }
       `}</style>
