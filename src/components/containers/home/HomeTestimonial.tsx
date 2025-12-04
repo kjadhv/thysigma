@@ -1,191 +1,145 @@
-import React, { useState } from "react";
-import Image from "next/image";
-import Link from "next/link";
+import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay, Navigation } from "swiper/modules";
+import { Navigation } from "swiper/modules";
 import "swiper/swiper-bundle.css";
 
-import sthumb from "public/images/anish.jpg";
-import sthumbtwo from "public/images/kartik.jpg";
-import sthumbthree from "public/images/kartik.jpg";
+const videos = [
+  "/images/video/testimonial1.mp4",
+  "/images/video/testimonial2.mp4",
+  "/images/video/testimonial3.mp4",
+];
+
+const logos = [
+  "/images/sponsor/logo/lion.png",
+  "/images/sponsor/logo/virenoo.png",
+  "/images/sponsor/logo/virenoo.png",
+];
 
 const HomeTestimonial = () => {
-  const [nextSlideIndex, setNextSlideIndex] = useState<number>(1);
+  const playWithSound = (video: HTMLVideoElement) => {
+    video.muted = false;
+    video.volume = 1;
+    video.play();
+  };
 
-  const handleSlideChange = (swiper: any) => {
-    const nextIndex = (swiper.realIndex + 1) % swiper.slides.length;
-    setNextSlideIndex(nextIndex);
+  const resetVideo = (video: HTMLVideoElement) => {
+    video.pause();
+    video.currentTime = 0;
+    video.muted = true;
   };
 
   return (
-    <section className="section testimonial pt-0 position-relative">
-      {/* ===== FAST TEXT SLIDER (PC ONLY) ===== */}
-      <div className="testimonial__text-slider-w">
+    <section className="section testimonial pt-0">
+      <div className="container">
+         {/* ✅ HEADING */}
+        <div className="testimonial-heading">
+          <h2>What Our Clients Say</h2>
+        </div>
         <Swiper
-          slidesPerView="auto"
-          spaceBetween={40}
-          speed={5000}
-          loop
-          centeredSlides
-          modules={[Autoplay]}
-          autoplay={{
-            delay: 1,
-            disableOnInteraction: false,
-            pauseOnMouseEnter: true,
+          slidesPerView={3}
+          spaceBetween={24}
+          loop={false}
+          speed={800}
+          modules={[Navigation]}
+          navigation={{
+            nextEl: ".next-testimonial-three",
+            prevEl: ".prev-testimonial-three",
           }}
-          className="testimonial__text-slider"
+          breakpoints={{
+            0: { slidesPerView: 1 },
+            768: { slidesPerView: 2 },
+            1200: { slidesPerView: 3 },
+          }}
         >
-          {[...Array(6)].map((_, i) => (
+          {videos.map((video, i) => (
             <SwiperSlide key={i}>
-              <div className="testimonial__text-slider-single">
-                <h2 className="h1">
-                  <Link href="/client-feedback">
-                    client&apos;s testimonial
-                    <i className="fa-sharp fa-solid fa-arrow-down-right"></i>
-                  </Link>
-                </h2>
+              <div className="video-card">
+                <video
+                  src={video}
+                  playsInline
+                  preload="metadata"
+                  onMouseEnter={(e) => playWithSound(e.currentTarget)}
+                  onMouseLeave={(e) => resetVideo(e.currentTarget)}
+                />
+
+                {/* OVERLAY WITH LOGO */}
+                <div className="video-overlay">
+                  <img
+                    src={logos[i]}
+                    alt="Brand logo"
+                    className="overlay-logo"
+                  />
+                </div>
               </div>
             </SwiperSlide>
           ))}
         </Swiper>
       </div>
 
-      <div className="container position-relative">
-        <div className="row">
-          <div className="col-12 col-xxl-10">
-            <div className="testimonial-s__slider-w">
-              <Swiper
-                slidesPerView={1}
-                spaceBetween={30}
-                speed={800}
-                loop
-                modules={[Autoplay, Navigation]}
-                autoplay={{
-                  delay: 5000,
-                  disableOnInteraction: false,
-                }}
-                navigation={{
-                  nextEl: ".next-testimonial-three",
-                  prevEl: ".prev-testimonial-three",
-                }}
-                onSlideChange={handleSlideChange}
-                className="testimonial-s__slider"
-              >
-
-                {[sthumb, sthumbtwo, sthumbthree].map((img, i) => (
-                  <SwiperSlide key={i}>
-                    <div className="testimonial-s__slider-single">
-                      <div className="row gaper align-items-center">
-                        <div className="col-12 col-lg-4">
-                          <div className="thumb">
-                            <Image src={img} alt="Image" />
-                          </div>
-                        </div>
-                        <div className="col-12 col-lg-7 offset-lg-1">
-                          <div className="testimonial-s__content">
-                            <div className="quote">
-                              {/* <i className="fa-solid fa-quote-right"></i> */}
-                            </div>
-                            <div className="content">
-                              <h4>
-                                From Live Events To Digital Content, THY SIGMA
-                                Ensures Quality, Creativity, And Flawless Delivery.
-                              </h4>
-                            </div>
-                            <div className="content-cta">
-                              <h5>{i === 0 ? "Anish Gupta" : "Kartik Salve"}</h5>
-                              <p>{i === 0 ? "Client" : "Senior Engineer"}</p>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </SwiperSlide>
-                ))}
-
-              </Swiper>
-            </div>
-          </div>
-        </div>
-
-        {/* NAV */}
-        <div className="slide-group justify-content-start">
-          <button className="slide-btn prev-testimonial-three">
-            <i className="fa-light fa-angle-left"></i>
-          </button>
-          <button className="slide-btn next-testimonial-three">
-            <i className="fa-light fa-angle-right"></i>
-          </button>
-        </div>
-      </div>
-
-      {/* SIDE IMAGE – PC ONLY */}
-      <div className="other-section">
-        <Image
-          className="other-section-image"
-          src={
-            nextSlideIndex === 0
-              ? sthumb
-              : nextSlideIndex === 1
-              ? sthumbtwo
-              : sthumbthree
-          }
-          alt="Next Slide"
-        />
-      </div>
-
-      {/* ✅ iPAD + MOBILE ONLY */}
+      {/* ✅ STYLES */}
       <style jsx>{`
+       /* HEADING */
+        .testimonial-heading {
+          text-align: center;
+          margin-bottom: 40px;
+          padding-top: 20px;
+        }
+
+        .testimonial-heading h2 {
+          font-size: 42px;
+          font-weight: 700;
+          color: #ffffff;
+          margin: 0;
+        }
+        .video-card {
+          position: relative;
+          width: 100%;
+          height: 700px;
+          border-radius: 20px;
+          overflow: hidden;
+          border: 4px solid #964722ff;
+          background: #000;
+          cursor: pointer;
+        }
+
+        .video-card video {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+
+        /* BLACK OVERLAY */
+        .video-overlay {
+          position: absolute;
+          inset: 0;
+          background: rgba(0, 0, 0, 0.8);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          transition: transform 0.6s ease;
+          transform: translateY(0);
+          z-index: 2;
+        }
+
+        /* LOGO */
+        .overlay-logo {
+          max-width: 180px;
+          width: 60%;
+          height: auto;
+        }
+
+        /* HOVER → OVERLAY + LOGO GO UP */
+        .video-card:hover .video-overlay {
+          transform: translateY(-100%);
+        }
+
         @media (max-width: 1024px) {
-
-          /* hide pc-only elements */
-          :global(.testimonial__text-slider-w),
-          :global(.other-section) {
-            display: none !important;
+          .video-card {
+            height: 280px;
           }
 
-          /* FORCE IMAGE + TEXT SIDE BY SIDE */
-          :global(.testimonial-s__slider-single .row) {
-            flex-direction: row;
-            align-items: flex-start;
-          }
-
-          /* SMALL IMAGE */
-          :global(.testimonial-s__slider .thumb) {
-            width: 90px;
-            margin-right: 18px;
-          }
-
-          :global(.testimonial-s__slider .thumb img) {
-            width: 90px;
-            height: 90px;
-            border-radius: 12px;
-          }
-
-          /* TEXT */
-          :global(.testimonial-s__content h4) {
-            font-size: 14px;
-            line-height: 1.45;
-            margin-bottom: 10px;
-          }
-
-          :global(.testimonial-s__content h5) {
-            font-size: 13px;
-          }
-
-          :global(.testimonial-s__content p) {
-            font-size: 12px;
-            opacity: 0.75;
-          }
-
-          :global(.quote i) {
-            font-size: 20px;
-            margin-bottom: 6px;
-          }
-
-          :global(.slide-group) {
-            justify-content: center !important;
-            margin-top: 16px;
+          .overlay-logo {
+            max-width: 120px;
           }
         }
       `}</style>

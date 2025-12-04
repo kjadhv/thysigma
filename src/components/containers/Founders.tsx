@@ -7,7 +7,7 @@ import founder2 from "public/images/mam.png";
 const founders = [
   {
     name: "Kumaresh Devendran",
-    role: "Founder ",
+    role: "Founder & CEO",
     tagline:
       "Where broadcast-grade production meets creative storytelling, for unforgettable memories.",
     bio: [
@@ -34,7 +34,7 @@ const founders = [
   },
   {
     name: "Yashica Dudhe",
-    role: "Founder",
+    role: "Co-Founder & COO",
     tagline:
       "Every project delivered by Thy Sigma upholds top-tier impact and influence.",
     bio: [

@@ -1,29 +1,114 @@
 import React, { useEffect, useRef, useState } from "react";
-import Image from "next/image";
 
-import img1 from "public/images/wedo.jpg";
-import img2 from "public/images/quality.jpg";
-import img3 from "public/images/paraimg.jpeg";
-import img4 from "public/images/wedo.jpg";
+const data = [
+  {
+    title: "We understand content",
+    desc: "We understand how content actually works across platforms, formats and audiences.",
+  },
+  {
+    title: "Engineer mindset",
+    desc: "We plan like engineers and execute like creators — precision meets creativity.",
+  },
+  {
+    title: "End-to-end delivery",
+    desc: "You get complete end-to-end execution with zero excuses and clear outcomes.",
+  },
+  {
+    title: "Tech + Creativity",
+    desc: "Technology and creativity operate together under one roof for faster results.",
+  },
+  {
+    title: "Partnership mindset",
+    desc: "We work like long-term partners, not short-term vendors.",
+  },
+  {
+    title: "Transparent costing",
+    desc: "No hidden charges — pricing is clear, honest and predictable.",
+  },
+  {
+    title: "Built for today",
+    desc: "Our team is designed for speed, scale and modern content workflows.",
+  },
+  {
+    title: "Execution > noise",
+    desc: "We don’t chase trends — we focus on execution that achieves outcomes.",
+  },
+  {
+    title: "One trusted partner",
+    desc: "From strategy to delivery, everything is handled by one reliable partner.",
+  },
+];
 
 const WhyChooseUs = () => {
-  const ref = useRef<HTMLDivElement>(null);
-  const [visible, setVisible] = useState(false);
+  const boxRef = useRef<HTMLDivElement>(null);
+  const intervalRef = useRef<NodeJS.Timeout | null>(null);
 
+  const [visible, setVisible] = useState(false);
+  const [shine, setShine] = useState(false);
+  const [fullyInView, setFullyInView] = useState(false);
+  const [activeIndex, setActiveIndex] = useState<number | null>(null);
+  const [isTouch, setIsTouch] = useState(false);
+
+  useEffect(() => {
+    setIsTouch("ontouchstart" in window || navigator.maxTouchPoints > 0);
+  }, []);
+
+  /* section reveal */
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => setVisible(entry.isIntersecting),
       { threshold: 0.3 }
     );
-    ref.current && observer.observe(ref.current);
+    boxRef.current && observer.observe(boxRef.current);
     return () => observer.disconnect();
   }, []);
+
+  /* full board visibility */
+  useEffect(() => {
+    const board = document.querySelector(".chess-board");
+    if (!board) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => setFullyInView(entry.intersectionRatio === 1),
+      { threshold: 1 }
+    );
+
+    observer.observe(board);
+    return () => observer.disconnect();
+  }, []);
+
+  /* shine timing */
+  useEffect(() => {
+    if (!fullyInView) {
+      if (intervalRef.current) clearInterval(intervalRef.current);
+      intervalRef.current = null;
+      return;
+    }
+
+    setShine(true);
+    const firstTimeout = setTimeout(() => setShine(false), 3000);
+
+    intervalRef.current = setInterval(() => {
+      setShine(true);
+      setTimeout(() => setShine(false), 3000);
+    }, 4000);
+
+    return () => {
+      clearTimeout(firstTimeout);
+      if (intervalRef.current) clearInterval(intervalRef.current);
+    };
+  }, [fullyInView]);
+
+  const handleClick = (index: number) => {
+    if (!isTouch) return;
+    setActiveIndex(activeIndex === index ? null : index);
+  };
 
   return (
     <section className="why-section">
       <div className="container">
         <div
-          ref={ref}
+          ref={boxRef}
           className="why-box"
           style={{
             opacity: visible ? 1 : 0,
@@ -31,195 +116,215 @@ const WhyChooseUs = () => {
             transition: "1s ease",
           }}
         >
-          <div className="row align-items-center why-row">
+          <h2 className="why-title">Why Choose Us</h2>
 
-            {/* LEFT – IMAGE GRID */}
-            <div className="col-12 col-lg-5 why-images">
-              <div className="image-grid">
-                {[img1, img2, img3, img4].map((img, i) => (
-                  <div className="image-cell" key={i}>
-                    <Image src={img} alt="why choose us" fill />
-                  </div>
-                ))}
-              </div>
-            </div>
+          <div className={`chess-board ${shine ? "border-shine" : ""}`}>
+            <span className="border-light" />
 
-            {/* RIGHT – CONTENT */}
-            <div className="col-12 col-lg-7 why-content">
-              <h2 className="why-title">Why Choose Us</h2>
-
-              <div className="row why-points">
-                <div className="col-12 col-md-6">
-                  <span className="num">01</span>
-                  <h4>Proven Expertise</h4>
-                  <p>
-                    16+ years of media-tech expertise delivering quality you can see
-                    and reliability you can feel.
-                  </p>
-                </div>
-
-                <div className="col-12 col-md-6">
-                  <span className="num">02</span>
-                  <h4>Premium Yet Accessible</h4>
-                  <p>
-                    A premium yet accessible media-tech partner focused on flawless
-                    execution and creative storytelling.
-                  </p>
-                </div>
-
-                <div className="col-12 col-md-6">
-                  <span className="num">03</span>
-                  <h4>End-to-End Services</h4>
-                  <p>
-                    Livestreaming, photography, videography, post-production — all
-                    under one roof.
-                  </p>
-                </div>
-
-                <div className="col-12 col-md-6">
-                  <span className="num">04</span>
-                  <h4>One Trusted Partner</h4>
-                  <p>
-                    Content repurposing, subtitling, distribution, video reliability
-                    and audio engineering — everything with one partner.
-                  </p>
+            {data.map((item, i) => (
+              <div
+                key={i}
+                className={`chess-cell ${activeIndex === i ? "active" : ""}`}
+                onClick={() => handleClick(i)}
+              >
+                <div className="cell-content">
+                  <div className="cell-title">{item.title}</div>
+                  <div className="cell-desc">{item.desc}</div>
                 </div>
               </div>
-
-              {/* <p className="closing-line">
-                Choosing us means gaining a production team that turns every event
-                into a digital masterpiece.
-              </p> */}
-            </div>
-
+            ))}
           </div>
         </div>
       </div>
 
-      {/* ✅ STYLES */}
       <style jsx>{`
-        /* BASE (PC unchanged) */
         .why-section {
-          background: #000;
-          padding: 90px 0;
+            position: relative;
+  padding: 90px 0;
+  overflow: hidden;
         }
+/* ✅ SAME DARK OVERLAY AS SERVICES */
+.why-section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    rgba(17, 11, 22, 0.75),
+    rgba(0, 0, 0, 0.9)
+  );
+  z-index: 0;
+}
 
-        .why-box {
-          border: 1px solid rgba(255,255,255,0.2);
-          border-radius: 20px;
-          padding: 56px;
-        }
-
-        .image-grid {
-          display: grid;
-          grid-template-columns: 1fr 1fr;
-          gap: 16px;
-        }
-
-        .image-cell {
-          position: relative;
-          height: 140px;
-          border-radius: 14px;
-          overflow: hidden;
-        }
-
-        .image-cell :global(img) {
-          object-fit: cover;
-        }
+/* ✅ CONTENT ABOVE OVERLAY */
+.why-section .container {
+  position: relative;
+  z-index: 2;
+}
+        // .why-box {
+        //   border: 1px solid rgba(145, 20, 20, 0.2);
+        //   border-radius: 22px;
+        //   padding: 60px;
+        // }
 
         .why-title {
           color: #fff;
           font-size: 38px;
-          font-weight: 700;
-          margin-bottom: 24px;
+          text-align: center;
+          margin-bottom: 36px;
         }
 
-        .num {
-          color: #ff7425;
-          font-size: 14px;
+        .chess-board {
+          position: relative;
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          border: 2px solid rgba(255,255,255,0.6);
+          border-radius: 16px;
+          overflow: hidden;
+        }
+
+        .chess-cell {
+        position: relative; /* ✅ ADD THIS */
+  z-index: 1;  
+          min-height: 180px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          padding: 24px;
+          backdrop-filter: blur(14px);
+          text-align: center;
+          cursor: pointer;
+        }
+
+        .chess-cell:nth-child(odd) {
+          background: rgba(0,0,0,0.48);
+          color: #b4ada9ff;
+        }
+
+        .chess-cell:nth-child(even) {
+          background: transparent;
+          color: #cc5917ff;//txt
+        }
+
+        .cell-content {
+          position: relative;
+          max-width: 260px;
+        }
+
+        .cell-title {
+          font-size: 22px;
           font-weight: 600;
+          line-height: 1.25;
+          transition: opacity 0.25s ease;
         }
 
-        h4 {
-          color: #fff;
-          font-size: 18px;
-          margin: 6px 0;
+        .cell-desc {
+          position: absolute;
+          inset: 0;
+          font-size: 17px;
+          line-height: 1.5;
+          opacity: 0;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          transition: opacity 0.25s ease;
         }
 
-        p {
-          color: rgba(255,255,255,0.75);
-          font-size: 15px;
-          line-height: 1.6;
-        }
-
-        .why-points > div {
-          margin-bottom: 24px;
-        }
-
-        .closing-line {
-          color: #fff;
-          font-style: italic;
-          margin-top: 12px;
-        }
-
-        /* ✅ iPAD + MOBILE — TEXT ABOVE IMAGES */
-        @media (max-width: 1024px) {
-          .why-row {
-            flex-direction: column;
+        /* DESKTOP hover */
+        @media (hover: hover) and (pointer: fine) {
+          .chess-cell:hover .cell-title {
+            opacity: 0;
           }
 
-          .why-content {
-            order: 1;
-            margin-bottom: 28px;
-          }
-
-          .why-images {
-            order: 2;
+          .chess-cell:hover .cell-desc {
+            opacity: 1;
           }
         }
 
-        /* ✅ iPAD TUNING */
+        /* TOUCH click */
+        .chess-cell.active .cell-title {
+          opacity: 0;
+        }
+
+        .chess-cell.active .cell-desc {
+          opacity: 1;
+        }
+
+        /* ✅ ✅ iPAD FIX ONLY */
         @media (min-width: 768px) and (max-width: 1024px) {
-          .why-section {
-            padding: 70px 0;
-          }
-
-          .why-box {
-            padding: 40px;
-          }
-
-          .image-cell {
-            height: 120px;
-          }
-
-          .why-title {
-            font-size: 32px;
-          }
-
-          h4 {
-            font-size: 16px;
-          }
-
-          p {
-            font-size: 14px;
+          .cell-title {
+            font-size: 20px;
+            line-height: 1.4;
+            max-width: 180px;
+            word-break: break-word;
           }
         }
 
-        /* ✅ MOBILE */
-        @media (max-width: 767px) {
-          .why-section {
-            padding: 60px 0;
-          }
+        /* border shine */
+        .border-light {
+          position: absolute;
+          inset: -60%;
+          background: linear-gradient(
+            120deg,
+            transparent 47%,
+            rgba(255,255,255,0.55) 50%,
+            transparent 53%
+          );
+          transform: translateX(-140%);
+          opacity: 0;
+          pointer-events: none;
+           z-index: 0; /* ✅ ADD THIS */
+        }
 
-          .why-box {
-            padding: 24px;
-          }
+        .border-shine .border-light {
+          opacity: 1;
+          animation: borderSweep 3s ease forwards;
+        }
 
-          .why-title {
-            font-size: 26px;
-            text-align: left;
+        @keyframes borderSweep {
+          to {
+            transform: translateX(140%);
           }
         }
+
+        /* mobile */
+      @media (max-width: 767px) {
+  .chess-board {
+    grid-template-columns: repeat(2, 1fr);
+  }
+@media (max-width: 767px) {
+
+  /* DEFAULT = ORANGE */
+  .chess-cell {
+    background: rgba(255, 116, 37, 0.55);
+    color: #000;
+  }
+
+  /* BLACK CELLS (chess flip) */
+  .chess-cell:nth-child(4n + 2),
+  .chess-cell:nth-child(4n + 3) {
+    background: rgba(0, 0, 0, 0.48);
+    color: #ff7425;
+  }
+}
+
+
+
+  .chess-cell {
+    min-height: 160px;
+    padding: 18px;
+  }
+
+  .cell-title {
+    font-size: 16px;
+    line-height: 1.3;
+  }
+
+  .cell-desc {
+    font-size: 13px;
+    line-height: 1.4;
+  }
+}
+
       `}</style>
     </section>
   );

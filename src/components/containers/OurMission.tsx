@@ -3,8 +3,7 @@ import Image from "next/image";
 
 import missionImg from "public/images/wedo.jpg";
 import visionImg from "public/images/quality.jpg";
-import teamImg from "public/images/paraimg.jpeg";
-import WhyChooseUs from "./WhyChooseUs";
+import teamImg from "public/images/group.jpeg";
 
 const OurMission = () => {
   const missionRef = useRef<HTMLDivElement>(null);
@@ -188,11 +187,10 @@ const OurMission = () => {
           </div>
 
           <p style={{ maxWidth: "90%", margin: "0 auto", fontSize: isMobile ? "15px" : "22px", lineHeight: "1.7" }}>
-            We are a collective of passionate individuals who have honed their skills
-            for years and studied the market to deliver what truly works best.
+            Fast edits, quick turnarounds, tight schedules – we&apos;re used to it. Deadlines are not negotiable for us, and neither is the quality of the final video.
           </p>
         </div>
-<WhyChooseUs />
+
       </div>
     </section>
     

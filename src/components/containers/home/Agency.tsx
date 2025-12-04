@@ -34,12 +34,13 @@ const Agency = () => {
               post-production, we help event companies elevate their client
               offerings while reducing their operational burden.
             </p>
-
-            <Link href="/about-us" className="btn btn--primary">
+{/* ✅ CENTER */}
+  <div className="center-btn">
+            <Link href="/about-us" className="btn btn--primary" >
               Know More
             </Link>
           </div>
-
+</div>
           {/* ===== INFINITE MARQUEE ===== */}
           <div className="marquee">
             <div className="marquee-track">
@@ -69,12 +70,18 @@ const Agency = () => {
           overflow: hidden;
           margin-bottom: 0;
         }
+.center-btn {
+  display: flex;
+  justify-content: center;
+  margin-top: 8px;
+}
 
         .agency-text h2 {
           font-size: 48px;
           font-weight: 700;
           margin-bottom: 18px;
           color: #fff;
+          text-Align: center;
         }
 
         .agency-text p {
@@ -82,6 +89,7 @@ const Agency = () => {
           line-height: 1.8;
           color: rgba(255, 255, 255, 0.9);
           margin-bottom: 16px;
+          text-Align: center;
         }
 
         .marquee {

@@ -8,7 +8,7 @@ import Agency from "@/components/containers/home/Agency";
 import OurMission from "@/components/containers/OurMission";
 // import StatsCounter from "@/components/containers/StatsCounter";
 import Founders from "@/components/containers/Founders";
-import HomeTestimonial from "@/components/containers/home/HomeTestimonial";
+// import HomeTestimonial from "@/components/containers/home/HomeTestimonial";
 import ContactMain from "@/components/containers/ContactMain";
 // import OurAchievement from "@/components/containers/OurAchievement";
 // import AboutSponsor from "@/components/containers/home-three/AboutSponsor";
@@ -26,7 +26,7 @@ const AboutUs = () => {
       <OurMission />
       {/* <StatsCounter /> */}
       <Founders />
-      <HomeTestimonial />
+      {/* <HomeTestimonial /> */}
       {/* <OurAchievement /> */}
       {/* <AboutSponsor /> */}
       {/* <AboutCta /> */}
