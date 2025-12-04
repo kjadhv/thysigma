@@ -36,8 +36,9 @@ const OurMission = () => {
             setMissionVisible(entry.isIntersecting);
           if (entry.target === visionRef.current)
             setVisionVisible(entry.isIntersecting);
-          if (entry.target === teamRef.current && entry.isIntersecting)
-            setTeamVisible(true);
+          if (entry.target === teamRef.current)
+  setTeamVisible(entry.isIntersecting);
+
         });
       },
       { threshold: 0.35 }
@@ -168,28 +169,70 @@ const OurMission = () => {
           </div>
         </div>
 
-        {/* ===== TEAM ===== */}
-        <div ref={teamRef} style={{ textAlign: "center", color: "#fff" }}>
-          <h2 style={{ fontSize: isMobile ? "28px" : "48px" }}>
-            Our Team & Tribe
-          </h2>
+       {/* ===== TEAM ===== */}
+{/* ===== TEAM ===== */}
+<div
+  ref={teamRef}
+  style={{
+    textAlign: "center",
+    color: "#fff",
+    marginTop: "80px",
+  }}
+>
+  {/* TITLE */}
+  <h2
+    style={{
+      fontSize: isMobile ? "28px" : "48px",
+      marginBottom: "24px",
+      opacity: teamVisible ? 1 : 0,
+      transform: teamVisible ? "translateY(0)" : "translateY(-40px)",
+      transition: "0.8s cubic-bezier(0.4,0,0.2,1)",
+    }}
+  >
+    Our Team & Tribe
+  </h2>
 
-          <div
-            style={{
-              position: "relative",
-              width: "100%",
-              height: isMobile ? "260px" : "420px",
-              marginBottom: "24px",
-            }}
-          >
-            <Image src={teamImg} alt="Team" fill style={{ objectFit: "cover" }} />
-            <div style={{ position: "absolute", inset: 0, border: isMobile ? "2px solid #fff" : "4px solid #fff" }} />
-          </div>
+  {/* IMAGE SLIDES DOWN FROM TITLE */}
+  <div
+    style={{
+      position: "relative",
+      width: "100%",
+      height: isMobile ? "260px" : "420px",
+      marginBottom: "24px",
+      transform: teamVisible ? "translateY(0)" : "translateY(-120px)",
+      opacity: teamVisible ? 1 : 0,
+      transition: "1s cubic-bezier(0.4,0,0.2,1)",
+      overflow: "hidden",
+    }}
+  >
+    <Image src={teamImg} alt="Team" fill style={{ objectFit: "cover" }} />
+    <div
+      style={{
+        position: "absolute",
+        inset: 0,
+        border: isMobile ? "2px solid #fff" : "4px solid #fff",
+      }}
+    />
+  </div>
 
-          <p style={{ maxWidth: "90%", margin: "0 auto", fontSize: isMobile ? "15px" : "22px", lineHeight: "1.7" }}>
-            Fast edits, quick turnarounds, tight schedules – we&apos;re used to it. Deadlines are not negotiable for us, and neither is the quality of the final video.
-          </p>
-        </div>
+  {/* TEXT */}
+  <p
+    style={{
+      maxWidth: "90%",
+      margin: "0 auto",
+      fontSize: isMobile ? "15px" : "22px",
+      lineHeight: "1.7",
+      opacity: teamVisible ? 1 : 0,
+      transform: teamVisible ? "translateY(0)" : "translateY(40px)",
+      transition: "0.8s cubic-bezier(0.4,0,0.2,1) 0.2s",
+    }}
+  >
+    Fast edits, quick turnarounds, tight schedules – we&apos;re used to it.
+    Deadlines are not negotiable for us, and neither is the quality of the final
+    video.
+  </p>
+</div>
+
 
       </div>
     </section>
