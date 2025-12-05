@@ -18,6 +18,7 @@ interface HeaderTwoProps {
 const HeaderTwo = ({ openNav, setOpenNav, handleNav }: HeaderTwoProps) => {
   const [scrolled, setScrolled] = React.useState(false);
   const router = useRouter();
+  const isHomePage = router.pathname === "/"; // ✅ Check if home page
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50);
@@ -38,7 +39,16 @@ const HeaderTwo = ({ openNav, setOpenNav, handleNav }: HeaderTwoProps) => {
   return (
     <>
       <header className="header">
-        <div className={`${scrolled ? "navbar-active" : ""} primary-navbar cmn-nav`}>
+        <div 
+          className={`${scrolled ? "navbar-active" : ""} ${isHomePage ? "home-header" : ""} primary-navbar cmn-nav`}
+          style={{
+            background: "transparent !important", // ✅ No black, just transparent
+            backdropFilter: "blur(20px)",
+            WebkitBackdropFilter: "blur(20px)",
+            backgroundColor: "transparent !important",
+            transition: "all 0.3s ease",
+          }}
+        >
           <div className="container">
             <nav
               className="navbar p-0"
@@ -137,15 +147,17 @@ const HeaderTwo = ({ openNav, setOpenNav, handleNav }: HeaderTwoProps) => {
       </header>
 
       {/* MOBILE MENU */}
-        <div
+      <div
         style={{
           position: "fixed",
           top: 0,
           right: 0,
           width: "260px",
           height: "100vh",
-          background: "#000",
-            transform: openNav ? "translateX(0)" : "translateX(100%)",
+          background: "rgba(0, 0, 0, 0.95)", // ✅ Darker for mobile menu
+          backdropFilter: "blur(20px)", // ✅ Stronger blur for mobile menu
+          WebkitBackdropFilter: "blur(20px)",
+          transform: openNav ? "translateX(0)" : "translateX(100%)",
           transition: "0.3s ease",
           zIndex: 2000,
           padding: "24px",
@@ -189,6 +201,18 @@ const HeaderTwo = ({ openNav, setOpenNav, handleNav }: HeaderTwoProps) => {
 
       {/* MOBILE-ONLY STYLES */}
       <style jsx>{`
+        .primary-navbar {
+          background: transparent !important;
+          backdrop-filter: blur(20px) !important;
+          -webkit-backdrop-filter: blur(20px) !important;
+        }
+
+        .navbar-active {
+          background: transparent !important;
+          backdrop-filter: blur(25px) !important;
+          -webkit-backdrop-filter: blur(25px) !important;
+        }
+
         @media (max-width: 768px) {
           .navbar {
             min-height: 60px !important;

@@ -217,8 +217,9 @@ const HomeTwoBanner = () => {
         overflow: "hidden",
         width: "100%",
         minHeight: isMobile || isTablet
-          ? "50vh"                 // ✅ half screen for mobile/tablet
-          : "calc(var(--vh) * 100)", // ✅ desktop fullscreen
+          ? "50vh"                  // ✅ half screen for mobile/tablet
+          : "calc(var(--vh) * 100)", // ✅ 90vh for PC to fit on screen with header
+        paddingTop: isMobile || isTablet ? "10px" : "90px", // ✅ No padding for mobile/tablet, space for header on PC
       }}
     >
       {/* Faint blurred background layer */}
@@ -243,12 +244,14 @@ const HomeTwoBanner = () => {
           style={{
             position: "absolute",
             width: "100%",
-            height: isMobile || isTablet ? "50vh" : "calc(var(--vh) * 100)",
-            maxHeight: isMobile || isTablet ? "50vh" : "none",
-            minHeight: isMobile || isTablet ? "50vh" : "none",
+            height: isMobile || isTablet ? "50vh" : "calc(var(--vh) * 80)",
+            maxHeight: isMobile || isTablet ? "50vh" : "calc(var(--vh) * 80)",
+            minHeight: isMobile || isTablet ? "50vh" : "calc(var(--vh) * 80)",
             objectFit: isMobile || isTablet ? "contain" : "cover",
             objectPosition: "center center",
             filter: "blur(12px) brightness(0.25)",
+            top: isMobile || isTablet ? "0" : "90px", // ✅ Start from top on mobile/tablet, below header on PC
+            left: 0,
           }}
         >
           <source src="/images/thy_sigma_hero_video.mp4" type="video/mp4" />
@@ -264,14 +267,14 @@ const HomeTwoBanner = () => {
         playsInline
         style={{
           position: "absolute",
-          top: 0,
+          top: isMobile || isTablet ? "0" : "90px", // ✅ Start from top on mobile/tablet, below header on PC
           left: 0,
           width: "100%",
           height: isMobile || isTablet
             ? "50vh"
-            : "calc(var(--vh) * 100)",
-          maxHeight: isMobile || isTablet ? "50vh" : "none",
-          minHeight: isMobile || isTablet ? "50vh" : "none",
+            : "calc(var(--vh) * 80)", // ✅ 80vh for PC to fit on first screen
+          maxHeight: isMobile || isTablet ? "50vh" : "calc(var(--vh) * 80)",
+          minHeight: isMobile || isTablet ? "50vh" : "calc(var(--vh) * 80)",
           objectFit: isMobile || isTablet ? "contain" : "cover",
           objectPosition: "center center",
           zIndex: 1,
