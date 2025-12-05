@@ -15,14 +15,34 @@ const HomeTwoBanner = () => {
   const titleRef = useRef<HTMLHeadingElement>(null);
   const contentBottomRef = useRef<HTMLDivElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
+  const isMobile = typeof window !== "undefined" && window.innerWidth <= 576;
+  const isTablet = typeof window !== "undefined" && window.innerWidth > 576 && window.innerWidth <= 991;
+
+  // ✅ REAL VIEWPORT HEIGHT FIX (MOBILE + IPAD)
+  useEffect(() => {
+    const setVH = () => {
+      document.documentElement.style.setProperty(
+        "--vh",
+        `${window.innerHeight * 0.01}px`
+      );
+    };
+    setVH();
+    window.addEventListener("resize", setVH);
+    return () => window.removeEventListener("resize", setVH);
+  }, []);
 
   useEffect(() => {
     const device_width = window.innerWidth;
+    const isMobileDevice = window.innerWidth <= 576;
+    const isTabletDevice = window.innerWidth > 576 && window.innerWidth <= 991;
+    
+    // ✅ Skip scroll animations on mobile/tablet - keep video at 50vh
+    if (isMobileDevice || isTabletDevice) {
+      return;
+    }
+    
+    if (document.querySelectorAll(".banner-two").length > 0) {
 
-    if (
-      document.querySelectorAll(".banner-two").length > 0 &&
-      device_width > 576
-    ) {
       // Background video transformation
       gsap.timeline({
         scrollTrigger: {
@@ -41,9 +61,13 @@ const HomeTwoBanner = () => {
                 duration: 0.3,
                 ease: "power2.out",
               });
+              gsap.set(boxedVideoContainerRef.current, {
+                pointerEvents: "none",
+              });
+
               gsap.to(boxedVideoContainerRef.current, {
                 opacity: 0,
-                scale: 0.85,
+                scale: isMobile || isTablet ? 1 : 0.85,
                 duration: 0.3,
                 ease: "power2.out",
               });
@@ -78,7 +102,9 @@ const HomeTwoBanner = () => {
 
               gsap.to(fullscreenVideoRef.current, {
                 opacity: 1 - transitionProgress,
-                scale: 1 - transitionProgress * 0.15,
+                scale: isMobile || isTablet
+                  ? 1
+                  : 1 - transitionProgress * 0.15,
                 duration: 0.3,
                 ease: "power2.out",
               });
@@ -190,7 +216,9 @@ const HomeTwoBanner = () => {
         position: "relative",
         overflow: "hidden",
         width: "100%",
-        minHeight: "100vh",
+        minHeight: isMobile || isTablet
+          ? "50vh"                 // ✅ half screen for mobile/tablet
+          : "calc(var(--vh) * 100)", // ✅ desktop fullscreen
       }}
     >
       {/* Faint blurred background layer */}
@@ -214,15 +242,16 @@ const HomeTwoBanner = () => {
           playsInline
           style={{
             position: "absolute",
-            top: 0,
-            left: 0,
             width: "100%",
-            height: "100%",
-            objectFit: "cover",
+            height: isMobile || isTablet ? "50vh" : "calc(var(--vh) * 100)",
+            maxHeight: isMobile || isTablet ? "50vh" : "none",
+            minHeight: isMobile || isTablet ? "50vh" : "none",
+            objectFit: isMobile || isTablet ? "contain" : "cover",
+            objectPosition: "center center",
             filter: "blur(12px) brightness(0.25)",
           }}
         >
-          <source src="/images/banner-video.mp4" type="video/mp4" />
+          <source src="/images/thy_sigma_hero_video.mp4" type="video/mp4" />
         </video>
       </div>
 
@@ -238,13 +267,17 @@ const HomeTwoBanner = () => {
           top: 0,
           left: 0,
           width: "100%",
-          height: "100%",
-          objectFit: "cover",
+          height: isMobile || isTablet
+            ? "50vh"
+            : "calc(var(--vh) * 100)",
+          maxHeight: isMobile || isTablet ? "50vh" : "none",
+          minHeight: isMobile || isTablet ? "50vh" : "none",
+          objectFit: isMobile || isTablet ? "contain" : "cover",
+          objectPosition: "center center",
           zIndex: 1,
-          opacity: 1,
         }}
       >
-        <source src="/images/banner-video.mp4" type="video/mp4" />
+        <source src="/images/thy_sigma_hero_video.mp4" type="video/mp4" />
       </video>
 
       {/* Boxed capsule video (appears on scroll) - aligned with container */}
@@ -266,8 +299,7 @@ const HomeTwoBanner = () => {
           style={{
             width: "40%",
             maxWidth: "600px",
-            height: "45vh",
-            maxHeight: "350px",
+            aspectRatio: "16/9",
             borderRadius: "40px",
             overflow: "hidden",
             boxShadow: "0 30px 60px -15px rgba(0, 0, 0, 0.6)",
@@ -284,7 +316,7 @@ const HomeTwoBanner = () => {
               objectFit: "cover",
             }}
           >
-            <source src="/images/banner-video.mp4" type="video/mp4" />
+            <source src="/images/thy_sigma_hero_video.mp4" type="video/mp4" />
           </video>
         </div>
       </div>
@@ -307,9 +339,9 @@ const HomeTwoBanner = () => {
                 </div>
               </div>
               <div className="banner-two__content">
-                <h1 className="title-anim" ref={titleRef}>
+                {/* <h1 className="title-anim" ref={titleRef}>
                   OUR <span> THY SIGMA</span> MEDIA SERVICES
-                </h1>
+                </h1> */}
                 <div className="banner-two__content-cta section__content-cta" ref={contentBottomRef}>
                   <div className="paragraph">
                     <p>
