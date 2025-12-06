@@ -1,7 +1,7 @@
 import React from "react";
 import Layout from "@/components/layout/Layout";
 import CmnBanner from "@/components/layout/banner/CmnBanner";
-import ContactMain from "@/components/containers/ContactMain";
+import ContactMain from "@/components/contact/ContactMain";
 
 const ContactUs = () => {
   return (

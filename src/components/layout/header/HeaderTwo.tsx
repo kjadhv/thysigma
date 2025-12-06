@@ -36,18 +36,29 @@ const HeaderTwo = ({ openNav, setOpenNav, handleNav }: HeaderTwoProps) => {
 
   const isActive = (href: string) => router.pathname === href;
 
+  const headerStyle: React.CSSProperties = scrolled
+    ? {
+        background: "rgba(255,255,255,0.04)",
+        backdropFilter: "blur(20px)",
+        WebkitBackdropFilter: "blur(20px)",
+        transition: "all 0.3s ease",
+        color: "#3f3939ff",
+      }
+    : {
+        background: "rgba(75, 67, 67, 0.95)",
+        // keep a subtle blur at the top as well
+        backdropFilter: "blur(12px)",
+        WebkitBackdropFilter: "blur(12px)",
+        transition: "all 0.3s ease",
+        color: "#fff",
+      };
+
   return (
     <>
       <header className="header">
-        <div 
+        <div
           className={`${scrolled ? "navbar-active" : ""} ${isHomePage ? "home-header" : ""} primary-navbar cmn-nav`}
-          style={{
-            background: "transparent !important", // ✅ No black, just transparent
-            backdropFilter: "blur(20px)",
-            WebkitBackdropFilter: "blur(20px)",
-            backgroundColor: "transparent !important",
-            transition: "all 0.3s ease",
-          }}
+          style={headerStyle}
         >
           <div className="container">
             <nav
@@ -136,6 +147,7 @@ const HeaderTwo = ({ openNav, setOpenNav, handleNav }: HeaderTwoProps) => {
                     fontSize: "24px",
                     cursor: "pointer",
                     padding: 0,
+                    color: scrolled ? "#111" : "#fff",
                   }}
                 >
                   ☰
@@ -154,8 +166,9 @@ const HeaderTwo = ({ openNav, setOpenNav, handleNav }: HeaderTwoProps) => {
           right: 0,
           width: "260px",
           height: "100vh",
-          background: "rgba(0, 0, 0, 0.95)", // ✅ Darker for mobile menu
-          backdropFilter: "blur(20px)", // ✅ Stronger blur for mobile menu
+          // make the mobile menu translucent and blurred instead of solid black
+          background: "rgba(255,255,255,0.06)",
+          backdropFilter: "blur(20px)",
           WebkitBackdropFilter: "blur(20px)",
           transform: openNav ? "translateX(0)" : "translateX(100%)",
           transition: "0.3s ease",
@@ -171,7 +184,7 @@ const HeaderTwo = ({ openNav, setOpenNav, handleNav }: HeaderTwoProps) => {
             right: "14px",
             background: "transparent",
             border: "none",
-            color: "#fff",
+            color: "#111",
             fontSize: "24px",
             cursor: "pointer",
           }}
@@ -186,7 +199,7 @@ const HeaderTwo = ({ openNav, setOpenNav, handleNav }: HeaderTwoProps) => {
                 href={item.href}
                 onClick={() => setOpenNav(false)}
                 style={{
-                  color: "#fff",
+                  color: "#111",
                   fontSize: "14px",
                   fontWeight: 500,
                   textDecoration: "none",
@@ -201,7 +214,7 @@ const HeaderTwo = ({ openNav, setOpenNav, handleNav }: HeaderTwoProps) => {
 
       {/* MOBILE-ONLY STYLES */}
       <style jsx>{`
-        .primary-navbar {
+          .primary-navbar {
           background: transparent !important;
           backdrop-filter: blur(20px) !important;
           -webkit-backdrop-filter: blur(20px) !important;
@@ -239,7 +252,7 @@ const HeaderTwo = ({ openNav, setOpenNav, handleNav }: HeaderTwoProps) => {
             top: 18px !important;
             right: 16px !important;
             z-index: 1000 !important;
-            color: #fff !important;
+            color: inherit !important;
           }
 
           .container {

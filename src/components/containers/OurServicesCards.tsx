@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Link from "next/link";
+import CardAnimations from "../animations/CardAnimations";
 import img1 from "public/images/services/videop.jpeg";
 import img2 from "public/images/services/lives.jpeg";
 import img3 from "public/images/services/contentpp.jpeg";
@@ -65,6 +66,7 @@ const handleCardClick = (index: number) => {
     <>
       <section className="section service-t">
         <div className="container">
+          <CardAnimations>
           <div
             className="cine-row"
             onMouseLeave={() => setActiveIndex(null)}
@@ -161,7 +163,7 @@ ${activeIndex === i ? "active" : ""}`}
       Read More
     </Link>
   </>
-)}</div>    ))}  </div>   </div></section>
+)}</div>    ))}  </div>   </CardAnimations>  </div></section>
 
       {/* ✅ ALL ORIGINAL STYLES — UNTOUCHED */}     
       <style jsx>{`

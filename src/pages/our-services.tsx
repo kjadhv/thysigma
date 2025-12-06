@@ -5,7 +5,7 @@ import CmnBanner from "@/components/layout/banner/CmnBanner";
 import OurServicesCards from "@/components/containers/OurServicesCards";
 import WhyChooseUs from "@/components/containers/WhyChooseUs";
 // import HomeTestimonial from "@/components/containers/home/HomeTestimonial";
-import ContactMain from "@/components/containers/ContactMain";
+import ContactMain from "@/components/contact/ContactForm";
 
 const OurServices = () => {
   return (

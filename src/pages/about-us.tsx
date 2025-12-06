@@ -9,11 +9,11 @@ import OurMission from "@/components/containers/OurMission";
 // import StatsCounter from "@/components/containers/StatsCounter";
 import Founders from "@/components/containers/Founders";
 // import HomeTestimonial from "@/components/containers/home/HomeTestimonial";
-import ContactMain from "@/components/containers/ContactMain";
+// import ContactMain from "@/components/containers/ContactMain";
 // import OurAchievement from "@/components/containers/OurAchievement";
 // import AboutSponsor from "@/components/containers/home-three/AboutSponsor";
 // import AboutCta from "@/components/containers/home-two/AboutCta";
-
+import ContactForm from "@/components/contact/ContactForm";
 
 const AboutUs = () => {
   return (
@@ -30,7 +30,8 @@ const AboutUs = () => {
       {/* <OurAchievement /> */}
       {/* <AboutSponsor /> */}
       {/* <AboutCta /> */}
-      <ContactMain />
+      <ContactForm /> 
+      {/* <ContactForm /> */}
     </Layout>
   );
 };

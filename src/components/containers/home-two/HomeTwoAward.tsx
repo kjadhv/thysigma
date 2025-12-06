@@ -30,9 +30,20 @@ const HomeTwoAward = () => {
           {/* CONTENT */}
           <div className="col-12 col-lg-6 col-xxl-5 offset-xxl-1 award-content">
             <div className="award__content section__content">
-              <span className="sub-title">
-                WE PROUD THAT <i className="fa-solid fa-arrow-right"></i>
-              </span>
+                <Link
+      href="/portfolio"
+      className="sub-title"
+      style={{
+        display: "inline-flex",
+        alignItems: "center",
+        gap: "8px",
+        textDecoration: "none",
+        cursor: "pointer",
+      }}
+    >
+      WE PROUD THAT
+      <i className="fa-solid fa-arrow-right"></i>
+    </Link>
 
               <h2 className="title">
                 WHAT WE <span>DO</span>
@@ -47,21 +58,21 @@ const HomeTwoAward = () => {
 
               <div className="award__content-meta">
                 <div className="single">
-                  <h4>Create</h4>
-                  <h4>We bring</h4>
-                  <p>Ideas To Life</p>
+                  <h4>Assemble</h4>
+                  <h4>We Compile</h4>
+                  <p>Your Ideas</p>
                 </div>
 
                 <div className="single">
                   <h4>Build</h4>
-                  <h4>We develop</h4>
-                  <p>Strong Scalable Solutions</p>
+                  <h4>Customizable</h4>
+                  <p>Solutions For You</p>
                 </div>
 
                 <div className="single">
-                  <h4>Elevate</h4>
-                  <h4>We Enhance</h4>
-                  <p>Your Brand</p>
+                  <h4>Create</h4>
+                  <h4>We Bring</h4>
+                  <p>Your Story To Life</p>
                 </div>
               </div>
 

@@ -45,10 +45,29 @@ const Header = ({ openNav, handleNav, setOpenNav }: HeaderProps) => {
   //   logoSrc = logoLight;
   // }
 
+  const headerStyle: React.CSSProperties = scrolled
+    ? {
+        // scrolled -> translucent blurred header
+        background: "rgba(255,255,255,0.04)",
+        backdropFilter: "blur(12px)",
+        WebkitBackdropFilter: "blur(12px)",
+        transition: "background 0.25s ease",
+      }
+    : {
+        // top of page -> solid black header with blur
+        background: "rgba(49, 45, 45, 0.95)",
+        backdropFilter: "blur(12px)",
+        WebkitBackdropFilter: "blur(12px)",
+        transition: "background 0.25s ease",
+      };
+
   return (
     <>
       <header className="header">
-        <div className={combinedClasses}>
+        <div
+          className={combinedClasses}
+          style={headerStyle}
+        >
           <div className="container">
             <div className="row">
               <div className="col-12">
@@ -64,6 +83,7 @@ const Header = ({ openNav, handleNav, setOpenNav }: HeaderProps) => {
                       aria-label="toggle mobile menu"
                       title="open offcanvas menu"
                       onClick={handleNav}
+                      style={{ color: scrolled ? "#111" : "#fff" }}
                     ></button>
                   </div>
                 </nav>

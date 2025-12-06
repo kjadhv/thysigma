@@ -4,6 +4,7 @@ import Link from "next/link";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 import dawn from "public/images/banner/dawn.png";
+import { useState } from "react";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -18,7 +19,9 @@ const HomeTwoBanner = () => {
   const isMobile = typeof window !== "undefined" && window.innerWidth <= 576;
   const isTablet = typeof window !== "undefined" && window.innerWidth > 576 && window.innerWidth <= 991;
 
-  // ✅ REAL VIEWPORT HEIGHT FIX (MOBILE + IPAD)
+  const [headerHeight, setHeaderHeight] = useState<number>(100);
+  const [capsulePadding, setCapsulePadding] = useState<number>(0);
+
   useEffect(() => {
     const setVH = () => {
       document.documentElement.style.setProperty(
@@ -28,7 +31,20 @@ const HomeTwoBanner = () => {
     };
     setVH();
     window.addEventListener("resize", setVH);
-    return () => window.removeEventListener("resize", setVH);
+
+    const measureHeader = () => {
+      const headerEl = document.querySelector(".primary-navbar");
+      const h = headerEl instanceof HTMLElement ? headerEl.offsetHeight : 120;
+      setHeaderHeight(h || 120);
+    };
+
+    measureHeader();
+    window.addEventListener("resize", measureHeader);
+
+    return () => {
+      window.removeEventListener("resize", setVH);
+      window.removeEventListener("resize", measureHeader);
+    };
   }, []);
 
   useEffect(() => {
@@ -36,14 +52,12 @@ const HomeTwoBanner = () => {
     const isMobileDevice = window.innerWidth <= 576;
     const isTabletDevice = window.innerWidth > 576 && window.innerWidth <= 991;
     
-    // ✅ Skip scroll animations on mobile/tablet - keep video at 50vh
     if (isMobileDevice || isTabletDevice) {
       return;
     }
     
     if (document.querySelectorAll(".banner-two").length > 0) {
 
-      // Background video transformation
       gsap.timeline({
         scrollTrigger: {
           trigger: ".banner-two",
@@ -54,7 +68,8 @@ const HomeTwoBanner = () => {
             const progress = self.progress;
 
             if (progress < 0.1) {
-              // Full screen state - original positions
+              setCapsulePadding(50); // ✅ Reduced from 200
+
               gsap.to(fullscreenVideoRef.current, {
                 opacity: 1,
                 scale: 1,
@@ -77,7 +92,6 @@ const HomeTwoBanner = () => {
                 ease: "power2.out",
               });
               
-              // Reset content to original positions
               gsap.to(statsRef.current, {
                 x: 0,
                 y: 0,
@@ -97,7 +111,6 @@ const HomeTwoBanner = () => {
                 ease: "power2.out",
               });
             } else if (progress >= 0.1 && progress < 0.35) {
-              // Transition phase - slower, more gradual
               const transitionProgress = (progress - 0.1) / 0.25;
 
               gsap.to(fullscreenVideoRef.current, {
@@ -120,14 +133,10 @@ const HomeTwoBanner = () => {
                 ease: "power2.out",
               });
               
-              // Get container left position for alignment
               const containerLeft = containerRef.current?.getBoundingClientRect().left || 0;
-              
-              // Calculate capsule position relative to container
               const capsuleWidth = Math.min(window.innerWidth * 0.4, 600);
-              const statsGap = 60; // Gap between capsule and stats
+              const statsGap = 60;
               
-              // Move stats to right of capsule
               gsap.to(statsRef.current, {
                 x: capsuleWidth + statsGap,
                 y: -window.innerHeight * 0.05,
@@ -135,7 +144,6 @@ const HomeTwoBanner = () => {
                 ease: "power2.out",
               });
               
-              // Move title below capsule (aligned with container)
               gsap.to(titleRef.current, {
                 x: 0,
                 y: window.innerHeight * 0.15,
@@ -143,7 +151,6 @@ const HomeTwoBanner = () => {
                 ease: "power2.out",
               });
               
-              // Move bottom content below title (aligned with container)
               gsap.to(contentBottomRef.current, {
                 x: 0,
                 y: window.innerHeight * 0.15,
@@ -151,7 +158,6 @@ const HomeTwoBanner = () => {
                 ease: "power2.out",
               });
             } else {
-              // Fully transformed state
               gsap.to(fullscreenVideoRef.current, {
                 opacity: 0,
                 scale: 0.85,
@@ -164,20 +170,18 @@ const HomeTwoBanner = () => {
                 duration: 0.3,
                 ease: "power2.out",
               });
+              setCapsulePadding(50); // ✅ Reduced from 200
+
               gsap.to(faintBgRef.current, {
                 opacity: 0.35,
                 duration: 0.3,
                 ease: "power2.out",
               });
               
-              // Get container left position for alignment
               const containerLeft = containerRef.current?.getBoundingClientRect().left || 0;
-              
-              // Calculate capsule position relative to container
               const capsuleWidth = Math.min(window.innerWidth * 0.4, 600);
-              const statsGap = 60; // Gap between capsule and stats
+              const statsGap = 60;
               
-              // Keep stats to right of capsule
               gsap.to(statsRef.current, {
                 x: capsuleWidth + statsGap,
                 y: -window.innerHeight * 0.05,
@@ -214,12 +218,17 @@ const HomeTwoBanner = () => {
       className="banner-two"
       style={{
         position: "relative",
-        overflow: "hidden",
+        overflow: "visible",
         width: "100%",
         minHeight: isMobile || isTablet
-          ? "50vh"                  // ✅ half screen for mobile/tablet
-          : "calc(var(--vh) * 100)", // ✅ 90vh for PC to fit on screen with header
-        paddingTop: isMobile || isTablet ? "10px" : "90px", // ✅ No padding for mobile/tablet, space for header on PC
+          ? "50vh"
+          : "calc(var(--vh) * 100)",
+        paddingTop: isMobile || isTablet ? "10px" : `${headerHeight + 80}px`,
+        // ✅ MINIMAL PADDING for mobile/tablet
+        paddingBottom: isMobile || isTablet
+          ? "5px"
+          : `${capsulePadding}px`,
+        marginBottom: 0,
       }}
     >
       {/* Faint blurred background layer */}
@@ -244,13 +253,13 @@ const HomeTwoBanner = () => {
           style={{
             position: "absolute",
             width: "100%",
-            height: isMobile || isTablet ? "50vh" : "calc(var(--vh) * 80)",
-            maxHeight: isMobile || isTablet ? "50vh" : "calc(var(--vh) * 80)",
-            minHeight: isMobile || isTablet ? "50vh" : "calc(var(--vh) * 80)",
+            height: isMobile || isTablet ? "50vh" : "calc(var(--vh) * 100)",
+            maxHeight: isMobile || isTablet ? "50vh" : "calc(var(--vh) * 100)",
+            minHeight: isMobile || isTablet ? "50vh" : "calc(var(--vh) * 100)",
             objectFit: isMobile || isTablet ? "contain" : "cover",
             objectPosition: "center center",
             filter: "blur(12px) brightness(0.25)",
-            top: isMobile || isTablet ? "0" : "90px", // ✅ Start from top on mobile/tablet, below header on PC
+            top: isMobile || isTablet ? "0" : `${headerHeight + 80}px`,
             left: 0,
           }}
         >
@@ -258,7 +267,7 @@ const HomeTwoBanner = () => {
         </video>
       </div>
 
-      {/* Full screen background video (initially visible) */}
+      {/* Full screen background video */}
       <video
         ref={fullscreenVideoRef}
         autoPlay
@@ -266,15 +275,15 @@ const HomeTwoBanner = () => {
         muted
         playsInline
         style={{
-          position: "absolute",
-          top: isMobile || isTablet ? "0" : "90px", // ✅ Start from top on mobile/tablet, below header on PC
+          position: isMobile || isTablet ? "relative" : "absolute",
+          top: isMobile || isTablet ? "0" : `${headerHeight}px`,
           left: 0,
           width: "100%",
           height: isMobile || isTablet
             ? "50vh"
-            : "calc(var(--vh) * 80)", // ✅ 80vh for PC to fit on first screen
-          maxHeight: isMobile || isTablet ? "50vh" : "calc(var(--vh) * 80)",
-          minHeight: isMobile || isTablet ? "50vh" : "calc(var(--vh) * 80)",
+            : "calc(var(--vh) * 80)",
+          maxHeight: isMobile || isTablet ? "50vh" : "calc(var(--vh) * 100)",
+          minHeight: isMobile || isTablet ? "auto" : "calc(var(--vh) * 100)",
           objectFit: isMobile || isTablet ? "contain" : "cover",
           objectPosition: "center center",
           zIndex: 1,
@@ -283,7 +292,7 @@ const HomeTwoBanner = () => {
         <source src="/images/thy_sigma_hero_video.mp4" type="video/mp4" />
       </video>
 
-      {/* Boxed capsule video (appears on scroll) - aligned with container */}
+      {/* Boxed capsule video */}
       <div
         ref={boxedVideoContainerRef}
         className="container"
@@ -304,7 +313,7 @@ const HomeTwoBanner = () => {
             maxWidth: "600px",
             aspectRatio: "16/9",
             borderRadius: "40px",
-            overflow: "hidden",
+            overflow: "visible",
             boxShadow: "0 30px 60px -15px rgba(0, 0, 0, 0.6)",
           }}
         >
@@ -324,40 +333,60 @@ const HomeTwoBanner = () => {
         </div>
       </div>
 
-      {/* Content layer - single instance that moves */}
+      {/* Content layer */}
       <div className="container" style={{ position: "relative", zIndex: 10 }} ref={containerRef}>
         <div className="row">
           <div className="col-12">
             <div className="banner-two-inner">
               <div className="banner-two__meta" ref={statsRef}>
                 <div className="cta section__content-cta m-0">
-                  <div className="single">
-                    <h5 className="fw-7">16+</h5>
-                    <p className="fw-5">Years of expertise</p>
-                  </div>
-                  <div className="single">
-                    <h5 className="fw-7">10+</h5>
-                    <p className="fw-5">Completed projects</p>
-                  </div>
                 </div>
               </div>
               <div className="banner-two__content">
-                {/* <h1 className="title-anim" ref={titleRef}>
-                  OUR <span> THY SIGMA</span> MEDIA SERVICES
-                </h1> */}
-                <div className="banner-two__content-cta section__content-cta" ref={contentBottomRef}>
-                  <div className="paragraph">
-                    <p>
+                <div
+                  className="banner-two__content-cta section__content-cta"
+                  ref={contentBottomRef}
+                  style={{
+                    padding: isMobile || isTablet ? "30px 20px" : "70px 100px",
+                    borderRadius: "24px",
+                    maxWidth: isMobile || isTablet ? "95%" : "100%",
+                    marginTop: isMobile || isTablet ? "20px" : "200px",
+                    display: isMobile || isTablet ? "block" : "flex",
+                    alignItems: isMobile || isTablet ? "flex-start" : "center",
+                    gap: isMobile || isTablet ? "0" : "40px",
+                    minHeight: isMobile || isTablet ? "auto" : "120px",
+                  }}
+                >
+                  <div className="paragraph" style={{ 
+                    flex: isMobile || isTablet ? "none" : "1",
+                    marginBottom: isMobile || isTablet ? "16px" : "0",
+                  }}>
+                    <p style={{
+                      fontSize: isMobile || isTablet ? "13px" : "18px",
+                      lineHeight: isMobile || isTablet ? "1.5" : "1.7",
+                      marginBottom: 0,
+                    }}>
                       THYSIGMA creates high-performance digital experiences with
                       a focus on luxury design, clean interfaces, and seamless
                       user interaction.
                     </p>
                   </div>
-                  <div className="arrow-wrapper d-none d-lg-block">
+                  <div className="arrow-wrapper d-none d-lg-block" style={{ display: "none" }}>
                     <span className="arrow"></span>
                   </div>
-                  <div className="cta">
-                    <Link href="contact-us" className="btn btn--tertiary">
+                  <div className="cta" style={{ 
+                    flexShrink: 0,
+                    marginTop: isMobile || isTablet ? "0" : "0",
+                  }}>
+                    <Link 
+                      href="contact-us" 
+                      className="btn btn--tertiary"
+                      style={{
+                        fontSize: isMobile || isTablet ? "12px" : "inherit",
+                        padding: isMobile || isTablet ? "10px 20px" : "inherit",
+                        whiteSpace: "nowrap",
+                      }}
+                    >
                       book a call now
                       <i className="fa-sharp fa-solid fa-arrow-up-right"></i>
                     </Link>

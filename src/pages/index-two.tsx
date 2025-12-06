@@ -8,7 +8,9 @@ import HomeTwoPortfolio from "@/components/containers/home-two/HomeTwoPortfolio"
 import HomeSponsor from "@/components/containers/home/HomeSponsor";
 // import HomeTwoTestimonial from "@/components/containers/home-two/HomeTwoTestimonial";
 // import NextPageNull from "@/components/containers/home/NextPageNull";
-import ContactMain from "@/components/containers/ContactMain";
+import HomeFour from "@/components/Homefour";
+import ContactForm from "@/components/contact/ContactForm";
+
 
 // ⬇️ this is your CONTACT US *MEDIA* swiper
 // import HomeTwoContactMedia from "@/components/containers/ContactMain";
@@ -27,8 +29,7 @@ const HomeTwo = () => {
         className="services-parallax-wrapper"
         style={{
           position: "relative",
-          isolation: "isolate",
-          // zIndex: 1,
+          zIndex: 1,
         }}
       >
         {/* ✅ Background image */}
@@ -44,9 +45,40 @@ const HomeTwo = () => {
       {/* ❌ NO PARALLAX BELOW */}
       {/* <HomeTwoPortfolio /> */}
       <HomeSponsor />
+      
+      {/* ===== HOME PAGE ONLY: FORM + BOXES SIDE BY SIDE ===== */}
+      <section className="section home-form-boxes">
+        <div className="container">
+          <div className="row gaper">
+            {/* LEFT: Form */}
+            <div className="col-12 col-lg-6">
+              <ContactForm fullWidth={true} />
+            </div>
+            {/* RIGHT: Service Boxes */}
+            <div className="col-12 col-lg-6">
+              <HomeFour />
+            </div>
+          </div>
+        </div>
+        
+        <style jsx>{`
+          .home-form-boxes {
+            padding: 60px 0;
+          }
+          
+          @media (max-width: 991px) {
+            .home-form-boxes .row {
+              flex-direction: column;
+            }
+            .home-form-boxes .col-lg-6 {
+              width: 100%;
+            }
+          }
+        `}</style>
+      </section>
+      
       {/* <HomeTwoTestimonial />     ✅ stays clean */}
       {/* <NextPageNull /> */}
-      <ContactMain />
     </Layout>
   );
 };

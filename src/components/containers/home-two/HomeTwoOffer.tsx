@@ -1,4 +1,5 @@
 import React from "react";
+import Link from "next/link";
 
 const HomeTwoOffer = () => {
   return (
@@ -8,7 +9,7 @@ const HomeTwoOffer = () => {
         position: "relative",
         zIndex: 2,
         background: "transparent",
-        paddingBottom: "30px", // ✅ reduce gap below text
+        paddingBottom: "30px",
       }}
     >
       <div className="container">
@@ -16,15 +17,28 @@ const HomeTwoOffer = () => {
           <div className="col-12 col-lg-8">
             <div
               className="section__header text-center"
-              style={{
-                marginBottom: "0", // ✅ removes extra space under title
-              }}
+              style={{ marginBottom: "0" }}
             >
-              <span className="sub-title">
-                what we offer <i className="fa-solid fa-arrow-right"></i>
-              </span>
+              {/* SUB TITLE LINK */}
+              <Link
+                href="/our-services"
+                style={{
+                  display: "inline-block",
+                  textDecoration: "none",
+                }}
+              >
+                <span
+                  className="sub-title"
+                  style={{
+                    cursor: "pointer",
+                  }}
+                >
+                  what we offer <i className="fa-solid fa-arrow-right"></i>
+                </span>
+              </Link>
+
               <h2 className="title" style={{ marginBottom: "0" }}>
-                our main services
+                Our services
               </h2>
             </div>
           </div>

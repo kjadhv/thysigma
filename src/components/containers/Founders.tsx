@@ -5,7 +5,7 @@ import founder1 from "public/images/sir.png";
 import founder2 from "public/images/mam.png";
 
 // Import company logos
-import netflixLogo from "public/images/about-logo/netflix.webp";
+import netflixLogo from "public/images/about-logo/netflix.jpg";
 import iplLogo from "public/images/about-logo/ipl.png";
 import itunesLogo from "public/images/about-logo/itunes.png";
 import oscarsLogo from "public/images/about-logo/oscars.jpeg";
@@ -13,16 +13,17 @@ import iccLogo from "public/images/about-logo/icc.png";
 import pokerLogo from "public/images/about-logo/poker.jpeg";
 import bcciLogo from "public/images/about-logo/bcci.png";
 import sonyLogo from "public/images/about-logo/sony.png";
-import lifeokLogo from "public/images/about-logo/lifeok.webp";
+import lifeokLogo from "public/images/about-logo/lifeok.jpg";
 import starSportsLogo from "public/images/about-logo/starsport.jpeg";
 import balajiLogo from "public/images/about-logo/balaji.jpg";
-import zeeLogo from "public/images/about-logo/zee.webp";
+import zeeLogo from "public/images/about-logo/zee.jpg";
+import mxplayer from "public/images/about-logo/mxplayer.jpg";
 
 import hiranandaniLogo from "public/images/about-logo/hiranandani.jpg";
 import bombayRealtyLogo from "public/images/about-logo/breality.png";
 import lakmeLogo from "public/images/about-logo/lakme.png";
 import shapoorjiLogo from "public/images/about-logo/sp.png";
-import aurobindoLogo from "public/images/about-logo/ab.webp";
+import aurobindoLogo from "public/images/about-logo/ab.jpg";
 import maxProteinLogo from "public/images/about-logo/maxp.png";
 import pengLogo from "public/images/about-logo/peng.png";
 // import agencyMasalaLogo from "public/images/about-logo/agencymasala.png";
@@ -50,7 +51,8 @@ const founders = [
       { name: "LifeOK", logo: lifeokLogo },
       { name: "Star Sports", logo: starSportsLogo },
       { name: "Balaji Telefilms", logo: balajiLogo },
-      { name: "ZEE Network", logo: zeeLogo }
+      { name: "ZEE Network", logo: zeeLogo },
+      { name: "MX Player", logo: mxplayer   }
     ],
     image: founder1,
     align: "left",
@@ -78,7 +80,7 @@ const founders = [
     ],
     image: founder2,
     align: "right",
-    gridCols: 3,
+    gridCols: 4,
   }
 ];
 
@@ -170,10 +172,10 @@ const Founders = () => {
                     <p
                       style={{
                         fontWeight: 700,
-                        fontSize: "16px",
+                        fontSize: "30px",
                         color: "#ffffff",
                         marginBottom: "14px",
-                        letterSpacing: "1.2px",
+                        letterSpacing: "1px",
                       }}
                     >
                       WORKED WITH
@@ -185,7 +187,7 @@ const Founders = () => {
                         background: "transparent",
                         display: "grid",
                         gridTemplateColumns: `repeat(${founder.gridCols}, 1fr)`,
-                        gap: "30px",
+                        gap: "10px 10px",
                       }}
                     >
                       {founder.experience.map((company, i) => (

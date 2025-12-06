@@ -35,7 +35,7 @@ export default function HomeSponsor() {
       style={{
         background: "#000",
         position: "relative",
-        zIndex: 10,
+        zIndex: 2,
         display: "flex",
         alignItems: "center",
         paddingTop: "30px",
@@ -43,6 +43,9 @@ export default function HomeSponsor() {
         minHeight: "290px",
       }}
     >
+      {/* ✅ FLOATING CENTER HEADING */}
+      <h3 className="clientele-heading">Our Esteemed Clientele</h3>
+
       <div className="container-fluid">
         <Swiper
           loop
@@ -64,7 +67,7 @@ export default function HomeSponsor() {
                 <Image
                   src={item.img}
                   alt={item.name}
-                  width={120}   // ✅ Desktop size SAME as before
+                  width={120}
                   height={70}
                   style={{ objectFit: "contain" }}
                 />
@@ -75,9 +78,40 @@ export default function HomeSponsor() {
         </Swiper>
       </div>
 
-      {/* ✅ INLINE CSS */}
+      {/* ✅ STYLES */}
       <style jsx global>{`
-        /* ---------- DESKTOP (UNCHANGED) ---------- */
+        /* ===== FLOATING HEADING ===== */
+        .clientele-heading {
+          position: absolute;
+          top: -28px;
+          left: 50%;
+          transform: translateX(-50%);
+          z-index: 20;
+
+          color: #fff;
+          font-size: 44px;
+          font-weight: 600;
+          letter-spacing: 0.3px;
+          white-space: nowrap;
+        }
+
+        /* iPad */
+        @media (max-width: 1024px) {
+          .clientele-heading {
+            font-size: 20px;
+            top: -24px;
+          }
+        }
+
+        /* Mobile */
+        @media (max-width: 767px) {
+          .clientele-heading {
+            font-size: 16px;
+            top: -18px;
+          }
+        }
+
+        /* ===== LOGO BOX ===== */
         .logo-box {
           display: flex;
           flex-direction: column;
@@ -87,14 +121,14 @@ export default function HomeSponsor() {
 
         .logo-box p {
           margin-top: 10px;
-          font-size: 16px; /* ✅ SAME as before */
+          font-size: 16px;
           color: #fff;
           font-weight: 500;
           text-align: center;
           white-space: nowrap;
         }
 
-        /* ---------- iPAD ---------- */
+        /* iPad */
         @media (max-width: 1024px) {
           .logo-box img {
             width: 90px !important;
@@ -107,7 +141,7 @@ export default function HomeSponsor() {
           }
         }
 
-        /* ---------- MOBILE ---------- */
+        /* Mobile */
         @media (max-width: 767px) {
           .swiper-slide {
             width: auto !important;
