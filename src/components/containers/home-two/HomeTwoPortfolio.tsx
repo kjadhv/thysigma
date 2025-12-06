@@ -47,8 +47,8 @@ const HomeTwoPortfolio = () => {
           {/* LEFT */}
           <div className="col-12">
             <div className="item-row left" ref={(el) => { rowRefs.current[0] = el; }}>
-              <div className="img-wrap">
-                <Image src={one} alt="Video Production" width={200} height={200} />
+              <div className="img-wrap pixel-reveal">
+                <Image src={one} alt="Video Production" width={300} height={300} />
               </div>
               <div className="text-wrap">
                 <p className="side-text">Video Production</p>
@@ -68,8 +68,8 @@ const HomeTwoPortfolio = () => {
                   We deliver seamless live streaming experiences for any audience.
                 </p>
               </div>
-              <div className="img-wrap">
-                <Image src={two} alt="Live Streaming" width={200} height={200} />
+              <div className="img-wrap pixel-reveal">
+                <Image src={two} alt="Live Streaming" width={300} height={300} />
               </div>
             </div>
           </div>
@@ -77,8 +77,8 @@ const HomeTwoPortfolio = () => {
           {/* LEFT */}
           <div className="col-12">
             <div className="item-row left" ref={(el) => { rowRefs.current[2] = el; }}>
-              <div className="img-wrap">
-                <Image src={three} alt="Event Management" width={200} height={200} />
+              <div className="img-wrap pixel-reveal">
+                <Image src={three} alt="Event Management" width={300} height={300} />
               </div>
               <div className="text-wrap">
                 <p className="side-text">Event Management</p>
@@ -98,8 +98,8 @@ const HomeTwoPortfolio = () => {
                   We use advanced media technologies to enhance digital experiences.
                 </p>
               </div>
-              <div className="img-wrap">
-                <Image src={four} alt="Media Technologies" width={200} height={200} />
+              <div className="img-wrap pixel-reveal">
+                <Image src={four} alt="Media Technologies" width={300} height={300} />
               </div>
             </div>
           </div>
@@ -107,8 +107,8 @@ const HomeTwoPortfolio = () => {
           {/* LEFT */}
           <div className="col-12">
             <div className="item-row left" ref={(el) => { rowRefs.current[4] = el; }}>
-              <div className="img-wrap">
-                <Image src={five} alt="Social Media" width={200} height={200} />
+              <div className="img-wrap pixel-reveal">
+                <Image src={five} alt="Social Media" width={300} height={300} />
               </div>
               <div className="text-wrap">
                 <p className="side-text">Social Media</p>
@@ -128,8 +128,8 @@ const HomeTwoPortfolio = () => {
                   We craft polished edits that bring your visuals to life.
                 </p>
               </div>
-              <div className="img-wrap">
-                <Image src={six} alt="Video Editing" width={200} height={200} />
+              <div className="img-wrap pixel-reveal">
+                <Image src={six} alt="Video Editing" width={300} height={300} />
               </div>
             </div>
           </div>
@@ -196,6 +196,56 @@ const HomeTwoPortfolio = () => {
 
         .item-row.right {
           justify-content: flex-end;
+        }
+
+        /* PIXEL REVEAL ANIMATION */
+        .pixel-reveal {
+          position: relative;
+          overflow: hidden;
+        }
+
+        .pixel-reveal::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background: 
+            repeating-linear-gradient(
+              0deg,
+              rgba(0, 0, 0, 0.8) 0px,
+              rgba(0, 0, 0, 0.8) 4px,
+              transparent 8px,
+              transparent 15px
+            ),
+            repeating-linear-gradient(
+              90deg,
+              rgba(0, 0, 0, 0.8) 0px,
+              rgba(0, 0, 0, 0.8) 4px,
+              transparent 8px,
+              transparent 15px
+            );
+          z-index: 2;
+          opacity: 1;
+          transition: opacity 2.2s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .pixel-reveal::after {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background: rgba(0, 0, 0, 0.9);
+          z-index: 1;
+          transition: opacity 2s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .item-row.animate .pixel-reveal::before,
+        .item-row.animate .pixel-reveal::after {
+          opacity: 0;
         }
 
         /* PC & iPad - Text emerges from image */
