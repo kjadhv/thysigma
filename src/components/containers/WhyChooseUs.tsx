@@ -6,11 +6,11 @@ const data = [
     desc: "We understand how content actually works across platforms, formats and audiences.",
   },
   {
-    title: "Engineer mindset",
-    desc: "We plan like engineers and execute like creators — precision meets creativity.",
+    title: "Engineered creations",
+    desc: "We plan like engineers and execute like creators, precision meets creativity.",
   },
   {
-    title: "End-to-end delivery",
+    title: "End to end delivery",
     desc: "You get complete end-to-end execution with zero excuses and clear outcomes.",
   },
   {
@@ -23,7 +23,7 @@ const data = [
   },
   {
     title: "Transparent costing",
-    desc: "No hidden charges — pricing is clear, honest and predictable.",
+    desc: "No hidden charges, pricing is clear, honest and predictable.",
   },
   {
     title: "Built for today",
@@ -31,7 +31,7 @@ const data = [
   },
   {
     title: "Execution > noise",
-    desc: "We don’t chase trends — we focus on execution that achieves outcomes.",
+    desc: "We don’t chase trends. We focus on execution that achieves outcomes.",
   },
   {
     title: "One trusted partner",

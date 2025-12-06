@@ -68,8 +68,9 @@ const HomeTwoBanner = () => {
             const progress = self.progress;
 
             if (progress < 0.1) {
-              setCapsulePadding(50); // ✅ Reduced from 200
+              setCapsulePadding(50);
 
+              // Keep fullscreen video small and centered - no changes
               gsap.to(fullscreenVideoRef.current, {
                 opacity: 1,
                 scale: 1,
@@ -113,11 +114,10 @@ const HomeTwoBanner = () => {
             } else if (progress >= 0.1 && progress < 0.35) {
               const transitionProgress = (progress - 0.1) / 0.25;
 
+              // Keep fullscreen video small and centered - no changes
               gsap.to(fullscreenVideoRef.current, {
-                opacity: 1 - transitionProgress,
-                scale: isMobile || isTablet
-                  ? 1
-                  : 1 - transitionProgress * 0.15,
+                opacity: 1,
+                scale: 1,
                 duration: 0.3,
                 ease: "power2.out",
               });
@@ -158,9 +158,10 @@ const HomeTwoBanner = () => {
                 ease: "power2.out",
               });
             } else {
+              // Keep fullscreen video small and centered - no changes
               gsap.to(fullscreenVideoRef.current, {
-                opacity: 0,
-                scale: 0.85,
+                opacity: 1,
+                scale: 1,
                 duration: 0.3,
                 ease: "power2.out",
               });
@@ -170,7 +171,7 @@ const HomeTwoBanner = () => {
                 duration: 0.3,
                 ease: "power2.out",
               });
-              setCapsulePadding(50); // ✅ Reduced from 200
+              setCapsulePadding(50);
 
               gsap.to(faintBgRef.current, {
                 opacity: 0.35,
@@ -224,7 +225,6 @@ const HomeTwoBanner = () => {
           ? "50vh"
           : "calc(var(--vh) * 100)",
         paddingTop: isMobile || isTablet ? "10px" : `${headerHeight + 80}px`,
-        // ✅ MINIMAL PADDING for mobile/tablet
         paddingBottom: isMobile || isTablet
           ? "5px"
           : `${capsulePadding}px`,
@@ -267,30 +267,37 @@ const HomeTwoBanner = () => {
         </video>
       </div>
 
-      {/* Full screen background video */}
-      <video
-        ref={fullscreenVideoRef}
-        autoPlay
-        loop
-        muted
-        playsInline
+      {/* Full screen background video - NOW SMALL AND CENTERED */}
+      <div
         style={{
-          position: isMobile || isTablet ? "relative" : "absolute",
-          top: isMobile || isTablet ? "0" : `${headerHeight}px`,
-          left: 0,
-          width: "100%",
-          height: isMobile || isTablet
-            ? "50vh"
-            : "calc(var(--vh) * 80)",
-          maxHeight: isMobile || isTablet ? "50vh" : "calc(var(--vh) * 100)",
-          minHeight: isMobile || isTablet ? "auto" : "calc(var(--vh) * 100)",
-          objectFit: isMobile || isTablet ? "contain" : "cover",
-          objectPosition: "center center",
+          position: "absolute",
+          top: `${headerHeight + 40}px`,
+          left: "50%",
+          transform: "translateX(-50%)",
+          width: isMobile || isTablet ? "90%" : "1000px",
+          aspectRatio: "16/9",
           zIndex: 1,
+          borderRadius: "20px",
+          overflow: "hidden",
+          boxShadow: "0 0 60px 10px rgba(150, 150, 150, 0.4), 0 0 100px 20px rgba(150, 150, 150, 0.2)",
         }}
       >
-        <source src="/images/thy_sigma_hero_video.mp4" type="video/mp4" />
-      </video>
+        <video
+          ref={fullscreenVideoRef}
+          autoPlay
+          loop
+          muted
+          playsInline
+          style={{
+            width: "100%",
+            height: "100%",
+            objectFit: "cover",
+            objectPosition: "center center",
+          }}
+        >
+          <source src="/images/thy_sigma_hero_video.mp4" type="video/mp4" />
+        </video>
+      </div>
 
       {/* Boxed capsule video */}
       <div
@@ -350,7 +357,7 @@ const HomeTwoBanner = () => {
                     padding: isMobile || isTablet ? "30px 20px" : "70px 100px",
                     borderRadius: "24px",
                     maxWidth: isMobile || isTablet ? "95%" : "100%",
-                    marginTop: isMobile || isTablet ? "20px" : "200px",
+                    marginTop: isMobile || isTablet ? "420px" : "200px",
                     display: isMobile || isTablet ? "block" : "flex",
                     alignItems: isMobile || isTablet ? "flex-start" : "center",
                     gap: isMobile || isTablet ? "0" : "40px",

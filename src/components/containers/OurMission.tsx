@@ -1,15 +1,17 @@
 import React, { useEffect, useRef, useState } from "react";
 import Image from "next/image";
-
 import missionImg from "public/images/wedo.jpg";
 import visionImg from "public/images/quality.jpg";
 import teamImg from "public/images/group.jpeg";
+import tribeImg from "public/images/process.jpg"; // <-- add your image
 
 const OurMission = () => {
   const missionRef = useRef<HTMLDivElement>(null);
   const visionRef = useRef<HTMLDivElement>(null);
   const teamRef = useRef<HTMLDivElement>(null);
+  const tribeRef = useRef<HTMLDivElement>(null);
 
+  const [tribeVisible, setTribeVisible] = useState(false);
   const [missionVisible, setMissionVisible] = useState(false);
   const [visionVisible, setVisionVisible] = useState(false);
   const [teamVisible, setTeamVisible] = useState(false);
@@ -38,6 +40,9 @@ const OurMission = () => {
             setVisionVisible(entry.isIntersecting);
           if (entry.target === teamRef.current)
   setTeamVisible(entry.isIntersecting);
+          if (entry.target === tribeRef.current)
+  setTribeVisible(entry.isIntersecting);
+
 
         });
       },
@@ -47,6 +52,7 @@ const OurMission = () => {
     missionRef.current && observer.observe(missionRef.current);
     visionRef.current && observer.observe(visionRef.current);
     teamRef.current && observer.observe(teamRef.current);
+    tribeRef.current && observer.observe(tribeRef.current);
 
     return () => observer.disconnect();
   }, []);
@@ -170,7 +176,6 @@ const OurMission = () => {
         </div>
 
        {/* ===== TEAM ===== */}
-{/* ===== TEAM ===== */}
 <div
   ref={teamRef}
   style={{
@@ -232,11 +237,75 @@ const OurMission = () => {
     video.
   </p>
 </div>
+{/* ===== BEHIND THE LENS ===== */}
+<div
+  ref={tribeRef}
+  style={{
+    textAlign: "center",
+    color: "#fff",
+    marginTop: "120px",
+  }}
+>
+  {/* TITLE */}
+  <h2
+    style={{
+      fontSize: isMobile ? "26px" : "46px",
+      marginBottom: "24px",
+      opacity: tribeVisible ? 1 : 0,
+      transform: tribeVisible ? "translateY(0)" : "translateY(-40px)",
+      transition: "0.8s cubic-bezier(0.4,0,0.2,1)",
+    }}
+  >
+    Meet the Behind the Lens Tribe
+  </h2>
+
+  {/* IMAGE */}
+  <div
+    style={{
+      position: "relative",
+      width: "100%",
+      height: isMobile ? "240px" : "400px",
+      marginBottom: "26px",
+      transform: tribeVisible ? "translateY(0)" : "translateY(80px)",
+      opacity: tribeVisible ? 1 : 0,
+      transition: "1s cubic-bezier(0.4,0,0.2,1)",
+      overflow: "hidden",
+    }}
+  >
+    <Image
+      src={tribeImg}
+      alt="Behind the Lens Tribe"
+      fill
+      style={{ objectFit: "cover" }}
+    />
+    <div
+      style={{
+        position: "absolute",
+        inset: 0,
+        border: isMobile ? "2px solid #fff" : "4px solid #fff",
+      }}
+    />
+  </div>
+
+  {/* TEXT */}
+  <p
+    style={{
+      maxWidth: "85%",
+      margin: "0 auto",
+      fontSize: isMobile ? "15px" : "22px",
+      lineHeight: "1.7",
+      opacity: tribeVisible ? 1 : 0,
+      transform: tribeVisible ? "translateY(0)" : "translateY(40px)",
+      transition: "0.8s cubic-bezier(0.4,0,0.2,1) 0.2s",
+    }}
+  >
+    The minds, hands, and hearts behind the camera — capturing moments,
+    emotions, and stories that live far beyond the final frame.
+  </p>
+</div>
 
 
-      </div>
-    </section>
-    
+</div></section>
   );
 };
 

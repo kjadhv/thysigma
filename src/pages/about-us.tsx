@@ -4,7 +4,6 @@ import CmnBanner from "@/components/layout/banner/CmnBanner";
 import HomeTwoModal from "@/components/containers/home-two/HomeTwoModal";
 import AboutParallaxBG from "@/components/containers/AboutParallaxBG";
 import Agency from "@/components/containers/home/Agency";
-
 import OurMission from "@/components/containers/OurMission";
 // import StatsCounter from "@/components/containers/StatsCounter";
 import Founders from "@/components/containers/Founders";
@@ -13,7 +12,8 @@ import Founders from "@/components/containers/Founders";
 // import OurAchievement from "@/components/containers/OurAchievement";
 // import AboutSponsor from "@/components/containers/home-three/AboutSponsor";
 // import AboutCta from "@/components/containers/home-two/AboutCta";
-import ContactForm from "@/components/contact/ContactForm";
+import Contact_wo_boxes from "@/components/contact/Contact_wo_boxes";
+import FooterTwo from "@/components/layout/footer/FooterTwo";
 
 const AboutUs = () => {
   return (
@@ -30,8 +30,9 @@ const AboutUs = () => {
       {/* <OurAchievement /> */}
       {/* <AboutSponsor /> */}
       {/* <AboutCta /> */}
-      <ContactForm /> 
+      <Contact_wo_boxes /> 
       {/* <ContactForm /> */}
+      <FooterTwo />
     </Layout>
   );
 };

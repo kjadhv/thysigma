@@ -11,11 +11,6 @@ import HomeSponsor from "@/components/containers/home/HomeSponsor";
 import HomeFour from "@/components/Homefour";
 import ContactForm from "@/components/contact/ContactForm";
 
-
-// ⬇️ this is your CONTACT US *MEDIA* swiper
-// import HomeTwoContactMedia from "@/components/containers/ContactMain";
- // 👆 use YOUR REAL FILE NAME here
-
 const HomeTwo = () => {
   return (
     <Layout header={2} footer={2} video={true}>

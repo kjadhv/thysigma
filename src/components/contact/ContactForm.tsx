@@ -58,7 +58,7 @@ const ContactForm = ({ title = "Leave A Message", fullWidth = false }) => {
         }
 
         .contact-main__form h3 {
-          margin-bottom: 30px;
+          margin-bottom: 1px;
           font-size: 28px;
           font-weight: 600;
         }

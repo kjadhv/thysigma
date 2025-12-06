@@ -83,7 +83,7 @@ export default function HomeSponsor() {
         /* ===== FLOATING HEADING ===== */
         .clientele-heading {
           position: absolute;
-          top: -28px;
+          top: -42px;
           left: 50%;
           transform: translateX(-50%);
           z-index: 20;
