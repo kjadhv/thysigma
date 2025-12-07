@@ -147,7 +147,7 @@ const HeaderTwo = ({ openNav, setOpenNav, handleNav }: HeaderTwoProps) => {
                     fontSize: "24px",
                     cursor: "pointer",
                     padding: 0,
-                    color: scrolled ? "#111" : "#fff",
+                    color: scrolled ? "#e6d8d8ff" : "#fff",
                   }}
                 >
                   ☰
@@ -184,7 +184,7 @@ const HeaderTwo = ({ openNav, setOpenNav, handleNav }: HeaderTwoProps) => {
             right: "14px",
             background: "transparent",
             border: "none",
-            color: "#111",
+            color: "#dfceceff",
             fontSize: "24px",
             cursor: "pointer",
           }}
@@ -199,7 +199,7 @@ const HeaderTwo = ({ openNav, setOpenNav, handleNav }: HeaderTwoProps) => {
                 href={item.href}
                 onClick={() => setOpenNav(false)}
                 style={{
-                  color: "#111",
+                  color: "#e0cacaff",
                   fontSize: "14px",
                   fontWeight: 500,
                   textDecoration: "none",

@@ -256,7 +256,7 @@ const OurMission = () => {
       transition: "0.8s cubic-bezier(0.4,0,0.2,1)",
     }}
   >
-    Meet the Behind the Lens Tribe
+    Meet Behind the Lens Tribe
   </h2>
 
   {/* IMAGE */}

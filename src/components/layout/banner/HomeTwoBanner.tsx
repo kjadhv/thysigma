@@ -19,7 +19,14 @@ const HomeTwoBanner = () => {
   const isMobile = typeof window !== "undefined" && window.innerWidth <= 576;
   const isTablet = typeof window !== "undefined" && window.innerWidth > 576 && window.innerWidth <= 991;
 
-  const [headerHeight, setHeaderHeight] = useState<number>(100);
+  // Initialize with actual header height to prevent layout shift
+  const [headerHeight, setHeaderHeight] = useState<number>(() => {
+    if (typeof window !== 'undefined') {
+      const headerEl = document.querySelector(".primary-navbar");
+      return headerEl instanceof HTMLElement ? headerEl.offsetHeight : 120;
+    }
+    return 120;
+  });
   const [capsulePadding, setCapsulePadding] = useState<number>(0);
 
   useEffect(() => {
@@ -38,6 +45,7 @@ const HomeTwoBanner = () => {
       setHeaderHeight(h || 120);
     };
 
+    // Measure again after mount to ensure accuracy
     measureHeader();
     window.addEventListener("resize", measureHeader);
 
