@@ -1,41 +1,123 @@
 import React, { useEffect, useRef } from "react";
-import Image from "next/image";
+import Image, { StaticImageData } from "next/image";
 
-import one from "public/images/vpr.jpg";
-import two from "public/images/lives.jpg";
-import three from "public/images/eventm.jpg";
-import four from "public/images/mediat.jpg";
-import five from "public/images/sm.jpg";
-import six from "public/images/ve2.png";
+/* IMAGES */
+import one from "public/images/services/videop.jpeg";
+import two from "public/images/services/lives.jpeg";
+import three from "public/images/services/contentpp.jpeg";
+import four from "public/images/services/contentc.jpeg";
+import five from "public/images/services/contentd.jpeg";
+import six from "public/images/services/graphicd.jpeg";
+
+/* TYPES */
+interface PortfolioItem {
+  img: StaticImageData;
+  title: string;
+  desc: string;
+  side: "left" | "right";
+}
+
+/* DATA */
+const PORTFOLIO_ITEMS: PortfolioItem[] = [
+  {
+    img: one,
+    title: "Video Production",
+    desc: "We create high-quality videos that tell your story with impact.",
+    side: "left",
+  },
+  {
+    img: two,
+    title: "Live Streaming",
+    desc: "We deliver seamless live streaming experiences for any audience.",
+    side: "right",
+  },
+  {
+    img: three,
+    title: "Event Management",
+    desc: "We plan and execute events with precision and creativity.",
+    side: "left",
+  },
+  {
+    img: four,
+    title: "Content Post Production",
+    desc: "Post-production is where raw footage becomes cinematic.",
+    side: "right",
+  },
+  {
+    img: five,
+    title: "Content Creation",
+    desc: "From ideas to execution, we craft original content.",
+    side: "left",
+  },
+  {
+    img: six,
+    title: "Video Editing",
+    desc: "We craft polished edits that bring your visuals to life.",
+    side: "right",
+  },
+];
 
 const HomeTwoPortfolio = () => {
   const rowRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const pixelRefs = useRef<(HTMLDivElement | null)[]>([]);
 
   useEffect(() => {
     const observers: IntersectionObserver[] = [];
 
     rowRefs.current.forEach((row) => {
-      if (row) {
-        const observer = new IntersectionObserver(
-          (entries) => {
-            entries.forEach((entry) => {
-              if (entry.isIntersecting) {
-                entry.target.classList.add('animate');
-              } else {
-                entry.target.classList.remove('animate');
-              }
-            });
-          },
-          { threshold: 0.2 }
-        );
+      if (!row) return;
 
-        observer.observe(row);
-        observers.push(observer);
-      }
+      const observer = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("animate");
+          }
+        },
+        { threshold: 0.2 }
+      );
+
+      observer.observe(row);
+      observers.push(observer);
     });
 
+    /* PIXEL fades ONLY when image reaches CENTER of viewport */
+    const handleScroll = () => {
+      pixelRefs.current.forEach((wrap) => {
+        if (!wrap) return;
+
+        const rect = wrap.getBoundingClientRect();
+        const vh = window.innerHeight;
+
+        const imageBottom = rect.bottom;
+        const imageCenter = rect.top + rect.height / 2;
+        const viewportCenter = vh / 2;
+
+        let progress = 0;
+
+        if (imageBottom < vh) {
+          const start = vh;
+          const end = viewportCenter;
+
+          progress = (start - imageCenter) / (start - end);
+          progress = Math.max(0, Math.min(1, progress));
+        }
+
+        const opacity = 1 - progress;
+
+        const before = wrap.querySelector(".pixel-before") as HTMLElement | null;
+        const after = wrap.querySelector(".pixel-after") as HTMLElement | null;
+
+        if (before) before.style.opacity = opacity.toString();
+        if (after) after.style.opacity = opacity.toString();
+      });
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll();
+
     return () => {
-      observers.forEach((observer) => observer.disconnect());
+      observers.forEach((o) => o.disconnect());
+      window.removeEventListener("scroll", handleScroll);
     };
   }, []);
 
@@ -43,151 +125,76 @@ const HomeTwoPortfolio = () => {
     <section className="section portfolio portfolio-two isolate">
       <div className="container">
         <div className="row">
+          {PORTFOLIO_ITEMS.map((item, i) => (
+            <div className="col-12" key={i}>
+              <div
+                className={`item-row ${item.side}`}
+                ref={(el) => {
+                  rowRefs.current[i] = el;
+                }}
+              >
+                {item.side === "right" && (
+                  <div className="text-wrap">
+                    <p className="side-text">{item.title}</p>
+                    <p className="side-desc">{item.desc}</p>
+                  </div>
+                )}
 
-          {/* LEFT */}
-          <div className="col-12">
-            <div className="item-row left" ref={(el) => { rowRefs.current[0] = el; }}>
-              <div className="img-wrap pixel-reveal">
-                <Image src={one} alt="Video Production" width={300} height={300} />
-              </div>
-              <div className="text-wrap">
-                <p className="side-text">Video Production</p>
-                <p className="side-desc">
-                  We create high-quality videos that tell your story with impact.
-                </p>
+                <div
+                  className="img-wrap pixel-reveal"
+                  ref={(el) => {
+                    pixelRefs.current[i] = el;
+                  }}
+                >
+                  <div className="pixel-before"></div>
+                  <div className="pixel-after"></div>
+                  <Image src={item.img} alt={item.title} fill />
+                </div>
+
+                {item.side === "left" && (
+                  <div className="text-wrap">
+                    <p className="side-text">{item.title}</p>
+                    <p className="side-desc">{item.desc}</p>
+                  </div>
+                )}
               </div>
             </div>
-          </div>
-
-          {/* RIGHT */}
-          <div className="col-12">
-            <div className="item-row right" ref={(el) => { rowRefs.current[1] = el; }}>
-              <div className="text-wrap">
-                <p className="side-text">Live Streaming</p>
-                <p className="side-desc">
-                  We deliver seamless live streaming experiences for any audience.
-                </p>
-              </div>
-              <div className="img-wrap pixel-reveal">
-                <Image src={two} alt="Live Streaming" width={300} height={300} />
-              </div>
-            </div>
-          </div>
-
-          {/* LEFT */}
-          <div className="col-12">
-            <div className="item-row left" ref={(el) => { rowRefs.current[2] = el; }}>
-              <div className="img-wrap pixel-reveal">
-                <Image src={three} alt="Event Management" width={300} height={300} />
-              </div>
-              <div className="text-wrap">
-                <p className="side-text">Event Management</p>
-                <p className="side-desc">
-                  We plan and execute events with precision and creativity.
-                </p>
-              </div>
-            </div>
-          </div>
-
-          {/* RIGHT */}
-          <div className="col-12">
-            <div className="item-row right" ref={(el) => { rowRefs.current[3] = el; }}>
-              <div className="text-wrap">
-                <p className="side-text">Media Technologies</p>
-                <p className="side-desc">
-                  We use advanced media technologies to enhance digital experiences.
-                </p>
-              </div>
-              <div className="img-wrap pixel-reveal">
-                <Image src={four} alt="Media Technologies" width={300} height={300} />
-              </div>
-            </div>
-          </div>
-
-          {/* LEFT */}
-          <div className="col-12">
-            <div className="item-row left" ref={(el) => { rowRefs.current[4] = el; }}>
-              <div className="img-wrap pixel-reveal">
-                <Image src={five} alt="Social Media" width={300} height={300} />
-              </div>
-              <div className="text-wrap">
-                <p className="side-text">Social Media</p>
-                <p className="side-desc">
-                  We grow your brand through engaging and strategic social media.
-                </p>
-              </div>
-            </div>
-          </div>
-
-          {/* RIGHT */}
-          <div className="col-12">
-            <div className="item-row right" ref={(el) => { rowRefs.current[5] = el; }}>
-              <div className="text-wrap">
-                <p className="side-text">Video Editing</p>
-                <p className="side-desc">
-                  We craft polished edits that bring your visuals to life.
-                </p>
-              </div>
-              <div className="img-wrap pixel-reveal">
-                <Image src={six} alt="Video Editing" width={300} height={300} />
-              </div>
-            </div>
-          </div>
-
+          ))}
         </div>
       </div>
 
+      {/* STYLES */}
       <style jsx global>{`
         .isolate {
           isolation: isolate;
-          position: relative;
-          z-index: 1;
         }
 
         .img-wrap {
           position: relative;
-          margin: 0;
-          padding: 0;
+          width: 300px;
+          height: 300px;
+          flex-shrink: 0;
         }
 
         .img-wrap img {
-          margin: 0 !important;
-          padding: 0 !important;
-        }
-
-        .text-wrap {
-          position: relative;
-          z-index: 3;
-          max-width: none;
-          margin: 0;
-          padding: 0;
-        }
-
-        .side-text,
-        .side-desc {
-          white-space: nowrap;
-        }
-
-        .side-text {
-          color: #ffffff;
-          font-size: 35px;
-          font-weight: 600;
-          margin: 0;
-          padding: 0;
-        }
-
-        .side-desc {
-          color: #dcdcdc;
-          font-size: 30px;
-          margin: 0;
-          padding: 0;
+          object-fit: cover;
+          border-radius: 12px;
+          border: 3px solid #b96311ff;
         }
 
         .item-row {
           display: flex;
           align-items: center;
-          gap: 0;
+          gap: 60px;
           margin-bottom: 40px;
+          transition: transform 0.35s ease;
+        }
+
+        /* Hover lift – desktop only */
+        @media (hover: hover) and (pointer: fine) {
+          .item-row:hover {
+            transform: translateY(-10px);
+          }
         }
 
         .item-row.left {
@@ -198,304 +205,98 @@ const HomeTwoPortfolio = () => {
           justify-content: flex-end;
         }
 
-        /* PIXEL REVEAL ANIMATION */
         .pixel-reveal {
           position: relative;
           overflow: hidden;
         }
 
-        .pixel-reveal::before {
-          content: '';
+        .pixel-before,
+        .pixel-after {
           position: absolute;
-          top: 0;
-          left: 0;
-          width: 100%;
-          height: 100%;
-          background: 
+          inset: 0;
+          pointer-events: none;
+        }
+
+        .pixel-before {
+          background:
             repeating-linear-gradient(
               0deg,
               rgba(0, 0, 0, 0.8) 0px,
               rgba(0, 0, 0, 0.8) 4px,
-              transparent 8px,
-              transparent 15px
+              transparent 10px,
+              transparent 25px
             ),
             repeating-linear-gradient(
               90deg,
               rgba(0, 0, 0, 0.8) 0px,
               rgba(0, 0, 0, 0.8) 4px,
-              transparent 8px,
-              transparent 15px
+              transparent 10px,
+              transparent 25px
             );
           z-index: 2;
-          opacity: 1;
-          transition: opacity 2.2s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        .pixel-reveal::after {
-          content: '';
-          position: absolute;
-          top: 0;
-          left: 0;
-          width: 100%;
-          height: 100%;
+        .pixel-after {
           background: rgba(0, 0, 0, 0.9);
           z-index: 1;
-          transition: opacity 2s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        .item-row.animate .pixel-reveal::before,
-        .item-row.animate .pixel-reveal::after {
+        .item-row .img-wrap,
+        .item-row .text-wrap {
           opacity: 0;
+          transform: translateY(30px);
+          transition: opacity 0.6s ease, transform 0.6s ease;
         }
 
-        /* PC & iPad - Text emerges from image */
-        @media (min-width: 768px) {
-          /* Image slides in first */
-          .item-row .img-wrap {
-            opacity: 0;
-            animation: imageSlideIn 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-          }
-
-          .item-row img {
-            border-radius: 12px;
-            transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-            display: block;
-          }
-
-          /* Text emerges from image position with delay */
-          .item-row .text-wrap {
-            opacity: 0;
-          }
-
-          /* LEFT - Text emerges from right side of image */
-          .item-row.left .text-wrap {
-            animation: textFromImageLeft 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-            animation-delay: 0.5s;
-          }
-
-          /* RIGHT - Text emerges from left side of image */
-          .item-row.right .text-wrap {
-            animation: textFromImageRight 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-            animation-delay: 0.5s;
-          }
-
-          /* Stagger each row */
-          .item-row:nth-child(1) .img-wrap { animation-delay: 0.1s; }
-          .item-row:nth-child(2) .img-wrap { animation-delay: 0.3s; }
-          .item-row:nth-child(3) .img-wrap { animation-delay: 0.5s; }
-          .item-row:nth-child(4) .img-wrap { animation-delay: 0.7s; }
-          .item-row:nth-child(5) .img-wrap { animation-delay: 0.9s; }
-          .item-row:nth-child(6) .img-wrap { animation-delay: 1.1s; }
-
-          .item-row:nth-child(1) .text-wrap { animation-delay: 0.6s; }
-          .item-row:nth-child(2) .text-wrap { animation-delay: 0.8s; }
-          .item-row:nth-child(3) .text-wrap { animation-delay: 1s; }
-          .item-row:nth-child(4) .text-wrap { animation-delay: 1.2s; }
-          .item-row:nth-child(5) .text-wrap { animation-delay: 1.4s; }
-          .item-row:nth-child(6) .text-wrap { animation-delay: 1.6s; }
-
-          @keyframes imageSlideIn {
-            0% {
-              opacity: 0;
-              transform: scale(0.8) translateY(40px);
-              filter: blur(8px);
-            }
-            100% {
-              opacity: 1;
-              transform: scale(1) translateY(0);
-              filter: blur(0);
-            }
-          }
-
-          @keyframes textFromImageLeft {
-            0% {
-              opacity: 0;
-              transform: translateX(-150px) scale(0.8);
-              filter: blur(10px);
-            }
-            60% {
-              opacity: 0.5;
-            }
-            100% {
-              opacity: 1;
-              transform: translateX(0) scale(1);
-              filter: blur(0);
-            }
-          }
-
-          @keyframes textFromImageRight {
-            0% {
-              opacity: 0;
-              transform: translateX(150px) scale(0.8);
-              filter: blur(10px);
-            }
-            60% {
-              opacity: 0.5;
-            }
-            100% {
-              opacity: 1;
-              transform: translateX(0) scale(1);
-              filter: blur(0);
-            }
-          }
-
-          /* Hover effects */
-          .item-row:hover img {
-            transform: scale(1.08) rotate(2deg);
-            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5);
-            filter: brightness(1.1);
-          }
-
-          .item-row .text-wrap {
-            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-          }
-
-          .item-row:hover .text-wrap {
-            transform: translateY(-5px);
-          }
-
-          .item-row:hover .side-text {
-            color: #ffd700;
-            text-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
-          }
-
-          .side-text {
-            transition: color 0.3s ease, text-shadow 0.3s ease;
-          }
+        .item-row.animate .img-wrap,
+        .item-row.animate .text-wrap {
+          opacity: 1;
+          transform: translateY(0);
         }
 
-        /* PC ONLY - Enhanced interactions */
-        @media (min-width: 1025px) {
-          .item-row {
-            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-          }
-
-          .item-row:hover {
-            transform: translateY(-12px);
-          }
-
-          .item-row.left:hover img {
-            transform: scale(1.08) rotate(2deg) translateX(8px);
-          }
-
-          .item-row.right:hover img {
-            transform: scale(1.08) rotate(-2deg) translateX(-8px);
-          }
+        .side-text {
+          color: #ffffff;
+          font-size: 35px;
+          font-weight: 600;
         }
 
-        /* MOBILE - Slide in effect on scroll */
-        @media (max-width: 767px) {
-          .item-row .img-wrap {
-            opacity: 0;
-            transform: translateX(-60px);
-            transition: opacity 0.6s ease, transform 0.6s ease;
-          }
-
-          .item-row.animate .img-wrap {
-            opacity: 1;
-            transform: translateX(0);
-          }
-
-          .item-row img {
-            border-radius: 8px;
-            display: block;
-          }
-
-          .item-row .text-wrap {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.6s ease 0.2s, transform 0.6s ease 0.2s;
-          }
-
-          .item-row.animate .text-wrap {
-            opacity: 1;
-            transform: translateY(0);
-          }
+        .side-desc {
+          color: #dcdcdc;
+          font-size: 30px;
         }
 
-        /* Tablet - Slide in effect on scroll */
-        @media (min-width: 768px) and (max-width: 1024px) {
-          .item-row .img-wrap {
-            opacity: 0;
-            transition: opacity 0.6s ease, transform 0.6s ease;
-          }
-
-          .item-row.left .img-wrap {
-            transform: translateX(-80px);
-          }
-
-          .item-row.right .img-wrap {
-            transform: translateX(80px);
-          }
-
-          .item-row.animate .img-wrap {
-            opacity: 1;
-            transform: translateX(0);
-          }
-
-          .item-row .text-wrap {
-            opacity: 0;
-            transition: opacity 0.6s ease 0.3s, transform 0.6s ease 0.3s;
-          }
-
-          .item-row.left .text-wrap {
-            transform: translateX(-60px);
-          }
-
-          .item-row.right .text-wrap {
-            transform: translateX(60px);
-          }
-
-          .item-row.animate .text-wrap {
-            opacity: 1;
-            transform: translateX(0);
-          }
-
-          .item-row:hover {
-            transform: translateY(-8px);
-          }
-
-          .item-row:hover img {
-            transform: scale(1.05);
-          }
-        }
-
-        /* MOBILE + IPAD STACK */
         @media (max-width: 1024px) {
-          .item-row {
-            flex-direction: column;
-            gap: 0;
-            text-align: center;
-          }
+        @media (max-width: 1024px) {
+  .item-row {
+    flex-direction: column;
+    text-align: center;
+  }
 
-          .item-row .img-wrap {
-            order: 1;
-          }
+  /* ✅ FORCE IMAGE FIRST */
+  .item-row .img-wrap {
+    order: 1;
+  }
 
-          .text-wrap {
-            order: 2;
-            max-width: 100%;
-          }
+  /* ✅ FORCE TEXT AFTER IMAGE */
+  .item-row .text-wrap {
+    order: 2;
+    max-width: 100%;
+  }
 
-          .side-text,
-          .side-desc {
-            white-space: normal;
-          }
+  .side-text,
+  .side-desc {
+    white-space: normal;
+  }
 
-          .side-text {
-            font-size: 26px;
-          }
+  .side-text {
+    font-size: 26px;
+  }
 
-          .side-desc {
-            font-size: 18px;
-          }
-        }
+  .side-desc {
+    font-size: 18px;
+  }
+}
 
-        /* MOBILE ONLY – REDUCED SPACE BETWEEN SECTIONS */
-        @media (max-width: 767px) {
-          .item-row {
-            margin-bottom: 30px;
-          }
         }
       `}</style>
     </section>

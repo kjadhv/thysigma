@@ -9,7 +9,7 @@ import { useState } from "react";
 gsap.registerPlugin(ScrollTrigger);
 
 const HomeTwoBanner = () => {
-  const fullscreenVideoRef = useRef<HTMLVideoElement>(null);
+  const fullscreenVideoRef = useRef<HTMLDivElement>(null);
   const boxedVideoContainerRef = useRef<HTMLDivElement>(null);
   const faintBgRef = useRef<HTMLDivElement>(null);
   const statsRef = useRef<HTMLDivElement>(null);
@@ -70,10 +70,14 @@ const HomeTwoBanner = () => {
             if (progress < 0.1) {
               setCapsulePadding(50);
 
-              // Keep fullscreen video small and centered - no changes
+              // Fade out small video AND border glow on scroll
               gsap.to(fullscreenVideoRef.current, {
-                opacity: 1,
-                scale: 1,
+                opacity: 1 - progress * 10,
+                border: "1px solid rgba(150, 150, 150, 0.3)",
+                boxShadow: 
+                  "inset 0 0 30px rgba(150, 150, 150, 0.15), " +
+                  "0 0 40px 5px rgba(150, 150, 150, 0.3), " +
+                  "0 0 80px 15px rgba(150, 150, 150, 0.2)",
                 duration: 0.3,
                 ease: "power2.out",
               });
@@ -105,19 +109,27 @@ const HomeTwoBanner = () => {
                 duration: 0.3,
                 ease: "power2.out",
               });
-              gsap.to(contentBottomRef.current, {
-                x: 0,
-                y: 0,
-                duration: 0.3,
-                ease: "power2.out",
-              });
+              // Don't move text on mobile/tablet
+              if (!isMobile && !isTablet) {
+                gsap.to(contentBottomRef.current, {
+                  x: 0,
+                  y: 0,
+                  duration: 0.3,
+                  ease: "power2.out",
+                });
+              }
             } else if (progress >= 0.1 && progress < 0.35) {
               const transitionProgress = (progress - 0.1) / 0.25;
+              const fadeOut = 1 - transitionProgress;
 
-              // Keep fullscreen video small and centered - no changes
+              // Fade out small video, border AND glow
               gsap.to(fullscreenVideoRef.current, {
-                opacity: 1,
-                scale: 1,
+                opacity: fadeOut,
+                border: `1px solid rgba(150, 150, 150, ${0.3 * fadeOut})`,
+                boxShadow: 
+                  `inset 0 0 ${30 * fadeOut}px rgba(150, 150, 150, ${0.15 * fadeOut}), ` +
+                  `0 0 ${40 * fadeOut}px ${5 * fadeOut}px rgba(150, 150, 150, ${0.3 * fadeOut}), ` +
+                  `0 0 ${80 * fadeOut}px ${15 * fadeOut}px rgba(150, 150, 150, ${0.2 * fadeOut})`,
                 duration: 0.3,
                 ease: "power2.out",
               });
@@ -151,17 +163,24 @@ const HomeTwoBanner = () => {
                 ease: "power2.out",
               });
               
-              gsap.to(contentBottomRef.current, {
-                x: 0,
-                y: window.innerHeight * 0.15,
-                duration: 0.3,
-                ease: "power2.out",
-              });
+              // Don't move text on mobile/tablet
+              if (!isMobile && !isTablet) {
+                gsap.to(contentBottomRef.current, {
+                  x: 0,
+                  y: window.innerHeight * 0.15,
+                  duration: 0.3,
+                  ease: "power2.out",
+                });
+              }
             } else {
-              // Keep fullscreen video small and centered - no changes
+              // Video completely faded out with NO border or glow
               gsap.to(fullscreenVideoRef.current, {
-                opacity: 1,
-                scale: 1,
+                opacity: 0,
+                border: "1px solid rgba(150, 150, 150, 0)",
+                boxShadow: 
+                  "inset 0 0 0px rgba(150, 150, 150, 0), " +
+                  "0 0 0px 0px rgba(150, 150, 150, 0), " +
+                  "0 0 0px 0px rgba(150, 150, 150, 0)",
                 duration: 0.3,
                 ease: "power2.out",
               });
@@ -197,12 +216,15 @@ const HomeTwoBanner = () => {
                 ease: "power2.out",
               });
               
-              gsap.to(contentBottomRef.current, {
-                x: 0,
-                y: window.innerHeight * 0.15,
-                duration: 0.3,
-                ease: "power2.out",
-              });
+              // Don't move text on mobile/tablet
+              if (!isMobile && !isTablet) {
+                gsap.to(contentBottomRef.current, {
+                  x: 0,
+                  y: window.innerHeight * 0.15,
+                  duration: 0.3,
+                  ease: "power2.out",
+                });
+              }
             }
           },
         },
@@ -267,11 +289,12 @@ const HomeTwoBanner = () => {
         </video>
       </div>
 
-      {/* Full screen background video - NOW SMALL AND CENTERED */}
+      {/* Full screen background video - NOW BIGGER AND FADES ON SCROLL */}
       <div
+        ref={fullscreenVideoRef}
         style={{
           position: "absolute",
-          top: `${headerHeight + 40}px`,
+          top: isMobile || isTablet ? `${headerHeight + 40}px` : `${headerHeight + 60}px`,
           left: "50%",
           transform: "translateX(-50%)",
           width: isMobile || isTablet ? "90%" : "1000px",
@@ -279,11 +302,15 @@ const HomeTwoBanner = () => {
           zIndex: 1,
           borderRadius: "20px",
           overflow: "hidden",
-          boxShadow: "0 0 60px 10px rgba(150, 150, 150, 0.4), 0 0 100px 20px rgba(150, 150, 150, 0.2)",
+          border: "1px solid rgba(150, 150, 150, 0.3)",
+          boxShadow: 
+            "inset 0 0 30px rgba(150, 150, 150, 0.15), " +
+            "0 0 40px 5px rgba(150, 150, 150, 0.3), " +
+            "0 0 80px 15px rgba(150, 150, 150, 0.2)",
+          transition: "opacity 0.3s ease, box-shadow 0.3s ease, border 0.3s ease",
         }}
       >
         <video
-          ref={fullscreenVideoRef}
           autoPlay
           loop
           muted
@@ -299,13 +326,13 @@ const HomeTwoBanner = () => {
         </video>
       </div>
 
-      {/* Boxed capsule video */}
+      {/* Boxed capsule video - MOVED DOWN */}
       <div
         ref={boxedVideoContainerRef}
         className="container"
         style={{
           position: "absolute",
-          top: "35%",
+          top: isMobile || isTablet ? "35%" : "70%",
           left: "50%",
           transform: "translate(-50%, -50%)",
           opacity: 0,
@@ -340,7 +367,7 @@ const HomeTwoBanner = () => {
         </div>
       </div>
 
-      {/* Content layer */}
+      {/* Content layer - MOVED TO BOTTOM */}
       <div className="container" style={{ position: "relative", zIndex: 10 }} ref={containerRef}>
         <div className="row">
           <div className="col-12">
@@ -357,7 +384,7 @@ const HomeTwoBanner = () => {
                     padding: isMobile || isTablet ? "30px 20px" : "70px 100px",
                     borderRadius: "24px",
                     maxWidth: isMobile || isTablet ? "95%" : "100%",
-                    marginTop: isMobile || isTablet ? "420px" : "200px",
+                    marginTop: isMobile || isTablet ? "420px" : "calc(100vh - 350px)",
                     display: isMobile || isTablet ? "block" : "flex",
                     alignItems: isMobile || isTablet ? "flex-start" : "center",
                     gap: isMobile || isTablet ? "0" : "40px",

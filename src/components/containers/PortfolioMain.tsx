@@ -23,11 +23,11 @@ const filterOptions = [
 
 const cards = [
   { img: socialm, tag: "Videography", title: "VIREN | MEMORIAL CUP 2025", slug: "abcd-brand-documentary" },
-  { img: cameraman, tag: "Live Streaming", title: "ALPHA FIGHTING | Kickboxing Bout", slug: "udaan-school-documentary" },
+  { img: cameraman, tag: "Live Streaming", title: "FIGHT CLUB | WAR OF THE CLUBS", slug: "udaan-school-documentary" },
   { img: editing, tag: "Editing", title: "ALPHA MAIN EVENT | MMA 2025", slug: "amainevent" },
-  { img: process, tag: "Videography", title: "SHIVMUDRA PRATISHTHAN", slug: "shiv" },
-  { img: like, tag: "Photography", title: "Industrial Story", slug: "industrial-story" },
-  { img: grp, tag: "Photography", title: "Creative Journey", slug: "creative-journey" },
+  { img: process, tag: "Videography", title: "SHIVMUDRA PRATISHTHAN CHASHAK 2025", slug: "shiv" },
+  { img: like, tag: "Photography", title: "ALPHA FIGHTING SERIES", slug: "industrial-story" },
+  { img: grp, tag: "Photography", title: "SAFETECH AWARDS & CONFERENCE 2025", slug: "creative-journey" },
 ];
 
 const gridTemplateAreas = `
