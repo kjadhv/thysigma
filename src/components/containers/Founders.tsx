@@ -86,7 +86,11 @@ const founders = [
 
 const Founders = () => {
   return (
-    <section style={{ padding: "80px 0", background: "transparent" }}>
+    <section
+  id="founders"
+  style={{ padding: "80px 0", background: "transparent" }}
+>
+
       <div className="container" style={{ maxWidth: "1400px" }}>
 
         {founders.map((founder, index) => {

@@ -36,9 +36,10 @@ const Agency = () => {
             </p>
 {/* ✅ CENTER */}
   <div className="center-btn">
-            <Link href="/about-us" className="btn btn--primary" >
-              Know More
-            </Link>
+            <Link href="#founders" scroll={false} className="btn btn--primary">
+  Know More
+</Link>
+
           </div>
 </div>
           {/* ===== INFINITE MARQUEE ===== */}
