@@ -1,306 +1,438 @@
-import React, { useEffect, useRef } from "react";
-import Image, { StaticImageData } from "next/image";
+import React, { useEffect, useRef, useState } from "react";
+import Image from "next/image";
+import Link from "next/link";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
+import dawn from "public/images/banner/dawn.png";
 
-/* IMAGES */
-import one from "public/images/services/videop.jpeg";
-import two from "public/images/services/lives.jpeg";
-import three from "public/images/services/contentpp.jpeg";
-import four from "public/images/services/contentc.jpeg";
-import five from "public/images/services/contentd.jpeg";
-import six from "public/images/services/graphicd.jpeg";
+gsap.registerPlugin(ScrollTrigger);
 
-/* TYPES */
-interface PortfolioItem {
-  img: StaticImageData;
-  title: string;
-  desc: string;
-  side: "left" | "right";
-}
+const HomeTwoBanner = () => {
+  const fullscreenVideoRef = useRef<HTMLDivElement>(null);
+  const boxedVideoContainerRef = useRef<HTMLDivElement>(null);
+  const faintBgRef = useRef<HTMLDivElement>(null);
+  const statsRef = useRef<HTMLDivElement>(null);
+  const titleRef = useRef<HTMLHeadingElement>(null);
+  const contentBottomRef = useRef<HTMLDivElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+  
+  // Calculate these synchronously - no state changes
+  const getHeaderHeight = () => {
+    if (typeof window === 'undefined') return 120;
+    const headerEl = document.querySelector(".primary-navbar");
+    return headerEl instanceof HTMLElement ? headerEl.offsetHeight : 120;
+  };
 
-/* DATA */
-const PORTFOLIO_ITEMS: PortfolioItem[] = [
-  {
-    img: one,
-    title: "Video Production",
-    desc: "We create high-quality videos that tell your story with impact.",
-    side: "left",
-  },
-  {
-    img: two,
-    title: "Live Streaming",
-    desc: "We deliver seamless live streaming experiences for any audience.",
-    side: "right",
-  },
-  {
-    img: three,
-    title: "Event Management",
-    desc: "We plan and execute events with precision and creativity.",
-    side: "left",
-  },
-  {
-    img: four,
-    title: "Content Post Production",
-    desc: "Post-production is where raw footage becomes cinematic.",
-    side: "right",
-  },
-  {
-    img: five,
-    title: "Content Creation",
-    desc: "From ideas to execution, we craft original content.",
-    side: "left",
-  },
-  {
-    img: six,
-    title: "Video Editing",
-    desc: "We craft polished edits that bring your visuals to life.",
-    side: "right",
-  },
-];
+  const getIsMobile = () => typeof window !== 'undefined' && window.innerWidth <= 576;
+  const getIsTablet = () => typeof window !== 'undefined' && window.innerWidth > 576 && window.innerWidth <= 991;
 
-const HomeTwoPortfolio = () => {
-  const rowRefs = useRef<(HTMLDivElement | null)[]>([]);
-  const pixelRefs = useRef<(HTMLDivElement | null)[]>([]);
+  // Store initial values
+  const initialHeaderHeight = getHeaderHeight();
+  const initialIsMobile = getIsMobile();
+  const initialIsTablet = getIsTablet();
+
+  const [headerHeight, setHeaderHeight] = useState(initialHeaderHeight);
+  const [isMobile, setIsMobile] = useState(initialIsMobile);
+  const [isTablet, setIsTablet] = useState(initialIsTablet);
+  const [capsulePadding, setCapsulePadding] = useState<number>(0);
 
   useEffect(() => {
-    const observers: IntersectionObserver[] = [];
-
-    rowRefs.current.forEach((row) => {
-      if (!row) return;
-
-      const observer = new IntersectionObserver(
-        ([entry]) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("animate");
-          }
-        },
-        { threshold: 0.2 }
+    const setVH = () => {
+      document.documentElement.style.setProperty(
+        "--vh",
+        `${window.innerHeight * 0.01}px`
       );
+    };
+    setVH();
 
-      observer.observe(row);
-      observers.push(observer);
-    });
-
-    /* PIXEL fades ONLY when image reaches CENTER of viewport */
-    const handleScroll = () => {
-      pixelRefs.current.forEach((wrap) => {
-        if (!wrap) return;
-
-        const rect = wrap.getBoundingClientRect();
-        const vh = window.innerHeight;
-
-        const imageBottom = rect.bottom;
-        const imageCenter = rect.top + rect.height / 2;
-        const viewportCenter = vh / 2;
-
-        let progress = 0;
-
-        if (imageBottom < vh) {
-          const start = vh;
-          const end = viewportCenter;
-
-          progress = (start - imageCenter) / (start - end);
-          progress = Math.max(0, Math.min(1, progress));
-        }
-
-        const opacity = 1 - progress;
-
-        const before = wrap.querySelector(".pixel-before") as HTMLElement | null;
-        const after = wrap.querySelector(".pixel-after") as HTMLElement | null;
-
-        if (before) before.style.opacity = opacity.toString();
-        if (after) after.style.opacity = opacity.toString();
-      });
+    const handleResize = () => {
+      setIsMobile(getIsMobile());
+      setIsTablet(getIsTablet());
+      setHeaderHeight(getHeaderHeight());
+      setVH();
     };
 
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    handleScroll();
+    window.addEventListener("resize", handleResize);
 
     return () => {
-      observers.forEach((o) => o.disconnect());
-      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("resize", handleResize);
     };
   }, []);
 
+  useEffect(() => {
+    if (isMobile || isTablet) {
+      return;
+    }
+    
+    if (document.querySelectorAll(".banner-two").length > 0) {
+
+      gsap.timeline({
+        scrollTrigger: {
+          trigger: ".banner-two",
+          start: "top top",
+          end: "bottom top",
+          scrub: 1,
+          onUpdate: (self) => {
+            const progress = self.progress;
+
+            if (progress < 0.1) {
+              setCapsulePadding(50);
+
+              gsap.to(fullscreenVideoRef.current, {
+                opacity: 1 - progress * 10,
+                border: "1px solid rgba(150, 150, 150, 0.3)",
+                boxShadow: 
+                  "inset 0 0 30px rgba(150, 150, 150, 0.15), " +
+                  "0 0 40px 5px rgba(150, 150, 150, 0.3), " +
+                  "0 0 80px 15px rgba(150, 150, 150, 0.2)",
+                duration: 0.3,
+                ease: "power2.out",
+              });
+              gsap.set(boxedVideoContainerRef.current, {
+                pointerEvents: "none",
+              });
+
+              gsap.to(boxedVideoContainerRef.current, {
+                opacity: 0,
+                scale: 0.85,
+                duration: 0.3,
+                ease: "power2.out",
+              });
+              gsap.to(faintBgRef.current, {
+                opacity: 0,
+                duration: 0.3,
+                ease: "power2.out",
+              });
+              
+              gsap.to(statsRef.current, {
+                x: 0,
+                y: 0,
+                duration: 0.3,
+                ease: "power2.out",
+              });
+              gsap.to(titleRef.current, {
+                x: 0,
+                y: 0,
+                duration: 0.3,
+                ease: "power2.out",
+              });
+              gsap.to(contentBottomRef.current, {
+                x: 0,
+                y: 0,
+                duration: 0.3,
+                ease: "power2.out",
+              });
+            } else if (progress >= 0.1 && progress < 0.35) {
+              const transitionProgress = (progress - 0.1) / 0.25;
+              const fadeOut = 1 - transitionProgress;
+
+              gsap.to(fullscreenVideoRef.current, {
+                opacity: fadeOut,
+                border: `1px solid rgba(150, 150, 150, ${0.3 * fadeOut})`,
+                boxShadow: 
+                  `inset 0 0 ${30 * fadeOut}px rgba(150, 150, 150, ${0.15 * fadeOut}), ` +
+                  `0 0 ${40 * fadeOut}px ${5 * fadeOut}px rgba(150, 150, 150, ${0.3 * fadeOut}), ` +
+                  `0 0 ${80 * fadeOut}px ${15 * fadeOut}px rgba(150, 150, 150, ${0.2 * fadeOut})`,
+                duration: 0.3,
+                ease: "power2.out",
+              });
+              gsap.to(boxedVideoContainerRef.current, {
+                opacity: transitionProgress,
+                scale: 0.85 + transitionProgress * 0.15,
+                duration: 0.3,
+                ease: "power2.out",
+              });
+              gsap.to(faintBgRef.current, {
+                opacity: transitionProgress * 0.35,
+                duration: 0.3,
+                ease: "power2.out",
+              });
+              
+              const capsuleWidth = Math.min(window.innerWidth * 0.4, 600);
+              const statsGap = 60;
+              
+              gsap.to(statsRef.current, {
+                x: capsuleWidth + statsGap,
+                y: -window.innerHeight * 0.05,
+                duration: 0.3,
+                ease: "power2.out",
+              });
+              
+              gsap.to(titleRef.current, {
+                x: 0,
+                y: window.innerHeight * 0.15,
+                duration: 0.3,
+                ease: "power2.out",
+              });
+              
+              gsap.to(contentBottomRef.current, {
+                x: 0,
+                y: window.innerHeight * 0.15,
+                duration: 0.3,
+                ease: "power2.out",
+              });
+            } else {
+              gsap.to(fullscreenVideoRef.current, {
+                opacity: 0,
+                border: "1px solid rgba(150, 150, 150, 0)",
+                boxShadow: 
+                  "inset 0 0 0px rgba(150, 150, 150, 0), " +
+                  "0 0 0px 0px rgba(150, 150, 150, 0), " +
+                  "0 0 0px 0px rgba(150, 150, 150, 0)",
+                duration: 0.3,
+                ease: "power2.out",
+              });
+              gsap.to(boxedVideoContainerRef.current, {
+                opacity: 1,
+                scale: 1,
+                duration: 0.3,
+                ease: "power2.out",
+              });
+              setCapsulePadding(50);
+
+              gsap.to(faintBgRef.current, {
+                opacity: 0.35,
+                duration: 0.3,
+                ease: "power2.out",
+              });
+              
+              const capsuleWidth = Math.min(window.innerWidth * 0.4, 600);
+              const statsGap = 60;
+              
+              gsap.to(statsRef.current, {
+                x: capsuleWidth + statsGap,
+                y: -window.innerHeight * 0.05,
+                duration: 0.3,
+                ease: "power2.out",
+              });
+              
+              gsap.to(titleRef.current, {
+                x: 0,
+                y: window.innerHeight * 0.15,
+                duration: 0.3,
+                ease: "power2.out",
+              });
+              
+              gsap.to(contentBottomRef.current, {
+                x: 0,
+                y: window.innerHeight * 0.15,
+                duration: 0.3,
+                ease: "power2.out",
+              });
+            }
+          },
+        },
+      });
+    }
+
+    return () => {
+      ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+    };
+  }, [isMobile, isTablet]);
+
+  // Use the current values directly in render
+  const currentHeaderHeight = headerHeight;
+  const currentIsMobile = isMobile;
+  const currentIsTablet = isTablet;
+
   return (
-    <section className="section portfolio portfolio-two isolate">
-      <div className="container">
-        <div className="row">
-          {PORTFOLIO_ITEMS.map((item, i) => (
-            <div className="col-12" key={i}>
-              <div
-                className={`item-row ${item.side}`}
-                ref={(el) => {
-                  rowRefs.current[i] = el;
-                }}
-              >
-                {item.side === "right" && (
-                  <div className="text-wrap">
-                    <p className="side-text">{item.title}</p>
-                    <p className="side-desc">{item.desc}</p>
-                  </div>
-                )}
+    <section
+      className="banner-two"
+      style={{
+        position: "relative",
+        overflow: "visible",
+        width: "100%",
+        minHeight: currentIsMobile || currentIsTablet
+          ? "50vh"
+          : "calc(var(--vh, 1vh) * 100)",
+        paddingTop: currentIsMobile || currentIsTablet ? "10px" : `${currentHeaderHeight + 80}px`,
+        paddingBottom: currentIsMobile || currentIsTablet
+          ? "5px"
+          : `${capsulePadding}px`,
+        marginBottom: 0,
+      }}
+    >
+      {/* Faint blurred background layer */}
+      <div
+        ref={faintBgRef}
+        style={{
+          position: "absolute",
+          top: 0,
+          left: 0,
+          width: "100%",
+          height: "100%",
+          opacity: 0,
+          pointerEvents: "none",
+          zIndex: 0,
+        }}
+      >
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          style={{
+            position: "absolute",
+            width: "100%",
+            height: currentIsMobile || currentIsTablet ? "50vh" : "calc(var(--vh, 1vh) * 100)",
+            maxHeight: currentIsMobile || currentIsTablet ? "50vh" : "calc(var(--vh, 1vh) * 100)",
+            minHeight: currentIsMobile || currentIsTablet ? "50vh" : "calc(var(--vh, 1vh) * 100)",
+            objectFit: currentIsMobile || currentIsTablet ? "contain" : "cover",
+            objectPosition: "center center",
+            filter: "blur(12px) brightness(0.25)",
+            top: currentIsMobile || currentIsTablet ? "0" : `${currentHeaderHeight + 80}px`,
+            left: 0,
+          }}
+        >
+          <source src="/images/thy_sigma_hero_video.mp4" type="video/mp4" />
+        </video>
+      </div>
 
-                <div
-                  className="img-wrap pixel-reveal"
-                  ref={(el) => {
-                    pixelRefs.current[i] = el;
-                  }}
-                >
-                  <div className="pixel-before"></div>
-                  <div className="pixel-after"></div>
-                  <Image src={item.img} alt={item.title} fill />
-                </div>
+      {/* Full screen background video */}
+      <div
+        ref={fullscreenVideoRef}
+        style={{
+          position: "absolute",
+          top: currentIsMobile || currentIsTablet ? `${currentHeaderHeight + 40}px` : `${currentHeaderHeight + 60}px`,
+          left: "50%",
+          transform: "translateX(-50%)",
+          width: currentIsMobile || currentIsTablet ? "90%" : "1000px",
+          aspectRatio: "16/9",
+          zIndex: 1,
+          borderRadius: "20px",
+          overflow: "hidden",
+          border: "1px solid rgba(150, 150, 150, 0.3)",
+          boxShadow: 
+            "inset 0 0 30px rgba(150, 150, 150, 0.15), " +
+            "0 0 40px 5px rgba(150, 150, 150, 0.3), " +
+            "0 0 80px 15px rgba(150, 150, 150, 0.2)",
+          willChange: "opacity, box-shadow, border",
+        }}
+      >
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          style={{
+            width: "100%",
+            height: "100%",
+            objectFit: "cover",
+            objectPosition: "center center",
+          }}
+        >
+          <source src="/images/thy_sigma_hero_video.mp4" type="video/mp4" />
+        </video>
+      </div>
 
-                {item.side === "left" && (
-                  <div className="text-wrap">
-                    <p className="side-text">{item.title}</p>
-                    <p className="side-desc">{item.desc}</p>
-                  </div>
-                )}
-              </div>
-            </div>
-          ))}
+      {/* Boxed capsule video */}
+      <div
+        ref={boxedVideoContainerRef}
+        className="container"
+        style={{
+          position: "absolute",
+          top: currentIsMobile || currentIsTablet ? "35%" : "70%",
+          left: "50%",
+          transform: "translate(-50%, -50%)",
+          opacity: 0,
+          pointerEvents: "none",
+          zIndex: 2,
+          padding: 0,
+        }}
+      >
+        <div
+          style={{
+            width: "40%",
+            maxWidth: "600px",
+            aspectRatio: "16/9",
+            borderRadius: "40px",
+            overflow: "visible",
+            boxShadow: "0 30px 60px -15px rgba(0, 0, 0, 0.6)",
+          }}
+        >
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            style={{
+              width: "100%",
+              height: "100%",
+              objectFit: "cover",
+            }}
+          >
+            <source src="/images/thy_sigma_hero_video.mp4" type="video/mp4" />
+          </video>
         </div>
       </div>
 
-      {/* STYLES */}
-      <style jsx global>{`
-        .isolate {
-          isolation: isolate;
-        }
-
-        .img-wrap {
-          position: relative;
-          width: 300px;
-          height: 300px;
-          flex-shrink: 0;
-        }
-
-        .img-wrap img {
-          object-fit: cover;
-          border-radius: 12px;
-          border: 3px solid #b96311ff;
-        }
-
-        .item-row {
-          display: flex;
-          align-items: center;
-          gap: 60px;
-          margin-bottom: 40px;
-          transition: transform 0.35s ease;
-        }
-
-        /* Hover lift – desktop only */
-        @media (hover: hover) and (pointer: fine) {
-          .item-row:hover {
-            transform: translateY(-10px);
-          }
-        }
-
-        .item-row.left {
-          justify-content: flex-start;
-        }
-
-        .item-row.right {
-          justify-content: flex-end;
-        }
-
-        .pixel-reveal {
-          position: relative;
-          overflow: hidden;
-        }
-
-        .pixel-before,
-        .pixel-after {
-          position: absolute;
-          inset: 0;
-          pointer-events: none;
-        }
-
-        .pixel-before {
-          background:
-            repeating-linear-gradient(
-              0deg,
-              rgba(0, 0, 0, 0.8) 0px,
-              rgba(0, 0, 0, 0.8) 4px,
-              transparent 10px,
-              transparent 25px
-            ),
-            repeating-linear-gradient(
-              90deg,
-              rgba(0, 0, 0, 0.8) 0px,
-              rgba(0, 0, 0, 0.8) 4px,
-              transparent 10px,
-              transparent 25px
-            );
-          z-index: 2;
-        }
-
-        .pixel-after {
-          background: rgba(0, 0, 0, 0.9);
-          z-index: 1;
-        }
-
-        .item-row .img-wrap,
-        .item-row .text-wrap {
-          opacity: 0;
-          transform: translateY(30px);
-          transition: opacity 0.6s ease, transform 0.6s ease;
-        }
-
-        .item-row.animate .img-wrap,
-        .item-row.animate .text-wrap {
-          opacity: 1;
-          transform: translateY(0);
-        }
-
-        .side-text {
-          color: #ffffff;
-          font-size: 35px;
-          font-weight: 600;
-        }
-
-        .side-desc {
-          color: #dcdcdc;
-          font-size: 30px;
-        }
-
-        @media (max-width: 1024px) {
-        @media (max-width: 1024px) {
-  .item-row {
-    flex-direction: column;
-    text-align: center;
-  }
-
-  /* ✅ FORCE IMAGE FIRST */
-  .item-row .img-wrap {
-    order: 1;
-  }
-
-  /* ✅ FORCE TEXT AFTER IMAGE */
-  .item-row .text-wrap {
-    order: 2;
-    max-width: 100%;
-  }
-
-  .side-text,
-  .side-desc {
-    white-space: normal;
-  }
-
-  .side-text {
-    font-size: 26px;
-  }
-
-  .side-desc {
-    font-size: 18px;
-  }
-}
-
-        }
-      `}</style>
+      {/* Content layer */}
+      <div className="container" style={{ position: "relative", zIndex: 10 }} ref={containerRef}>
+        <div className="row">
+          <div className="col-12">
+            <div className="banner-two-inner">
+              <div className="banner-two__meta" ref={statsRef}>
+                <div className="cta section__content-cta m-0">
+                </div>
+              </div>
+              <div className="banner-two__content">
+                <div
+                  className="banner-two__content-cta section__content-cta"
+                  ref={contentBottomRef}
+                  style={{
+                    padding: currentIsMobile || currentIsTablet ? "30px 20px" : "70px 100px",
+                    borderRadius: "24px",
+                    maxWidth: currentIsMobile || currentIsTablet ? "95%" : "100%",
+                    marginTop: currentIsMobile || currentIsTablet ? "420px" : "calc(100vh - 350px)",
+                    display: currentIsMobile || currentIsTablet ? "block" : "flex",
+                    alignItems: currentIsMobile || currentIsTablet ? "flex-start" : "center",
+                    gap: currentIsMobile || currentIsTablet ? "0" : "40px",
+                    minHeight: currentIsMobile || currentIsTablet ? "auto" : "120px",
+                  }}
+                >
+                  <div className="paragraph" style={{ 
+                    flex: currentIsMobile || currentIsTablet ? "none" : "1",
+                    marginBottom: currentIsMobile || currentIsTablet ? "16px" : "0",
+                  }}>
+                    <p style={{
+                      fontSize: currentIsMobile || currentIsTablet ? "13px" : "18px",
+                      lineHeight: currentIsMobile || currentIsTablet ? "1.5" : "1.7",
+                      marginBottom: 0,
+                    }}>
+                      THYSIGMA creates high-performance digital experiences with
+                      a focus on luxury design, clean interfaces, and seamless
+                      user interaction.
+                    </p>
+                  </div>
+                  <div className="arrow-wrapper d-none d-lg-block" style={{ display: "none" }}>
+                    <span className="arrow"></span>
+                  </div>
+                  <div className="cta" style={{ 
+                    flexShrink: 0,
+                    marginTop: currentIsMobile || currentIsTablet ? "0" : "0",
+                  }}>
+                    <Link 
+                      href="contact-us" 
+                      className="btn btn--tertiary"
+                      style={{
+                        fontSize: currentIsMobile || currentIsTablet ? "12px" : "inherit",
+                        padding: currentIsMobile || currentIsTablet ? "10px 20px" : "inherit",
+                        whiteSpace: "nowrap",
+                      }}
+                    >
+                      book a call now
+                      <i className="fa-sharp fa-solid fa-arrow-up-right"></i>
+                    </Link>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <Image src={dawn} alt="Image" className="dawn" />
     </section>
   );
 };
 
-export default HomeTwoPortfolio;
+export default HomeTwoBanner;

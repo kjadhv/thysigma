@@ -1,9 +1,9 @@
 import React from "react";
 
-import phone from "public/images/quality.jpg";
-import mail from "public/images/quality.jpg";
-import location from "public/images/quality.jpg";
-import time from "public/images/quality.jpg";
+import phone from "public/images/wedo.jpg";
+import mail from "public/images/cameraman.jpg";
+import location from "public/images/ve.jpg";
+import time from "public/images/sm.jpg";
 
 const HomeFour = () => {
   const items = [
