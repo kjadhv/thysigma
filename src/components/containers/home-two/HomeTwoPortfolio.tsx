@@ -80,7 +80,6 @@ const HomeTwoPortfolio = () => {
       observers.push(observer);
     });
 
-    /* PIXEL fades ONLY when image reaches CENTER of viewport */
     const handleScroll = () => {
       pixelRefs.current.forEach((wrap) => {
         if (!wrap) return;
@@ -190,7 +189,6 @@ const HomeTwoPortfolio = () => {
           transition: transform 0.35s ease;
         }
 
-        /* Hover lift – desktop only */
         @media (hover: hover) and (pointer: fine) {
           .item-row:hover {
             transform: translateY(-10px);
@@ -258,17 +256,30 @@ const HomeTwoPortfolio = () => {
           color: #ffffff;
           font-size: 35px;
           font-weight: 600;
+          margin: 0;
         }
 
         .side-desc {
           color: #dcdcdc;
           font-size: 30px;
+          margin: 0;
         }
 
+        /* ✅ MOBILE + IPAD */
         @media (max-width: 1024px) {
           .item-row {
             flex-direction: column;
+            gap: 0;               /* ✅ NO SPACE */
+            margin-bottom: 40px;
             text-align: center;
+          }
+
+          .item-row .img-wrap {
+            order: 1;
+          }
+
+          .item-row .text-wrap {
+            order: 2;
           }
 
           .side-text {
@@ -284,4 +295,4 @@ const HomeTwoPortfolio = () => {
   );
 };
 
-export default HomeTwoPortfolio; 
+export default HomeTwoPortfolio;
