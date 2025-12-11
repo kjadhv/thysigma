@@ -386,7 +386,7 @@ const HomeTwoBanner = () => {
                   className="banner-two__content-cta section__content-cta"
                   ref={contentBottomRef}
                   style={{
-                    padding: isMobile || isTablet ? "30px 20px" : "70px 100px",
+                    padding: isMobile || isTablet ? "2px 20px" : "70px 100px",
                     borderRadius: "24px",
                     maxWidth: isMobile || isTablet ? "95%" : "100%",
                     marginTop: isMobile || isTablet ? "420px" : "calc(100vh - 350px)",
