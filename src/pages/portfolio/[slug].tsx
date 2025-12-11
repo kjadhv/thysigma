@@ -1,108 +1,94 @@
 import React from "react";
 import Image from "next/image";
 import { useRouter } from "next/router";
+import { GetStaticPaths, GetStaticProps } from "next";
 
 import Layout from "@/components/layout/Layout";
 import CmnBanner from "@/components/layout/banner/CmnBanner";
 
 // IMAGES
-import socialm from "public/images/socialm.png";
-import cameraman from "public/images/cameraman.jpg";
-import editing from "public/images/editing.jpg";
-import process from "public/images/process.jpg";
-import like from "public/images/like.png";
-import grp from "public/images/grp.jpg";
+import socialm from "public/images/photos/7.jpeg";
+import cameraman from "public/images/photos/11.jpeg";
+import editing from "public/images/photos/12.jpeg";
+import process from "public/images/photos/17.jpeg";
+import like from "public/images/photos/15.jpeg";
+import grp from "public/images/photos/16.jpeg";
 
-// ✅ SYNCED WITH PortfolioMain.tsx (4 categories)
+// ✅ SYNCED WITH PortfolioMain.tsx
 const portfolioData = [
   {
-    slug: "viren",
+    slug: "abcd-brand-documentary",
     title: "VIREN | MEMORIAL CUP 2025",
     tag: "Videography",
-    desc:
-      "ABCD showcases innovative agricultural solutions empowering farmers.",
+    desc: "VIREN Memorial Cup 2025 showcases the spirit of competition and sportsmanship in this prestigious tournament.",
     img: socialm,
   },
   {
-    slug: "alpha",
-    title: "ALPHA FIGHTING | Kickboxing Bout",
+    slug: "udaan-school-documentary",
+    title: "FIGHT CLUB | WAR OF THE CLUBS",
     tag: "Live Streaming",
-    desc:
-      "Udaan School focuses on transforming rural education through creativity.",
+    desc: "Experience the intensity and raw energy of Fight Club's War of the Clubs through our comprehensive live streaming coverage.",
     img: cameraman,
   },
   {
     slug: "amainevent",
     title: "ALPHA MAIN EVENT | MMA 2025",
     tag: "Editing",
-    desc:
-      "Pragati Group represents growth, sustainability, and modern thinking.",
+    desc: "A masterfully edited showcase of the Alpha Main Event MMA 2025, capturing every moment of athletic excellence.",
     img: editing,
   },
   {
     slug: "shiv",
-    title: "SHIVMUDRA PRATISHTHAN",
+    title: "SHIVMUDRA PRATISHTHAN CHASHAK 2025",
     tag: "Videography",
-    desc:
-      "Legacy Project highlights the journey of innovation and long-term vision.",
+    desc: "Shivmudra Pratishthan Chashak 2025 celebrates tradition and competitive spirit in this landmark sporting event.",
     img: process,
   },
   {
     slug: "industrial-story",
-    title: "Industrial Story",
+    title: "ALPHA FIGHTING SERIES",
     tag: "Photography",
-    desc:
-      "An industrial documentary showcasing strength, scale, and dedication.",
+    desc: "Stunning photography capturing the drama, intensity, and athleticism of the Alpha Fighting Series.",
     img: like,
   },
   {
     slug: "creative-journey",
-    title: "Creative Journey",
+    title: "SAFETECH AWARDS & CONFERENCE 2025",
     tag: "Photography",
-    desc:
-      "Creative Journey captures passion, artistry, and the power of storytelling.",
+    desc: "Professional photography documentation of the SafeTech Awards & Conference 2025, highlighting innovation and excellence.",
     img: grp,
   },
 ];
 
-const PortfolioDetails = () => {
-  const router = useRouter();
-  const { slug } = router.query;
+// ✅ TELL NEXT.JS WHICH PATHS EXIST
+export const getStaticPaths: GetStaticPaths = async () => {
+  const paths = portfolioData.map((item) => ({
+    params: { slug: item.slug },
+  }));
 
-  const data = portfolioData.find((item) => item.slug === slug);
+  return {
+    paths,
+    fallback: false, // Show 404 for unknown slugs
+  };
+};
 
-  // ✅ SAFETY FALLBACK
+// ✅ GET DATA FOR EACH PAGE
+export const getStaticProps: GetStaticProps = async ({ params }) => {
+  const data = portfolioData.find((item) => item.slug === params?.slug);
+
   if (!data) {
-    return (
-      <Layout header={2} footer={5} video={0}>
-        <CmnBanner title="Portfolio Not Found" navigation="Portfolio" />
-        <section style={{ background: "#000", padding: "70px 0" }}>
-          <div
-            className="container"
-            style={{ color: "#fff", textAlign: "center" }}
-          >
-            <h2>Portfolio item not found</h2>
-            <p style={{ marginBottom: "20px" }}>
-              The portfolio you're looking for doesn't exist.
-            </p>
-            <button
-              onClick={() => router.push("/portfolio")}
-              style={{
-                background: "linear-gradient(135deg, #6a39ff, #8f5bff)",
-                border: "none",
-                color: "#fff",
-                padding: "10px 22px",
-                borderRadius: "999px",
-                cursor: "pointer",
-              }}
-            >
-              Back to Portfolio
-            </button>
-          </div>
-        </section>
-      </Layout>
-    );
+    return {
+      notFound: true,
+    };
   }
+
+  return {
+    props: { data },
+  };
+};
+
+const PortfolioDetails = ({ data }: { data: typeof portfolioData[0] }) => {
+  const router = useRouter();
 
   return (
     <Layout header={2} footer={5} video={0}>

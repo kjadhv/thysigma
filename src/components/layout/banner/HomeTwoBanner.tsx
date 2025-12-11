@@ -1,4 +1,3 @@
-
 import React, { useEffect, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
@@ -17,13 +16,23 @@ const HomeTwoBanner = () => {
   const titleRef = useRef<HTMLHeadingElement>(null);
   const contentBottomRef = useRef<HTMLDivElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
-  const isMobile = typeof window !== "undefined" && window.innerWidth <= 576;
-  const isTablet = typeof window !== "undefined" && window.innerWidth > 576 && window.innerWidth <= 991;
+  
+  const [isMobile, setIsMobile] = useState(false);
+  const [isTablet, setIsTablet] = useState(false);
 
   const [headerHeight, setHeaderHeight] = useState<number>(100);
   const [capsulePadding, setCapsulePadding] = useState<number>(0);
 
   useEffect(() => {
+    // Set device type on mount and resize
+    const checkDevice = () => {
+      setIsMobile(window.innerWidth <= 576);
+      setIsTablet(window.innerWidth > 576 && window.innerWidth <= 991);
+    };
+    
+    checkDevice();
+    window.addEventListener("resize", checkDevice);
+    
     const setVH = () => {
       document.documentElement.style.setProperty(
         "--vh",
@@ -43,6 +52,7 @@ const HomeTwoBanner = () => {
     window.addEventListener("resize", measureHeader);
 
     return () => {
+      window.removeEventListener("resize", checkDevice);
       window.removeEventListener("resize", setVH);
       window.removeEventListener("resize", measureHeader);
     };
@@ -53,10 +63,12 @@ const HomeTwoBanner = () => {
     const isMobileDevice = window.innerWidth <= 576;
     const isTabletDevice = window.innerWidth > 576 && window.innerWidth <= 991;
     
+    // No scroll animations on mobile/tablet - just keep video at half size always
     if (isMobileDevice || isTabletDevice) {
       return;
     }
     
+    // Desktop only: scroll animation
     if (document.querySelectorAll(".banner-two").length > 0) {
 
       gsap.timeline({
@@ -88,7 +100,7 @@ const HomeTwoBanner = () => {
 
               gsap.to(boxedVideoContainerRef.current, {
                 opacity: 0,
-                scale: isMobile || isTablet ? 1 : 0.85,
+                scale: 0.85,
                 duration: 0.3,
                 ease: "power2.out",
               });
@@ -110,15 +122,13 @@ const HomeTwoBanner = () => {
                 duration: 0.3,
                 ease: "power2.out",
               });
-              // Don't move text on mobile/tablet
-              if (!isMobile && !isTablet) {
-                gsap.to(contentBottomRef.current, {
-                  x: 0,
-                  y: 0,
-                  duration: 0.3,
-                  ease: "power2.out",
-                });
-              }
+              
+              gsap.to(contentBottomRef.current, {
+                x: 0,
+                y: 0,
+                duration: 0.3,
+                ease: "power2.out",
+              });
             } else if (progress >= 0.1 && progress < 0.35) {
               const transitionProgress = (progress - 0.1) / 0.25;
               const fadeOut = 1 - transitionProgress;
@@ -164,15 +174,12 @@ const HomeTwoBanner = () => {
                 ease: "power2.out",
               });
               
-              // Don't move text on mobile/tablet
-              if (!isMobile && !isTablet) {
-                gsap.to(contentBottomRef.current, {
-                  x: 0,
-                  y: window.innerHeight * 0.15,
-                  duration: 0.3,
-                  ease: "power2.out",
-                });
-              }
+              gsap.to(contentBottomRef.current, {
+                x: 0,
+                y: window.innerHeight * 0.15,
+                duration: 0.3,
+                ease: "power2.out",
+              });
             } else {
               // Video completely faded out with NO border or glow
               gsap.to(fullscreenVideoRef.current, {
@@ -217,15 +224,12 @@ const HomeTwoBanner = () => {
                 ease: "power2.out",
               });
               
-              // Don't move text on mobile/tablet
-              if (!isMobile && !isTablet) {
-                gsap.to(contentBottomRef.current, {
-                  x: 0,
-                  y: window.innerHeight * 0.15,
-                  duration: 0.3,
-                  ease: "power2.out",
-                });
-              }
+              gsap.to(contentBottomRef.current, {
+                x: 0,
+                y: window.innerHeight * 0.15,
+                duration: 0.3,
+                ease: "power2.out",
+              });
             }
           },
         },
@@ -290,14 +294,14 @@ const HomeTwoBanner = () => {
         </video>
       </div>
 
-      {/* Full screen background video - NOW BIGGER AND FADES ON SCROLL */}
+      {/* Full screen background video - Half size on mobile/tablet, full animation on desktop */}
       <div
         ref={fullscreenVideoRef}
         style={{
           position: "absolute",
           top: isMobile || isTablet ? `${headerHeight + 40}px` : `${headerHeight + 60}px`,
           left: "50%",
-          transform: "translateX(-50%)",
+          transform: isMobile || isTablet ? "translateX(-50%) scale(0.5)" : "translateX(-50%)",
           width: isMobile || isTablet ? "90%" : "1000px",
           aspectRatio: "16/9",
           zIndex: 1,
@@ -438,4 +442,3 @@ const HomeTwoBanner = () => {
 };
 
 export default HomeTwoBanner;
-
