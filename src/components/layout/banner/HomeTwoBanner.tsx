@@ -301,7 +301,7 @@ const HomeTwoBanner = () => {
           position: "absolute",
           top: isMobile || isTablet ? `${headerHeight + 40}px` : `${headerHeight + 60}px`,
           left: "50%",
-          transform: isMobile || isTablet ? "translateX(-50%) scale(0.5)" : "translateX(-50%)",
+          transform: isMobile || isTablet ? "translateX(-50%) scale(0.8)" : "translateX(-50%)",
           width: isMobile || isTablet ? "90%" : "1000px",
           aspectRatio: "16/9",
           zIndex: 1,
