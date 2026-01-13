@@ -404,6 +404,8 @@ const HomeTwoBanner = () => {
                       fontSize: isMobile || isTablet ? "13px" : "18px",
                       lineHeight: isMobile || isTablet ? "1.5" : "1.7",
                       marginBottom: 0,
+                      color: "#13110fff", // ⭐ yellow
+                      WebkitTextFillColor: "#f0eeebff",
                     }}>
                       THYSIGMA creates high-performance digital experiences with
                       a focus on luxury design, clean interfaces, and seamless
