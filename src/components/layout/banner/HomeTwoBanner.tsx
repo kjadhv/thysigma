@@ -389,7 +389,7 @@ const HomeTwoBanner = () => {
                     padding: isMobile || isTablet ? "2px 20px" : "70px 100px",
                     borderRadius: "24px",
                     maxWidth: isMobile || isTablet ? "95%" : "100%",
-                    marginTop: isMobile || isTablet ? "420px" : "calc(100vh - 350px)",
+                    marginTop: isMobile || isTablet ? "420px" : "calc(100vh - 250px)",
                     display: isMobile || isTablet ? "block" : "flex",
                     alignItems: isMobile || isTablet ? "flex-start" : "center",
                     gap: isMobile || isTablet ? "0" : "40px",
