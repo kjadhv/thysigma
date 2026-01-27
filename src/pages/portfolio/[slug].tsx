@@ -22,6 +22,7 @@ const portfolioData = [
     tag: "Videography",
     desc: "VIREN Memorial Cup 2025 showcases the spirit of competition and sportsmanship in this prestigious tournament.",
     img: socialm,
+    ytIds: ["Pi92_fmvEvA","QWukc8vTlJQ"],
   },
   {
     slug: "udaan-school-documentary",
@@ -110,15 +111,58 @@ const PortfolioDetails = ({ data }: { data: typeof portfolioData[0] }) => {
               marginBottom: "30px",
             }}
           >
-            <Image
-              src={data.img}
-              alt={data.title}
-              fill
-              style={{ objectFit: "cover" }}
-              priority
-            />
-          </div>
-
+            {/* VIDEOS / IMAGE */}
+{/* VIDEOS / IMAGE */}
+{data.ytIds && data.ytIds.length > 0 ? (
+  <div style={{ display: "grid", gap: "18px", marginBottom: "30px" }}>
+    {data.ytIds.map((id) => (
+      <div
+        key={id}
+        style={{
+          position: "relative",
+          width: "100%",
+          height: "420px",
+          borderRadius: "24px",
+          overflow: "hidden",
+        }}
+      >
+        <iframe
+          src={`https://www.youtube-nocookie.com/embed/${id}?rel=0`}
+          title={data.title}
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowFullScreen
+          style={{
+            position: "absolute",
+            inset: 0,
+            width: "100%",
+            height: "100%",
+            border: 0,
+          }}
+        />
+      </div>
+    ))}
+  </div>
+) : (
+  <div
+    style={{
+      position: "relative",
+      width: "100%",
+      height: "420px",
+      borderRadius: "24px",
+      overflow: "hidden",
+      marginBottom: "30px",
+    }}
+  >
+    <Image
+      src={data.img}
+      alt={data.title}
+      fill
+      style={{ objectFit: "cover" }}
+      priority
+    />
+  </div>
+)}
+          </div>  
           {/* CATEGORY */}
           <span
             style={{
