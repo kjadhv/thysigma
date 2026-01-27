@@ -290,7 +290,7 @@ const HomeTwoBanner = () => {
             left: 0,
           }}
         >
-          <source src="/Office Show Reel.mp4" type="video/mp4" />
+          <source src="/thysigma_office.mp4" type="video/mp4" />
         </video>
       </div>
 
@@ -327,7 +327,7 @@ const HomeTwoBanner = () => {
             objectPosition: "center center",
           }}
         >
-          <source src="/Office Show Reel.mp4" type="video/mp4" />
+          <source src="/thysigma_office.mp4" type="video/mp4" />
         </video>
       </div>
 
@@ -367,7 +367,7 @@ const HomeTwoBanner = () => {
               objectFit: "cover",
             }}
           >
-            <source src="/Office Show Reel.mp4" type="video/mp4" />
+            <source src="/thysigma_office.mp4" type="video/mp4" />
           </video>
         </div>
       </div>
