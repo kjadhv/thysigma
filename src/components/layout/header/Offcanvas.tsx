@@ -160,7 +160,7 @@ const Offcanvas = ({ openNav, setOpenNav }: HeaderProps) => {
               <i className="fa-brands fa-twitter"></i>
             </Link>
             <Link
-              href="https://www.linkedin.com/"
+              href="https://www.linkedin.com/company/thy-sigma/"
               target="_blank"
               aria-label="share us on linkedin"
             >

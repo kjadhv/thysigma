@@ -91,7 +91,7 @@ const FooterTwo = () => {
             <div className="title">Contact</div>
 
             <Link
-              href="https://www.linkedin.com/"
+              href="https://www.linkedin.com/company/thy-sigma/"
               target="_blank"
               className="link white"
             >
