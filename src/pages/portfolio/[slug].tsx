@@ -17,7 +17,7 @@ import grp from "public/images/photos/16.jpeg";
 // ✅ SYNCED WITH PortfolioMain.tsx
 const portfolioData = [
   {
-    slug: "abcd-brand-documentary",
+    slug: "viren",
     title: "VIREN | MEMORIAL CUP 2025",
     tag: "Videography",
     desc: "VIREN Memorial Cup 2025 showcases the spirit of competition and sportsmanship in this prestigious tournament.",
