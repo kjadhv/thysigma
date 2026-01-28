@@ -20,44 +20,71 @@ const portfolioData = [
     slug: "viren",
     title: "VIREN | MEMORIAL CUP 2025",
     tag: "Videography",
-    desc: "VIREN Memorial Cup 2025 showcases the spirit of competition and sportsmanship in this prestigious tournament.",
     img: socialm,
-    ytIds: ["Pi92_fmvEvA","QWukc8vTlJQ"],
+    videos: [
+    {
+      id: "Pi92_fmvEvA",
+      desc: "VIREN Memorial Cup 2025 - Day 1 highlights and best moments of the tournament."
+    },
+    {
+      id: "QWukc8vTlJQ",
+      desc: "VIREN Memorial Cup 2025 - Day 2 action, key matches and final moments."
+    }],
   },
   {
     slug: "udaan-school-documentary",
     title: "FIGHT CLUB | WAR OF THE CLUBS",
     tag: "Live Streaming",
-    desc: "Experience the intensity and raw energy of Fight Club's War of the Clubs through our comprehensive live streaming coverage.",
     img: cameraman,
+    videos: [],
   },
   {
     slug: "amainevent",
     title: "ALPHA MAIN EVENT | MMA 2025",
     tag: "Editing",
-    desc: "A masterfully edited showcase of the Alpha Main Event MMA 2025, capturing every moment of athletic excellence.",
     img: editing,
+    videos: [
+      {
+        id: "GxVyx4TEgyc",
+        desc: "Alpha Main Event MMA 2025 - Highlights and key moments from the event."
+      },
+      {
+        id: "OGKsguUwaqk",
+        desc: "Alpha Main Event MMA 2025 - Final matches and tournament conclusion."
+      }],
   },
   {
     slug: "shiv",
     title: "SHIVMUDRA PRATISHTHAN CHASHAK 2025",
     tag: "Videography",
-    desc: "Shivmudra Pratishthan Chashak 2025 celebrates tradition and competitive spirit in this landmark sporting event.",
     img: process,
+    videos: [
+      {
+        id: "Ps5VUiQDCGA",
+        desc: "Shivmudra Pratishthan Chashak 2025 celebrates tradition and competitive spirit in this landmark sporting event."
+      }],
   },
   {
     slug: "industrial-story",
     title: "ALPHA FIGHTING SERIES",
     tag: "Photography",
-    desc: "Stunning photography capturing the drama, intensity, and athleticism of the Alpha Fighting Series.",
     img: like,
+    videos: [
+      {
+        id: "AKxn4nPG8-Q",
+        desc: "The stage is set for a brand-new era in combat sports. Alpha Fighting Series is where raw talent meets pure willpower, and only the strongest make their mark. From explosive debuts to breakout performances, every bout is a proving ground for fighters hungry to become the next big name. Witness history in the making — every strike, every submission, every victory — live."
+      }],
   },
   {
     slug: "creative-journey",
     title: "SAFETECH AWARDS & CONFERENCE 2025",
     tag: "Photography",
-    desc: "Professional photography documentation of the SafeTech Awards & Conference 2025, highlighting innovation and excellence.",
     img: grp,
+    videos: [
+      {
+        id: "4fPtqI8XoJ8",
+        desc: "The SafeTech Awards & Conference 2025, hosted by Kings Expomedia at The Taj Mahal Hotel, Mumbai, brought together India’s foremost leaders in industrial safety, EHS management, and emergency response. This 5th edition marked a landmark celebration of excellence, honoring organizations and individuals who set new benchmarks in safety culture, risk mitigation, and operational integrity. From recognizing pioneering factories and corporate units under the Industrial Safety Awards to saluting frontline heroes through the Safe India Hero Plus Awards, the event underscored the critical role of safety in ensuring business continuity, workforce morale, and national resilience. The conference also served as a knowledge-sharing platform, fostering collaboration among safety professionals, innovators, and policymakers. The After Movie captures not just the awards, but the spirit of commitment, courage, and collaboration that defines India’s evolving safety landscape."
+      }],
   },
 ];
 
@@ -100,7 +127,14 @@ const PortfolioDetails = ({ data }: { data: typeof portfolioData[0] }) => {
       <section style={{ background: "#000", padding: "70px 0" }}>
         <div className="container" style={{ color: "#fff" }}>
 
-          {/* IMAGE */}
+{/* VIDEOS SECTION */}
+{data.videos && data.videos.length > 0 ? (
+  <div style={{ display: "flex", flexDirection: "column", gap: "40px" }}>
+    {data.videos
+      .filter((v) => v && v.id && v.id.trim() !== "")
+      .map((video, index) => (
+        <div key={video.id + index}>
+          {/* VIDEO */}
           <div
             style={{
               position: "relative",
@@ -108,62 +142,25 @@ const PortfolioDetails = ({ data }: { data: typeof portfolioData[0] }) => {
               height: "420px",
               borderRadius: "24px",
               overflow: "hidden",
-              marginBottom: "30px",
+              marginBottom: "20px",
             }}
           >
-            {/* VIDEOS / IMAGE */}
-{/* VIDEOS / IMAGE */}
-{data.ytIds && data.ytIds.length > 0 ? (
-  <div style={{ display: "grid", gap: "18px", marginBottom: "30px" }}>
-    {data.ytIds.map((id) => (
-      <div
-        key={id}
-        style={{
-          position: "relative",
-          width: "100%",
-          height: "420px",
-          borderRadius: "24px",
-          overflow: "hidden",
-        }}
-      >
-        <iframe
-          src={`https://www.youtube-nocookie.com/embed/${id}?rel=0`}
-          title={data.title}
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          allowFullScreen
-          style={{
-            position: "absolute",
-            inset: 0,
-            width: "100%",
-            height: "100%",
-            border: 0,
-          }}
-        />
-      </div>
-    ))}
-  </div>
-) : (
-  <div
-    style={{
-      position: "relative",
-      width: "100%",
-      height: "420px",
-      borderRadius: "24px",
-      overflow: "hidden",
-      marginBottom: "30px",
-    }}
-  >
-    <Image
-      src={data.img}
-      alt={data.title}
-      fill
-      style={{ objectFit: "cover" }}
-      priority
-    />
-  </div>
-)}
-          </div>  
-          {/* CATEGORY */}
+            <iframe
+              src={`https://www.youtube-nocookie.com/embed/${video.id}?rel=0`}
+              title={`${data.title} video ${index + 1}`}
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowFullScreen
+              style={{
+                position: "absolute",
+                inset: 0,
+                width: "100%",
+                height: "100%",
+                border: 0,
+              }}
+            />
+          </div>
+
+          {/* TEXT BELOW EACH VIDEO */}
           <span
             style={{
               display: "inline-block",
@@ -179,18 +176,67 @@ const PortfolioDetails = ({ data }: { data: typeof portfolioData[0] }) => {
             {data.tag}
           </span>
 
-          {/* TEXT */}
           <h2 style={{ marginBottom: "12px" }}>{data.title}</h2>
+
           <p
             style={{
-              maxWidth: "850px",
+              maxWidth: "1400px",
               fontSize: "16px",
               lineHeight: 1.7,
               opacity: 0.9,
+              textAlign: "justify",
             }}
           >
-            {data.desc}
+            {video.desc}
           </p>
+        </div>
+      ))}
+  </div>
+) : (
+  <>
+    {/* IMAGE */}
+    <div
+      style={{
+        position: "relative",
+        width: "100%",
+        height: "420px",
+        borderRadius: "24px",
+        overflow: "hidden",
+        marginBottom: "30px",
+      }}
+    >
+      <Image src={data.img} alt={data.title} fill style={{ objectFit: "cover" }} priority />
+    </div>
+
+    {/* TEXT */}
+    <span
+      style={{
+        display: "inline-block",
+        marginBottom: "10px",
+        background: "rgba(255,255,255,0.9)",
+        color: "#000",
+        padding: "6px 14px",
+        borderRadius: "999px",
+        fontSize: "13px",
+        fontWeight: 500,
+      }}
+    >
+      {data.tag}
+    </span>
+
+    <h2 style={{ marginBottom: "12px" }}>{data.title}</h2>
+    <p
+      style={{
+        maxWidth: "850px",
+        fontSize: "16px",
+        lineHeight: 1.7,
+        opacity: 0.9,
+      }}
+    >
+      {data.videos?.[0]?.desc || ""}
+    </p>
+  </>
+)}
 
           {/* BACK BUTTON */}
           <div style={{ marginTop: "40px" }}>
@@ -209,7 +255,7 @@ const PortfolioDetails = ({ data }: { data: typeof portfolioData[0] }) => {
             </button>
           </div>
 
-        </div>
+       </div> 
       </section>
     </Layout>
   );
