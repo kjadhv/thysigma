@@ -107,7 +107,7 @@ const portfolioData: PortfolioItem[] = [
       {       
         id: "GxVyx4TEgyc",
         title:"ICFF",
-        desc: "This is where the fiercest warriors come to test their mettle, showcasing unparalleled skill, strategy, and heart. With each fight, legends are born and careers are made. Don't miss your chance to witness the future of fighting unfold before your eyes."
+        desc: "Don't miss your chance to witness the future of fighting unfold before your eyes."
       }],
   },
   {
