@@ -10,6 +10,7 @@ import editing from "public/images/photos/12.jpeg";
 import process from "public/images/photos/17.jpeg";
 import like from "public/images/photos/15.jpeg";
 import grp from "public/images/photos/16.jpeg";
+import blog from "public/images/ffhome.jpg";
 import HomeTestimonial from "./home/HomeTestimonial";
 
 const filterOptions = [
@@ -22,19 +23,21 @@ const filterOptions = [
 
 const cards = [
   { img: socialm, tag: "Videography", title: "VIREN | MEMORIAL CUP 2025", slug: "viren" },
-  { img: cameraman, tag: "Live Streaming", title: "FIGHT CLUB | WAR OF THE CLUBS", slug: "udaan-school-documentary" },
-  { img: editing, tag: "Editing", title: "ALPHA MAIN EVENT | MMA 2025", slug: "amainevent" },
+  { img: cameraman, tag: "Live Streaming", title: "FIGHT CLUB | WAR OF THE CLUBS", slug: "fight club" },
+  { img: editing, tag: "Live Streaming", title: "ALPHA FIGHTING SERIES | MMA 2025", slug: "amain_event" },
   { img: process, tag: "Videography", title: "SHIVMUDRA PRATISHTHAN CHASHAK 2025", slug: "shiv" },
-  { img: like, tag: "Photography", title: "ALPHA FIGHTING SERIES", slug: "industrial-story" },
+  { img: like, tag: "Live Streaming", title: "ICFF", slug: "industrial-story" },
   { img: grp, tag: "Photography", title: "SAFETECH AWARDS & CONFERENCE 2025", slug: "creative-journey" },
+  { img: blog, tag: "Editing", title: "IHFF | BRAND CONTENT", slug: "digital-media-sports-blog" },
 ];
 
 const gridTemplateAreas = `
   "a a a a b b"
   "c c d d e e"
   "f f f f e e"
+  "g g g g g g"
 `;
-const areaMap = ["a", "b", "c", "d", "e", "f"];
+const areaMap = ["a", "b", "c", "d", "e", "f", "g"];
 
 const PortfolioMain = () => {
   const [activeFilter, setActiveFilter] = useState("All");
@@ -71,6 +74,7 @@ const PortfolioMain = () => {
       { x: 0, y: -260, r: -5 },
       { x: -200, y: 180, r: -6 },
       { x: 200, y: 180, r: 6 },
+      { x: 0, y: 320, r: 0 }, 
     ];
 
     cards.forEach((card, i) => {
@@ -123,8 +127,16 @@ const PortfolioMain = () => {
         </div>
 
         {/* GRID */}
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(6,1fr)", gridTemplateAreas, gridAutoRows: "270px", gap: "18px" }}>
-          {filteredCards.slice(0, 6).map((card, i) => {
+        <div
+  style={{
+    display: "grid",
+    gridTemplateColumns: "repeat(6,1fr)",
+    gridTemplateAreas,
+    gridTemplateRows: "270px 270px 270px 420px", // ✅ last row bigger
+    gap: "18px",
+  }}
+>
+          {filteredCards.slice(0, 7).map((card, i) => {
             const hover = hoveredIndex === i;
 
             return (

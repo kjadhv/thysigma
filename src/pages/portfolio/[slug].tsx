@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useEffect } from "react";
+import dynamic from "next/dynamic";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { GetStaticPaths, GetStaticProps } from "next";
-
+const InstagramEmbed = dynamic(() => import("@/components/InstagramEmbed"), {
+  ssr: false,
+});
 import Layout from "@/components/layout/Layout";
 import CmnBanner from "@/components/layout/banner/CmnBanner";
 
@@ -13,9 +16,23 @@ import editing from "public/images/photos/12.jpeg";
 import process from "public/images/photos/17.jpeg";
 import like from "public/images/photos/15.jpeg";
 import grp from "public/images/photos/16.jpeg";
+import blog from "public/images/ffhome.jpg";
 
+type VideoItem = {
+  id: string;
+  desc: string;
+  title: string; // ✅ optional
+};
+
+type PortfolioItem = {
+  slug: string;
+  tag: string;
+  img: any;
+  title: string;
+  videos: VideoItem[];
+};
 // ✅ SYNCED WITH PortfolioMain.tsx
-const portfolioData = [
+const portfolioData: PortfolioItem[] = [
   {
     slug: "viren",
     title: "VIREN | MEMORIAL CUP 2025",
@@ -24,32 +41,47 @@ const portfolioData = [
     videos: [
     {
       id: "Pi92_fmvEvA",
+      title: "VIREN MEMORIAL CUP 2025 DAY1",
       desc: "VIREN Memorial Cup 2025 - Day 1 highlights and best moments of the tournament."
     },
     {
       id: "QWukc8vTlJQ",
+      title: "VIREN MEMORIAL CUP 2025 DAY2",
       desc: "VIREN Memorial Cup 2025 - Day 2 action, key matches and final moments."
     }],
   },
   {
-    slug: "udaan-school-documentary",
+    slug: "fight club",
     title: "FIGHT CLUB | WAR OF THE CLUBS",
     tag: "Live Streaming",
     img: cameraman,
-    videos: [],
+    videos: [
+      {
+        id: "csz4phDCppQ",
+        title:"FIGHT CLUB PART1",
+        desc: "The gloves are off, the stakes are higher, and the clubs are hungry for honor and bragging rights. This isn’t just a fight, it’s an all-out turf war where rival clubs settle scores in the cage, live for the world to watch. New fighters, bad blood, bigger crowds. Expect knockouts, grudges, and moments that’ll be replayed for weeks."
+      },
+      {
+        id: "5qw7tzLSiAg",
+        title:"FIGHT CLUB PART2",
+        desc:"The gloves are off, the stakes are higher, and the clubs are hungry for honor and bragging rights. This isn’t just a fight, it’s an all-out turf war where rival clubs settle scores in the cage, live for the world to watch. New fighters, bad blood, bigger crowds. Expect knockouts, grudges, and moments that’ll be replayed for weeks."
+      }
+    ],
   },
   {
-    slug: "amainevent",
+    slug: "amain_event",
     title: "ALPHA MAIN EVENT | MMA 2025",
-    tag: "Editing",
+    tag: "Live Streaming",
     img: editing,
     videos: [
       {
         id: "GxVyx4TEgyc",
-        desc: "Alpha Main Event MMA 2025 - Highlights and key moments from the event."
+        title:"INTERNATIONAL COMBAT SPORTS CHAMPIONSHIP 2025",
+        desc: "Catch the live action of the best fighters in the most anticipated International combat Sport Championship."
       },
       {
         id: "OGKsguUwaqk",
+        title:"INTERNATIONAL COMBAT SPORTS CHAMPIONSHIP 2025",
         desc: "Alpha Main Event MMA 2025 - Final matches and tournament conclusion."
       }],
   },
@@ -61,18 +93,20 @@ const portfolioData = [
     videos: [
       {
         id: "Ps5VUiQDCGA",
+        title:"SHIVMUDRA PRATISHTHAN CHASHAK 2025",
         desc: "Shivmudra Pratishthan Chashak 2025 celebrates tradition and competitive spirit in this landmark sporting event."
       }],
   },
   {
     slug: "industrial-story",
     title: "ALPHA FIGHTING SERIES",
-    tag: "Photography",
+    tag: "Live Streaming",
     img: like,
     videos: [
-      {
-        id: "AKxn4nPG8-Q",
-        desc: "The stage is set for a brand-new era in combat sports. Alpha Fighting Series is where raw talent meets pure willpower, and only the strongest make their mark. From explosive debuts to breakout performances, every bout is a proving ground for fighters hungry to become the next big name. Witness history in the making — every strike, every submission, every victory — live."
+      {       
+        id: "GxVyx4TEgyc",
+        title:"ALPHA FIGHTING SERIES",
+        desc: "Alpha Fighting Series is not just a tournament; it's a revolution in the world of combat sports. This is where the fiercest warriors come to test their mettle, showcasing unparalleled skill, strategy, and heart. With each fight, legends are born and careers are made. Don't miss your chance to witness the future of fighting unfold before your eyes."
       }],
   },
   {
@@ -83,8 +117,42 @@ const portfolioData = [
     videos: [
       {
         id: "4fPtqI8XoJ8",
+        title:"SAFETECH AWARDS & CONFERENCE 2025",
         desc: "The SafeTech Awards & Conference 2025, hosted by Kings Expomedia at The Taj Mahal Hotel, Mumbai, brought together India’s foremost leaders in industrial safety, EHS management, and emergency response. This 5th edition marked a landmark celebration of excellence, honoring organizations and individuals who set new benchmarks in safety culture, risk mitigation, and operational integrity. From recognizing pioneering factories and corporate units under the Industrial Safety Awards to saluting frontline heroes through the Safe India Hero Plus Awards, the event underscored the critical role of safety in ensuring business continuity, workforce morale, and national resilience. The conference also served as a knowledge-sharing platform, fostering collaboration among safety professionals, innovators, and policymakers. The After Movie captures not just the awards, but the spirit of commitment, courage, and collaboration that defines India’s evolving safety landscape."
       }],
+  },
+  {
+    slug: "digital-media-sports-blog",
+    title: "THE RISE OF DIGITAL MEDIA IN SPORTS",
+    tag: "Editing",
+    img: blog,
+    videos: [
+      {
+        id: "GxVyx4TEgyc",
+        title:"THE RISE OF DIGITAL MEDIA IN SPORTS",
+        desc: "We are about to witness epic talent from across the globe hash it out....Remember! The cage favours those who fears none. Catch the live action of the best fighters in the most anticipated International combat Sport Championship. Ending  the year with a banggggg...... cheer for your fighter in the live comments section."
+      },
+      {
+        id: "https://www.instagram.com/reel/DS4zKRPkbEi/",
+        title:"National MMA Championship 2025",
+        desc: "A big shoutout to Zandu Fast Relief for supporting our athletes during the National MMA Championship 2025"
+      },
+      {
+        id: "https://www.instagram.com/reel/DRzIEU6EQBa/",
+        title:"#MMAFI #RiteBite #MaxProtein",
+        desc: "We truly appreciate your support toward India’s combat sports community"
+      },
+      {
+        id: "https://www.instagram.com/reel/DRycJYQEWBO/",
+        title:"#EnergyPartner #NationalMMAChampionship2025 #IHFF2025",
+        desc:"A huge shoutout to Campa Energy for powering the athletes of the National MMA Championship 2025 at IHFF!"
+      },
+      {
+        id:"https://www.instagram.com/reel/DRn6KdXiHq0/",
+        title:"Athlete recovery = Stronger performance",
+        desc:"We truly appreciate your partnership and commitment to the combat sports community."
+      }
+    ],
   },
 ];
 
@@ -115,9 +183,18 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   };
 };
 
-const PortfolioDetails = ({ data }: { data: typeof portfolioData[0] }) => {
+const PortfolioDetails = ({ data }: { data: PortfolioItem }) => {
   const router = useRouter();
+const [isDesktop, setIsDesktop] = React.useState(false);
 
+  useEffect(() => {
+    const handleResize = () => setIsDesktop(window.innerWidth >= 992);
+
+    handleResize(); 
+    window.addEventListener("resize", handleResize);
+
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
   return (
     <Layout header={2} footer={5} video={0}>
       {/* BANNER */}
@@ -132,33 +209,61 @@ const PortfolioDetails = ({ data }: { data: typeof portfolioData[0] }) => {
   <div style={{ display: "flex", flexDirection: "column", gap: "40px" }}>
     {data.videos
       .filter((v) => v && v.id && v.id.trim() !== "")
-      .map((video, index) => (
-        <div key={video.id + index}>
+      .map((video, index) => {
+        const isInstagram = video.id.includes("instagram.com");
+
+  return (
+    <div key={video.id + index}>
+
           {/* VIDEO */}
-          <div
-            style={{
-              position: "relative",
-              width: "100%",
-              height: "420px",
-              borderRadius: "24px",
-              overflow: "hidden",
-              marginBottom: "20px",
-            }}
-          >
-            <iframe
-              src={`https://www.youtube-nocookie.com/embed/${video.id}?rel=0`}
-              title={`${data.title} video ${index + 1}`}
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              allowFullScreen
-              style={{
-                position: "absolute",
-                inset: 0,
-                width: "100%",
-                height: "100%",
-                border: 0,
-              }}
-            />
-          </div>
+         {isInstagram ? (
+  // Instagram size
+  <div
+    style={{
+      width: isDesktop ? "40%" : "100%",
+      margin: "0 auto", 
+      borderRadius: "24px",
+      overflow: "hidden",
+      marginBottom: "20px",
+      background: "#111",
+      padding: "0px",
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+    }}
+  >
+    <InstagramEmbed url={video.id} height={isDesktop ? 700 : 520} />
+
+
+  </div>
+) : (
+  // YouTube size
+  <div
+    style={{
+      position: "relative",
+      width: "100%",
+      height: "420px",
+      borderRadius: "24px",
+      overflow: "hidden",
+      marginBottom: "20px",
+    }}
+  >
+    <iframe
+      src={`https://www.youtube-nocookie.com/embed/${video.id}?rel=0`}
+      title={`${data.title} video ${index + 1}`}
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+      allowFullScreen
+      style={{
+        position: "absolute",
+        inset: 0,
+        width: "100%",
+        height: "100%",
+        border: 0,
+      }}
+    />
+  </div>
+)}
+
 
           {/* TEXT BELOW EACH VIDEO */}
           <span
@@ -175,8 +280,9 @@ const PortfolioDetails = ({ data }: { data: typeof portfolioData[0] }) => {
           >
             {data.tag}
           </span>
-
-          <h2 style={{ marginBottom: "12px" }}>{data.title}</h2>
+<h2 style={{ marginBottom: "12px" }}>
+  {video.title || data.title}
+</h2>
 
           <p
             style={{
@@ -190,7 +296,8 @@ const PortfolioDetails = ({ data }: { data: typeof portfolioData[0] }) => {
             {video.desc}
           </p>
         </div>
-      ))}
+  );
+      })}
   </div>
 ) : (
   <>
@@ -205,7 +312,13 @@ const PortfolioDetails = ({ data }: { data: typeof portfolioData[0] }) => {
         marginBottom: "30px",
       }}
     >
-      <Image src={data.img} alt={data.title} fill style={{ objectFit: "cover" }} priority />
+      <Image
+  src={data.img}
+  alt={data.title ?? "Portfolio Image"}
+  fill
+  style={{ objectFit: "cover" }}
+  priority
+/>
     </div>
 
     {/* TEXT */}
