@@ -8,7 +8,7 @@ import socialm from "public/images/photos/7.jpeg";
 import cameraman from "public/images/photos/11.jpeg";
 import editing from "public/images/photos/12.jpeg";
 import process from "public/images/photos/17.jpeg";
-import like from "public/images/photos/15.jpeg";
+import like from "public/images/photos/icff.jpg";
 import grp from "public/images/photos/16.jpeg";
 import blog from "public/images/ffhome.jpg";
 import HomeTestimonial from "./home/HomeTestimonial";
@@ -26,7 +26,7 @@ const cards = [
   { img: cameraman, tag: "Live Streaming", title: "FIGHT CLUB | WAR OF THE CLUBS", slug: "fight club" },
   { img: editing, tag: "Live Streaming", title: "ALPHA FIGHTING SERIES | MMA 2025", slug: "amain_event" },
   { img: process, tag: "Videography", title: "SHIVMUDRA PRATISHTHAN CHASHAK 2025", slug: "shiv" },
-  { img: like, tag: "Live Streaming", title: "ICFF", slug: "industrial-story" },
+  { img: like, tag: "Live Streaming", title: "ICFF", slug: "icff" },
   { img: grp, tag: "Photography", title: "SAFETECH AWARDS & CONFERENCE 2025", slug: "creative-journey" },
   { img: blog, tag: "Editing", title: "IHFF | BRAND CONTENT", slug: "digital-media-sports-blog" },
 ];

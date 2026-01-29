@@ -14,7 +14,7 @@ import socialm from "public/images/photos/7.jpeg";
 import cameraman from "public/images/photos/11.jpeg";
 import editing from "public/images/photos/12.jpeg";
 import process from "public/images/photos/17.jpeg";
-import like from "public/images/photos/15.jpeg";
+import like from "public/images/photos/icff.jpg";
 import grp from "public/images/photos/16.jpeg";
 import blog from "public/images/ffhome.jpg";
 
@@ -99,8 +99,8 @@ const portfolioData: PortfolioItem[] = [
       }],
   },
   {
-    slug: "industrial-story",
-    title: "ALPHA FIGHTING SERIES",
+    slug: "icff",
+    title: "ICFF",
     tag: "Live Streaming",
     img: like,
     videos: [
