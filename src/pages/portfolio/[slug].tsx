@@ -30,6 +30,7 @@ type PortfolioItem = {
   img: any;
   title: string;
   videos: VideoItem[];
+  images?: string[];
 };
 // ✅ SYNCED WITH PortfolioMain.tsx
 const portfolioData: PortfolioItem[] = [
@@ -120,6 +121,36 @@ const portfolioData: PortfolioItem[] = [
         title:"SAFETECH AWARDS & CONFERENCE 2025",
         desc: "The SafeTech Awards & Conference 2025, hosted by Kings Expomedia at The Taj Mahal Hotel, Mumbai, brought together India’s foremost leaders in industrial safety, EHS management, and emergency response. This 5th edition marked a landmark celebration of excellence, honoring organizations and individuals who set new benchmarks in safety culture, risk mitigation, and operational integrity. From recognizing pioneering factories and corporate units under the Industrial Safety Awards to saluting frontline heroes through the Safe India Hero Plus Awards, the event underscored the critical role of safety in ensuring business continuity, workforce morale, and national resilience. The conference also served as a knowledge-sharing platform, fostering collaboration among safety professionals, innovators, and policymakers. The After Movie captures not just the awards, but the spirit of commitment, courage, and collaboration that defines India’s evolving safety landscape."
       }],
+    images:[
+        "/images/safetech/safetech1.jpeg",
+        "/images/safetech/safetech2.jpeg",
+        "/images/safetech/safetech3.jpeg",
+        "/images/safetech/safetech4.jpeg",
+        "/images/safetech/safetech5.jpeg",
+        "/images/safetech/safetech6.jpeg",
+        "/images/safetech/safetech7.jpeg",
+        "/images/safetech/safetech8.jpeg",
+        "/images/safetech/safetech9.jpeg",
+        "/images/safetech/safetech10.jpeg",
+        "/images/safetech/safetech11.jpeg",
+        "/images/safetech/safetech12.jpeg",
+        "/images/safetech/safetech13.jpeg",
+        "/images/safetech/safetech14.jpeg",
+        "/images/safetech/safetech15.jpeg",
+        "/images/safetech/safetech16.jpeg",
+        "/images/safetech/safetech17.jpeg",
+        "/images/safetech/safetech18.jpeg",
+        "/images/safetech/safetech19.jpeg",
+        "/images/safetech/safetech20.jpeg",
+        "/images/safetech/safetech21.jpeg",
+        "/images/safetech/safetech22.jpeg",
+        "/images/safetech/safetech23.jpeg",
+        "/images/safetech/safetech24.jpeg",
+        "/images/safetech/safetech25.jpeg",
+        "/images/safetech/safetech26.jpeg",
+        "/images/safetech/safetech27.jpeg",
+        "/images/safetech/safetech28.jpeg",
+      ]
   },
   {
     slug: "digital-media-sports-blog",
@@ -186,6 +217,39 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 const PortfolioDetails = ({ data }: { data: PortfolioItem }) => {
   const router = useRouter();
 const [isDesktop, setIsDesktop] = React.useState(false);
+const [lightboxOpen, setLightboxOpen] = React.useState(false);
+const [activeImgIndex, setActiveImgIndex] = React.useState(0);
+
+const openLightbox = (index: number) => {
+  setActiveImgIndex(index);
+  setLightboxOpen(true);
+};
+
+const closeLightbox = () => setLightboxOpen(false);
+
+const nextImage = () => {
+  if (!data.images) return;
+  setActiveImgIndex((prev) => (prev + 1) % data.images!.length);
+};
+// useEffect(() => {
+//   const handleKey = (e: KeyboardEvent) => {
+//     if (!lightboxOpen) return;
+
+//     if (e.key === "Escape") closeLightbox();
+//     if (e.key === "ArrowRight") nextImage();
+//     if (e.key === "ArrowLeft") prevImage();
+//   };
+
+//   window.addEventListener("keydown", handleKey);
+//   return () => window.removeEventListener("keydown", handleKey);
+// }, [lightboxOpen, data.images]);
+
+const prevImage = () => {
+  if (!data.images) return;
+  setActiveImgIndex((prev) =>
+    prev === 0 ? data.images!.length - 1 : prev - 1
+  );
+};
 
   useEffect(() => {
     const handleResize = () => setIsDesktop(window.innerWidth >= 992);
@@ -350,6 +414,156 @@ const [isDesktop, setIsDesktop] = React.useState(false);
     </p>
   </>
 )}
+{/* ✅ EXTRA IMAGES SECTION (Only for Awards page) */}
+{data.images && data.images.length > 0 && (
+  <div style={{ marginTop: "40px" }}>
+    <h3 style={{ marginBottom: "18px" }}>Event Gallery</h3>
+
+    <div
+      style={{
+        display: "grid",
+        gridTemplateColumns: isDesktop ? "repeat(4, 1fr)" : "repeat(2, 1fr)",
+        gap: "14px",
+      }}
+    >
+      {data.images.map((imgSrc, i) => (
+        <div
+          key={imgSrc + i}
+          onClick={() => openLightbox(i)}
+          style={{
+            position: "relative",
+            width: "100%",
+            height: isDesktop ? "160px" : "140px",
+            borderRadius: "18px",
+            overflow: "hidden",
+            background: "#111",
+          }}
+        >
+          <Image
+            src={imgSrc}
+            alt={`${data.title} image ${i + 1}`}
+            fill
+            style={{ objectFit: "cover" }}
+          />
+        </div>
+      ))}
+    </div>
+  </div>
+)}
+
+{/* ✅ LIGHTBOX MODAL */}
+{lightboxOpen && data.images && (
+  <div
+    onClick={closeLightbox}  // ✅ outside click close
+    style={{
+      position: "fixed",
+      inset: 0,
+      background: "rgba(0,0,0,0.85)",
+      zIndex: 9999,
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+      padding: "20px",
+    }}
+  >
+    {/* ✅ modal box */}
+    <div
+      onClick={(e) => e.stopPropagation()} // ✅ prevent closing on image click
+      style={{
+        position: "relative",
+        width: "100%",
+        maxWidth: isDesktop ? "1400px" : "95vw",
+        height: isDesktop ? "85vh" : "75vh",
+        borderRadius: "24px",
+        overflow: "hidden",
+        background: "#111",
+        cursor: "pointer",
+      }}
+    >
+      <Image
+        src={data.images[activeImgIndex]}
+        alt={`Gallery image ${activeImgIndex + 1}`}
+        fill
+        style={{ objectFit: "contain" }}
+        priority
+      />
+
+      {/* ❌ Close Button */}
+      <button
+        onClick={closeLightbox}
+        style={{
+          position: "absolute",
+          top: 16,
+          right: 16,
+          background: "rgba(0,0,0,0.65)",
+          border: "1px solid rgba(255,255,255,0.3)",
+          color: "#fff",
+          borderRadius: "999px",
+          padding: "8px 14px",
+          cursor: "pointer",
+        }}
+      >
+        ✕ Close
+      </button>
+
+      {/* ◀ Prev */}
+      <button
+        onClick={prevImage}
+        style={{
+          position: "absolute",
+          top: "50%",
+          left: 16,
+          transform: "translateY(-50%)",
+          background: "rgba(0,0,0,0.65)",
+          border: "1px solid rgba(255,255,255,0.3)",
+          color: "#fff",
+          borderRadius: "999px",
+          padding: "10px 14px",
+          cursor: "pointer",
+        }}
+      >
+        ◀
+      </button>
+
+      {/* ▶ Next */}
+      <button
+        onClick={nextImage}
+        style={{
+          position: "absolute",
+          top: "50%",
+          right: 16,
+          transform: "translateY(-50%)",
+          background: "rgba(0,0,0,0.65)",
+          border: "1px solid rgba(255,255,255,0.3)",
+          color: "#fff",
+          borderRadius: "999px",
+          padding: "10px 14px",
+          cursor: "pointer",
+        }}
+      >
+        ▶
+      </button>
+
+      {/* ✅ Counter */}
+      <div
+        style={{
+          position: "absolute",
+          bottom: 16,
+          left: "50%",
+          transform: "translateX(-50%)",
+          background: "rgba(0,0,0,0.65)",
+          padding: "6px 12px",
+          borderRadius: "999px",
+          fontSize: 13,
+          color: "#fff",
+          border: "1px solid rgba(255,255,255,0.2)",
+        }}
+      >
+        {activeImgIndex + 1} / {data.images.length}
+      </div>
+    </div>
+  </div>
+)}
 
           {/* BACK BUTTON */}
           <div style={{ marginTop: "40px" }}>
@@ -367,7 +581,6 @@ const [isDesktop, setIsDesktop] = React.useState(false);
               ← Back to Portfolio
             </button>
           </div>
-
        </div> 
       </section>
     </Layout>
