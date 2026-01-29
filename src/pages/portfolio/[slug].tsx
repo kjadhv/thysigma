@@ -106,8 +106,8 @@ const portfolioData: PortfolioItem[] = [
     videos: [
       {       
         id: "GxVyx4TEgyc",
-        title:"ALPHA FIGHTING SERIES",
-        desc: "Alpha Fighting Series is not just a tournament; it's a revolution in the world of combat sports. This is where the fiercest warriors come to test their mettle, showcasing unparalleled skill, strategy, and heart. With each fight, legends are born and careers are made. Don't miss your chance to witness the future of fighting unfold before your eyes."
+        title:"ICFF",
+        desc: "This is where the fiercest warriors come to test their mettle, showcasing unparalleled skill, strategy, and heart. With each fight, legends are born and careers are made. Don't miss your chance to witness the future of fighting unfold before your eyes."
       }],
   },
   {
