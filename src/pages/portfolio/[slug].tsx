@@ -159,6 +159,9 @@ const portfolioData: PortfolioItem[] = [
         "/images/safetech/safetech42.jpeg",
         "/images/safetech/safetech43.jpeg",
         "/images/safetech/safetech44.jpeg",
+        "/images/safetech/safetech45.jpeg",
+        "/images/safetech/safetech46.jpeg",
+        "/images/safetech/safetech47.jpeg",
       ]
   },
   {
