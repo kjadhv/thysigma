@@ -14,9 +14,9 @@ import socialm from "public/images/photos/7.jpeg";
 import cameraman from "public/images/photos/11.jpeg";
 import editing from "public/images/photos/12.jpeg";
 import process from "public/images/photos/17.jpeg";
-import like from "public/images/photos/icff.jpg";
+import like from "public/images/icff/icff1.png";
 import grp from "public/images/photos/16.jpeg";
-import blog from "public/images/ffhome.jpg";
+import blog from "public/images/icff/ihff3.png";
 
 type VideoItem = {
   id: string;
@@ -174,6 +174,11 @@ const portfolioData: PortfolioItem[] = [
         id: "GxVyx4TEgyc",
         title:"THE RISE OF DIGITAL MEDIA IN SPORTS",
         desc: "We are about to witness epic talent from across the globe hash it out....Remember! The cage favours those who fears none. Catch the live action of the best fighters in the most anticipated International combat Sport Championship. Ending  the year with a banggggg...... cheer for your fighter in the live comments section."
+      },
+      {
+        id: "zDVRQvqHHJA",
+        title:"IHFF Sheru Classic Amateur Olympia Mumbai 2025",
+        desc: "Men’s Bodybuilding Middle Weight Pre Judging"
       },
       {
         id: "https://www.instagram.com/reel/DS4zKRPkbEi/",

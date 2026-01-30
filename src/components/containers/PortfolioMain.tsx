@@ -8,9 +8,9 @@ import socialm from "public/images/photos/7.jpeg";
 import cameraman from "public/images/photos/11.jpeg";
 import editing from "public/images/photos/12.jpeg";
 import process from "public/images/photos/17.jpeg";
-import like from "public/images/photos/icff.jpg";
+import like from "public/images/icff/icff1.png";
 import grp from "public/images/photos/16.jpeg";
-import blog from "public/images/ffhome.jpg";
+import blog from "public/images/icff/ihff3.png";
 import HomeTestimonial from "./home/HomeTestimonial";
 
 const filterOptions = [

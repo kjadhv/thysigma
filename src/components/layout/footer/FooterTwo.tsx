@@ -115,6 +115,8 @@ const FooterTwo = () => {
             <Link href="/about-us" className="link">About</Link>
             <Link href="/our-services" className="link">Services</Link>
             <Link href="/contact-us" className="link">Contact</Link>
+            <Link href="/privacy-policy" className="link">Privacy Policy</Link>
+            <Link href="/terms-of-service" className="link">Terms Of Service</Link>
           </div>
         </div>
       </div>
