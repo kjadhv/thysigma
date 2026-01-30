@@ -265,7 +265,9 @@ const TermsOfServicePage = () => {
         .block li {
           margin-bottom: 10px;
         }
-
+        .block li::marker {
+  color: #ff7425;
+}
         a {
           color: #fff;
           text-decoration: underline;
