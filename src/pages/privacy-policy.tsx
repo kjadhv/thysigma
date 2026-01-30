@@ -71,46 +71,57 @@ export default function PrivacyPolicyPage() {
               limited information only with trusted third parties for:
             </p>
             <ul>
-              <li>Website hosting / service providers</li>
-              <li>Email or communication tools</li>
-              <li>Legal compliance (if required by law)</li>
-            </ul>
-
+  <li>Website hosting / service providers</li>
+  <li>Email or communication tools</li>
+  <li>Analytics tools (only if enabled)</li>
+  <li>Legal compliance (if required by law)</li>
+</ul>
             <h2>5. Cookies & Analytics</h2>
             <p>
-              Our website may use cookies or analytics tools to analyze traffic
-              and improve performance. You can disable cookies from your browser
-              settings.
-            </p>
-
+  Our website may use cookies or analytics tools to analyze traffic and improve
+  performance. You can disable cookies from your browser settings. If analytics
+  tools are enabled, technical usage data may be collected automatically.
+</p>
             <h2>6. Data Security</h2>
             <p>
               We use reasonable security practices to safeguard personal data.
               However, no online method of storage or transmission is 100%
               secure.
             </p>
-
-            <h2>7. Your Rights</h2>
+            <h2>7. Data Retention</h2>
+            <p>
+  We keep personal information only as long as necessary to fulfill the purposes
+  described in this Privacy Policy (such as responding to inquiries,
+  communication, or legal compliance). If you request deletion of your data, we
+  will delete it unless we are required to retain it for legal or business
+  reasons.
+            </p>
+            <h2>8. Your Rights</h2>
             <p>You may request to:</p>
             <ul>
-              <li>Access your personal information</li>
-              <li>Correct inaccurate personal information</li>
-              <li>Delete your personal information</li>
-            </ul>
-
-            <h2>8. Third Party Links</h2>
+  <li>Access your personal information</li>
+  <li>Correct inaccurate personal information</li>
+  <li>Delete your personal information</li>
+  <li>Withdraw consent (such as cookie preferences)</li>
+</ul>
+            <h2>9. Third Party Links</h2>
             <p>
-              Our website may contain links to external websites (LinkedIn,
-              YouTube, etc.). We are not responsible for their privacy policies.
-            </p>
-
-            <h2>9. Policy Updates</h2>
+  Our website may contain links to external websites (LinkedIn, YouTube, etc.).
+  We are not responsible for their privacy policies. We encourage users to
+  review the privacy practices of those services.
+</p>
+            <h2>10. Policy Updates</h2>
             <p>
-              We may update this Privacy Policy from time to time. Any updates
-              will be posted on this page.
-            </p>
-
-            <h2>10. Contact</h2>
+  We may update this Privacy Policy from time to time. Any updates will be
+  posted on this page with a revised date.
+</p>
+<h2>11. International Users</h2>
+<p>
+  If you are accessing our website from outside India, your information may be
+  processed in India where our systems and service providers operate. We take
+  reasonable steps to protect personal data in accordance with applicable laws.
+</p>
+            <h2>11. Contact</h2>
             <p className="contactBox">
               For privacy-related concerns, contact us at:
               <br />
@@ -161,6 +172,13 @@ export default function PrivacyPolicyPage() {
           margin: auto;
           padding: 0 20px;
         }
+.card ul {
+  list-style: disc;
+}
+
+.card ul li::marker {
+  color: #ff7425;
+}
 
         /* HERO */
         .hero {

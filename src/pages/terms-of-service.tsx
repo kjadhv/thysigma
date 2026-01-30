@@ -36,7 +36,6 @@ const TermsOfServicePage = () => {
           <div className="block">
             <h2>2. Use of Website</h2>
             <ul>
-              <li>You must be at least 13 years old to use our website.</li>
               <li>
                 You agree not to misuse the website or attempt unauthorized
                 access.
@@ -57,9 +56,17 @@ const TermsOfServicePage = () => {
               limitations, and client-provided inputs.
             </p>
           </div>
-
+            <div className="block">
+            <h2>4. Booking & Confirmation</h2>
+            <p>
+              A booking is confirmed only after advance payment (if applicable)
+              and written confirmation from Thy Sigma (via invoice/email/WhatsApp).
+              The client must share shoot/event details such as date, location,
+              timing, and point-of-contact before the scheduled service.
+            </p>
+          </div>
           <div className="block">
-            <h2>4. Payments</h2>
+            <h2>5. Payments</h2>
             <ul>
               <li>
                 All payments must be made as per the agreed quotation/invoice.
@@ -71,11 +78,15 @@ const TermsOfServicePage = () => {
                 Late payments may result in delays in delivery or withholding of
                 final assets.
               </li>
+              <li>
+                If the service extends beyond the agreed time, overtime charges
+                may apply and will be calculated based on the additional hours.
+              </li>
             </ul>
           </div>
 
           <div className="block">
-            <h2>5. Revisions</h2>
+            <h2>6. Revisions</h2>
             <p>
               Revisions are limited to the number specified in the quotation.
               Additional revisions (or major re-edits) may be chargeable.
@@ -84,7 +95,7 @@ const TermsOfServicePage = () => {
           </div>
 
           <div className="block">
-            <h2>6. Intellectual Property</h2>
+            <h2>7. Intellectual Property</h2>
             <ul>
               <li>
                 Unless otherwise agreed, Thy Sigma retains ownership of raw
@@ -102,7 +113,7 @@ const TermsOfServicePage = () => {
           </div>
 
           <div className="block">
-            <h2>7. Client Responsibilities</h2>
+            <h2>8. Client Responsibilities</h2>
             <ul>
               <li>
                 You are responsible for ensuring permissions to record/film at
@@ -119,16 +130,18 @@ const TermsOfServicePage = () => {
           </div>
 
           <div className="block">
-            <h2>8. Cancellations & Rescheduling</h2>
+            <h2>9. Cancellations & Rescheduling</h2>
             <p>
               If a shoot/event is canceled or rescheduled, we will attempt to
-              accommodate new dates. Depending on timelines and resource
-              allocation, cancellation charges may apply.
+              accommodate new dates based on availability. If cancellation is
+              requested after booking/payment, only 50% of the paid amount will
+              be refunded. Depending on timelines and resource allocation,
+              additional cancellation charges may apply.
             </p>
           </div>
 
           <div className="block">
-            <h2>9. Limitation of Liability</h2>
+            <h2>10. Limitation of Liability</h2>
             <p>
               We are not liable for indirect damages, lost profits, or business
               interruption. Our liability, if any, is limited to the total fees
@@ -137,7 +150,7 @@ const TermsOfServicePage = () => {
           </div>
 
           <div className="block">
-            <h2>10. Privacy</h2>
+            <h2>11. Privacy</h2>
             <p>
               Your use of the website is also governed by our{" "}
               <Link href="/privacy-policy">Privacy Policy</Link>.
@@ -145,7 +158,7 @@ const TermsOfServicePage = () => {
           </div>
 
           <div className="block">
-            <h2>11. Changes to Terms</h2>
+            <h2>12. Changes to Terms</h2>
             <p>
               We may update these Terms of Service at any time. Updated terms
               will be posted on this page with the revised date.
@@ -153,7 +166,7 @@ const TermsOfServicePage = () => {
           </div>
 
           <div className="block">
-            <h2>12. Contact</h2>
+            <h2>13. Contact</h2>
             <p>
               If you have any questions about these Terms of Service, contact us
               at:
