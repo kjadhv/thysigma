@@ -261,6 +261,9 @@ const TermsOfServicePage = () => {
           line-height: 1.8;
           font-size: 15.8px;
         }
+        .block ul {
+  list-style: disc;
+}
 
         .block li {
           margin-bottom: 10px;
