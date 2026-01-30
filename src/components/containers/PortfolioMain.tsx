@@ -10,7 +10,7 @@ import editing from "public/images/photos/12.jpeg";
 import process from "public/images/photos/17.jpeg";
 import like from "public/images/icff/icff1.png";
 import grp from "public/images/photos/16.jpeg";
-import blog from "public/images/icff/ihff12.png";
+import blog from "public/images/icff/ihff5.jpeg";
 import HomeTestimonial from "./home/HomeTestimonial";
 
 const filterOptions = [
@@ -158,17 +158,27 @@ const PortfolioMain = () => {
                 >
                   {/* 🔥 ORANGE SEPIA LOOK */}
                   <Image
-                    src={card.img}
-                    alt={card.title}
-                    fill
-                    style={{
-                      objectFit: "cover",
-                      filter: hover
-                        ? "sepia(25%) saturate(110%) brightness(1.02) contrast(1.05)"
-                        : "sepia(95%) saturate(160%) hue-rotate(-10deg) brightness(0.95) contrast(1.1)",
-                      transition: "filter 0.6s ease",
-                    }}
-                  />
+  src={card.img}
+  alt={card.title}
+  fill
+  style={{
+    objectFit: card.slug === "digital-media-sports-blog" ? "contain" : "cover",
+
+    transform:
+      card.slug === "digital-media-sports-blog"
+        ? "scale(1.18)"
+        : "scale(1)",
+
+    objectPosition: "center",
+
+    filter: hover
+      ? "sepia(25%) saturate(110%) brightness(1.02) contrast(1.05)"
+      : "sepia(95%) saturate(160%) hue-rotate(-10deg) brightness(0.95) contrast(1.1)",
+
+    transition: "filter 0.6s ease, transform 0.6s ease",
+  }}
+/>
+
 
                   <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to bottom, rgba(0,0,0,.15), rgba(0,0,0,.85))" }} />
 
