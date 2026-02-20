@@ -5,7 +5,7 @@ const videos = [
   "/images/video/testimonial2.mp4",
   "/images/video/testimonial3.mp4",
   "/images/video/ASHISH RANE.mp4",
-  "/images/video/Mayur sir.mp4",
+  "/images/video/Mayur Sir.mp4",
 ];
 
 const logos = [
