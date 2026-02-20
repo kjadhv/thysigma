@@ -1,7 +1,4 @@
 import React from "react";
-// import { Swiper, SwiperSlide } from "swiper/react";
-// import { Navigation } from "swiper/modules";
-// import "swiper/swiper-bundle.css";
 
 const videos = [
   "/images/video/testimonial1.mp4",
@@ -15,8 +12,8 @@ const logos = [
   "/images/sponsor/logo/lion.png",
   "/images/sponsor/logo/virenoo.png",
   "/images/sponsor/logo/virenoo.png",
-  // "/images/sponsor/logo/virenoo.png",
-  // "/images/sponsor/logo/virenoo.png",
+  "/images/sponsor/logo/virenoo.png",
+  "/images/sponsor/logo/virenoo.png",
 ];
 
 const HomeTestimonial = () => {
