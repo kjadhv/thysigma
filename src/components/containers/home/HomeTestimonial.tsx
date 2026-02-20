@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
 import type { Swiper as SwiperType } from "swiper";
@@ -22,6 +22,8 @@ const logos = [
 
 const HomeTestimonial = () => {
   const swiperRef = useRef<SwiperType | null>(null);
+  const [isBeginning, setIsBeginning] = useState(true);
+  const [isEnd, setIsEnd] = useState(false);
 
   const playWithSound = (video: HTMLVideoElement) => {
     video.muted = false;
@@ -35,6 +37,11 @@ const HomeTestimonial = () => {
     video.muted = true;
   };
 
+  const handleSlideChange = (swiper: SwiperType) => {
+    setIsBeginning(swiper.isBeginning);
+    setIsEnd(swiper.isEnd);
+  };
+
   return (
     <section className="section testimonial pt-0">
       <div className="container">
@@ -46,7 +53,12 @@ const HomeTestimonial = () => {
         {/* SWIPER WRAPPER */}
         <div className="swiper-wrapper-outer">
           <Swiper
-            onSwiper={(swiper) => (swiperRef.current = swiper)}
+            onSwiper={(swiper) => {
+              swiperRef.current = swiper;
+              setIsBeginning(swiper.isBeginning);
+              setIsEnd(swiper.isEnd);
+            }}
+            onSlideChange={handleSlideChange}
             slidesPerView={3}
             spaceBetween={24}
             loop={false}
@@ -80,27 +92,31 @@ const HomeTestimonial = () => {
             ))}
           </Swiper>
 
-          {/* CUSTOM ARROW — right side */}
-          <button
-            className="swiper-arrow-right"
-            onClick={() => swiperRef.current?.slideNext()}
-            aria-label="Next slide"
-          >
-            &#8250;
-          </button>
+          {/* LEFT ARROW — hidden at beginning */}
+          {!isBeginning && (
+            <button
+              className="swiper-arrow-left"
+              onClick={() => swiperRef.current?.slidePrev()}
+              aria-label="Previous slide"
+            >
+              &#8249;
+            </button>
+          )}
 
-          <button
-            className="swiper-arrow-left"
-            onClick={() => swiperRef.current?.slidePrev()}
-            aria-label="Previous slide"
-          >
-            &#8249;
-          </button>
+          {/* RIGHT ARROW — hidden at end */}
+          {!isEnd && (
+            <button
+              className="swiper-arrow-right"
+              onClick={() => swiperRef.current?.slideNext()}
+              aria-label="Next slide"
+            >
+              &#8250;
+            </button>
+          )}
         </div>
       </div>
 
       <style jsx>{`
-        /* HEADING */
         .testimonial-heading {
           text-align: center;
           margin-bottom: 40px;
@@ -114,12 +130,10 @@ const HomeTestimonial = () => {
           margin: 0;
         }
 
-        /* OUTER WRAPPER for positioning arrows */
         .swiper-wrapper-outer {
           position: relative;
         }
 
-        /* RIGHT ARROW */
         .swiper-arrow-right,
         .swiper-arrow-left {
           position: absolute;
@@ -156,7 +170,6 @@ const HomeTestimonial = () => {
           transform: translateY(-50%) scale(1.1);
         }
 
-        /* VIDEO CARD */
         .video-card {
           position: relative;
           width: 100%;
@@ -174,7 +187,6 @@ const HomeTestimonial = () => {
           object-fit: cover;
         }
 
-        /* OVERLAY */
         .video-overlay {
           position: absolute;
           inset: 0;
@@ -193,7 +205,6 @@ const HomeTestimonial = () => {
           height: auto;
         }
 
-        /* HOVER → overlay slides up */
         .video-card:hover .video-overlay {
           transform: translateY(-100%);
         }
