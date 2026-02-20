@@ -16,8 +16,8 @@ const logos = [
   "/images/sponsor/logo/lion.png",
   "/images/sponsor/logo/virenoo.png",
   "/images/sponsor/logo/virenoo.png",
-  "/images/sponsor/logo/virenoo.png",
-  "/images/sponsor/logo/virenoo.png",
+  "/images/sponsor/logo/afs.png",
+  "/images/sponsor/logo/mmafi.png",
 ];
 
 const HomeTestimonial = () => {
@@ -211,7 +211,7 @@ const HomeTestimonial = () => {
 
         @media (max-width: 1024px) {
           .video-card {
-            height: 280px;
+            height: 580px;
           }
 
           .overlay-logo {
