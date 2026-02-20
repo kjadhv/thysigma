@@ -1,4 +1,8 @@
-import React from "react";
+import React, { useRef } from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation } from "swiper/modules";
+import type { Swiper as SwiperType } from "swiper";
+import "swiper/swiper-bundle.css";
 
 const videos = [
   "/images/video/testimonial1.mp4",
@@ -17,6 +21,8 @@ const logos = [
 ];
 
 const HomeTestimonial = () => {
+  const swiperRef = useRef<SwiperType | null>(null);
+
   const playWithSound = (video: HTMLVideoElement) => {
     video.muted = false;
     video.volume = 1;
@@ -32,76 +38,69 @@ const HomeTestimonial = () => {
   return (
     <section className="section testimonial pt-0">
       <div className="container">
-         {/* ✅ HEADING */}
+        {/* HEADING */}
         <div className="testimonial-heading">
           <h2>What Our Clients Say</h2>
         </div>
-        <div className="testimonial-grid">
-  {videos.map((video, i) => (
-    <div className="video-card" key={i}>
-      <video
-        src={video}
-        playsInline
-        preload="metadata"
-        onMouseEnter={(e) => playWithSound(e.currentTarget)}
-        onMouseLeave={(e) => resetVideo(e.currentTarget)}
-      />
 
-      <div className="video-overlay">
-        <img
-          src={logos[i]}
-          alt="Brand logo"
-          className="overlay-logo"
-        />
+        {/* SWIPER WRAPPER */}
+        <div className="swiper-wrapper-outer">
+          <Swiper
+            onSwiper={(swiper) => (swiperRef.current = swiper)}
+            slidesPerView={3}
+            spaceBetween={24}
+            loop={false}
+            speed={800}
+            modules={[Navigation]}
+            breakpoints={{
+              0: { slidesPerView: 1 },
+              768: { slidesPerView: 2 },
+              1200: { slidesPerView: 3 },
+            }}
+          >
+            {videos.map((video, i) => (
+              <SwiperSlide key={i}>
+                <div className="video-card">
+                  <video
+                    src={video}
+                    playsInline
+                    preload="metadata"
+                    onMouseEnter={(e) => playWithSound(e.currentTarget)}
+                    onMouseLeave={(e) => resetVideo(e.currentTarget)}
+                  />
+                  <div className="video-overlay">
+                    <img
+                      src={logos[i]}
+                      alt="Brand logo"
+                      className="overlay-logo"
+                    />
+                  </div>
+                </div>
+              </SwiperSlide>
+            ))}
+          </Swiper>
+
+          {/* CUSTOM ARROW — right side */}
+          <button
+            className="swiper-arrow-right"
+            onClick={() => swiperRef.current?.slideNext()}
+            aria-label="Next slide"
+          >
+            &#8250;
+          </button>
+
+          <button
+            className="swiper-arrow-left"
+            onClick={() => swiperRef.current?.slidePrev()}
+            aria-label="Previous slide"
+          >
+            &#8249;
+          </button>
+        </div>
       </div>
-    </div>
-  ))}
-</div>
 
-      </div>
-
-      {/* ✅ STYLES */}
       <style jsx>{`
-       /* HEADING */
-       .testimonial-grid {
-  display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  gap: 24px;
-}
-
-/* First row - 3 videos */
-.testimonial-grid .video-card:nth-child(1),
-.testimonial-grid .video-card:nth-child(2),
-.testimonial-grid .video-card:nth-child(3) {
-  grid-column: span 2;
-}
-
-/* Second row - centered */
-.testimonial-grid .video-card:nth-child(4) {
-  grid-column: 2 / span 2;
-}
-
-.testimonial-grid .video-card:nth-child(5) {
-  grid-column: 4 / span 2;
-}
-
-/* Tablet */
-@media (max-width: 1024px) {
-  .testimonial-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .testimonial-grid .video-card {
-    grid-column: auto !important;
-  }
-}
-
-/* Mobile */
-@media (max-width: 768px) {
-  .testimonial-grid {
-    grid-template-columns: 1fr;
-  }
-}
+        /* HEADING */
         .testimonial-heading {
           text-align: center;
           margin-bottom: 40px;
@@ -114,6 +113,50 @@ const HomeTestimonial = () => {
           color: #ffffff;
           margin: 0;
         }
+
+        /* OUTER WRAPPER for positioning arrows */
+        .swiper-wrapper-outer {
+          position: relative;
+        }
+
+        /* RIGHT ARROW */
+        .swiper-arrow-right,
+        .swiper-arrow-left {
+          position: absolute;
+          top: 50%;
+          transform: translateY(-50%);
+          z-index: 10;
+          background: #964722ff;
+          border: none;
+          color: #fff;
+          font-size: 36px;
+          line-height: 1;
+          width: 50px;
+          height: 50px;
+          border-radius: 50%;
+          cursor: pointer;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+          transition: background 0.3s ease, transform 0.2s ease;
+        }
+
+        .swiper-arrow-right {
+          right: -25px;
+        }
+
+        .swiper-arrow-left {
+          left: -25px;
+        }
+
+        .swiper-arrow-right:hover,
+        .swiper-arrow-left:hover {
+          background: #b5581eff;
+          transform: translateY(-50%) scale(1.1);
+        }
+
+        /* VIDEO CARD */
         .video-card {
           position: relative;
           width: 100%;
@@ -131,7 +174,7 @@ const HomeTestimonial = () => {
           object-fit: cover;
         }
 
-        /* BLACK OVERLAY */
+        /* OVERLAY */
         .video-overlay {
           position: absolute;
           inset: 0;
@@ -144,14 +187,13 @@ const HomeTestimonial = () => {
           z-index: 2;
         }
 
-        /* LOGO */
         .overlay-logo {
           max-width: 180px;
           width: 60%;
           height: auto;
         }
 
-        /* HOVER → OVERLAY + LOGO GO UP */
+        /* HOVER → overlay slides up */
         .video-card:hover .video-overlay {
           transform: translateY(-100%);
         }
@@ -163,6 +205,24 @@ const HomeTestimonial = () => {
 
           .overlay-logo {
             max-width: 120px;
+          }
+
+          .swiper-arrow-right {
+            right: -15px;
+          }
+
+          .swiper-arrow-left {
+            left: -15px;
+          }
+        }
+
+        @media (max-width: 480px) {
+          .swiper-arrow-right {
+            right: 8px;
+          }
+
+          .swiper-arrow-left {
+            left: 8px;
           }
         }
       `}</style>
