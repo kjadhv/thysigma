@@ -5,19 +5,19 @@ import type { Swiper as SwiperType } from "swiper";
 import "swiper/swiper-bundle.css";
 
 const videos = [
+  "/images/video/ASHISH RANE.mp4",
+  "/images/video/Mayur Sir.mp4",
   "/images/video/testimonial1.mp4",
   "/images/video/testimonial2.mp4",
   "/images/video/testimonial3.mp4",
-  "/images/video/ASHISH RANE.mp4",
-  "/images/video/Mayur Sir.mp4",
 ];
 
 const logos = [
+  "/images/sponsor/logo/afs.png",
+  "/images/sponsor/logo/mmafi.png",
   "/images/sponsor/logo/lion.png",
   "/images/sponsor/logo/virenoo.png",
   "/images/sponsor/logo/virenoo.png",
-  "/images/sponsor/logo/afs.png",
-  "/images/sponsor/logo/mmafi.png",
 ];
 
 const HomeTestimonial = () => {
