@@ -1,8 +1,28 @@
 import React from "react";
+import emailjs from "@emailjs/browser";
 
 const ContactForm = ({ title = "Leave A Message", fullWidth = false }) => {
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  e.preventDefault();
+  const formEl = e.currentTarget;
+emailjs
+    .sendForm(
+      "service_psgah3g",
+      "template_8rsmgpq",
+      formEl,              // ✅ use stored reference
+      "c07Juoilf22vQAYjR"
+    )
+    .then(
+      () => {
+        alert("Message sent successfully!");
+        formEl.reset();    // ✅ use stored reference
+      },
+      (error) => {
+        console.log(error);
+        alert("Failed to send message.");
+        }
+      );
   };
 
   return (
@@ -13,15 +33,15 @@ const ContactForm = ({ title = "Leave A Message", fullWidth = false }) => {
         <form className="section__content-cta" onSubmit={handleSubmit}>
           <div className="group-wrapper">
             <div className="group-input">
-              <input type="text" placeholder="Name" />
+              <input type="text" name="name" placeholder="Name" required />
             </div>
             <div className="group-input">
-              <input type="email" placeholder="Email" />
+              <input type="email" name="email" placeholder="Email" required />
             </div>
           </div>
 
           <div className="group-input">
-            <input type="text" placeholder="Subject" />
+            <input type="text" name="subject" placeholder="Subject" required />
           </div>
 
           <div
@@ -29,8 +49,10 @@ const ContactForm = ({ title = "Leave A Message", fullWidth = false }) => {
             style={{ flex: 1, display: "flex", flexDirection: "column" }}
           >
             <textarea
+              name="message"
               placeholder="Message"
               style={{ flex: 1 }}
+              required
             ></textarea>
           </div>
 
@@ -42,7 +64,6 @@ const ContactForm = ({ title = "Leave A Message", fullWidth = false }) => {
         </form>
       </div>
 
-      {/* SAME STYLE AS ORIGINAL CONTACT PAGE */}
       <style jsx>{`
         .contact-main__form {
           position: relative;
@@ -103,7 +124,6 @@ const ContactForm = ({ title = "Leave A Message", fullWidth = false }) => {
           margin-top: 20px;
         }
 
-        /* RESPONSIVE */
         @media (max-width: 991px) {
           .contact-main__form {
             padding: 30px;
