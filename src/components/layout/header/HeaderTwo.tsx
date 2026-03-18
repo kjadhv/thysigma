@@ -31,6 +31,7 @@ const HeaderTwo = ({ openNav, setOpenNav, handleNav }: HeaderTwoProps) => {
     { label: "ABOUT US", href: "/about-us" },
     { label: "SERVICES", href: "/our-services" },
     { label: "PORTFOLIO", href: "/portfolio" },
+    { label: "BLOGS", href: "/blogs" },
     { label: "FAQ", href: "/faq" },
   ];
 

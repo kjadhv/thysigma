@@ -7,7 +7,16 @@ import ContactForm from "@/components/contact/ContactForm";
 const OurPortfolio = () => {
   return (
     <Layout header={2} footer={5} video={0}>
-      <CmnBanner title="Portfolio Gallery" navigation="Portfolio Gallery" />
+      <CmnBanner
+title={
+  <>
+    Event Coverage Portfolio - <br/>
+    Live Streams, Sports & <br/>
+    Corporate Events
+  </>
+}
+navigation="Portfolio Gallery"
+/>
       <PortfolioMain />
       
       {/* ===== CONTACT FORM SECTION ===== */}

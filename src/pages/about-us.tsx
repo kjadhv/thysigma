@@ -19,7 +19,17 @@ const AboutUs = () => {
   return (
     
     <Layout header={2} footer={5} video={0}>
-      <CmnBanner title="About Us" navigation="About Us" />
+     <CmnBanner
+  title={
+    <>
+      About Thy Sigma – <br />
+      Mumbai's Broadcast-Grade <br />
+      Event Media Company<br />
+      
+    </>
+  }
+  navigation="About Us"
+/>
       <HomeTwoModal />
        <AboutParallaxBG />
       <Agency />

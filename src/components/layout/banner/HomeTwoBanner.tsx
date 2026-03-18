@@ -290,7 +290,7 @@ const HomeTwoBanner = () => {
             left: 0,
           }}
         >
-          <source src="/thysigma_office.mp4" type="video/mp4" />
+          <source src="/Show Reel- sepia.mp4" type="video/mp4" />
         </video>
       </div>
 
@@ -299,10 +299,11 @@ const HomeTwoBanner = () => {
         ref={fullscreenVideoRef}
         style={{
           position: "absolute",
-          top: isMobile || isTablet ? `${headerHeight + 40}px` : `${headerHeight + 60}px`,
+          top: isMobile || isTablet ? `${headerHeight + 40}px` : `${headerHeight}px`,
           left: "50%",
           transform: isMobile || isTablet ? "translateX(-50%) scale(0.9)" : "translateX(-50%)",
-          width: isMobile || isTablet ? "90%" : "1000px",
+          width: isMobile || isTablet ? "90%" : "85%",
+maxWidth: isMobile || isTablet ? "100%" : "1500px",
           aspectRatio: "16/9",
           zIndex: 1,
           borderRadius: "20px",
@@ -327,7 +328,7 @@ const HomeTwoBanner = () => {
             objectPosition: "center center",
           }}
         >
-          <source src="/thysigma_office.mp4" type="video/mp4" />
+          <source src="/Show Reel- sepia.mp4" type="video/mp4" />
         </video>
       </div>
 
@@ -367,7 +368,7 @@ const HomeTwoBanner = () => {
               objectFit: "cover",
             }}
           >
-            <source src="/thysigma_office.mp4" type="video/mp4" />
+            <source src="/Show Reel- sepia.mp4" type="video/mp4" />
           </video>
         </div>
       </div>

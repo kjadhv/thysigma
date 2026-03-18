@@ -10,7 +10,7 @@ import ContactMain from "@/components/contact/ContactForm";
 const OurServices = () => {
   return (
     <Layout header={2} footer={5} video={0}>
-      <CmnBanner title="Our Services" navigation="Our Services" />
+      <CmnBanner title="Professional Event Videography, Live Streaming & Media Production - Mumbai" navigation="Our Services" />
 
       {/* ✅ PARALLAX WRAPPER */}
       <div className="services-why-parallax">

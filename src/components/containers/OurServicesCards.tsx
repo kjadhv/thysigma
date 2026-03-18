@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import CardAnimations from "../animations/CardAnimations";
 import img1 from "public/images/services/videop.jpeg";
 import img2 from "public/images/services/lives.jpeg";
@@ -55,10 +56,12 @@ const services = [
 
 const OurServicesCards = () => {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
+  const router = useRouter();
 const handleCardClick = (index: number) => {
-  // ✅ Mobile / iPad only
   if (window.innerWidth <= 1024) {
     setActiveIndex(prev => (prev === index ? null : index));
+  } else {
+    router.push(`/our-services/${index}`);
   }
 };
 
@@ -159,7 +162,7 @@ ${activeIndex === i ? "active" : ""}`}
 
     <p>{s.desc}</p>
 
-    <Link href="/our-services" className="cine-btn">
+    <Link href={`/our-services/${i}`} className="cine-btn">
       Read More
     </Link>
   </>

@@ -180,7 +180,7 @@ const Layout = ({
           href="/images/logo.png"
           type="image/x-icon"
         />
-        <title>Thy Sigma | Media Services</title>
+        <title>Event Coverage & Live Streaming Services in Mumbai | Thy Sigma</title>
         <meta name="keywords" content="creative, agency, portfolio" />
         <meta
           name="description"

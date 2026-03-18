@@ -6,7 +6,16 @@ import FaqMain from "@/components/containers/FaqMain";
 const FaqPage = () => {
   return (
     <Layout header={2} footer={5} video={0}>
-      <CmnBanner title="Faq" navigation="Faq" />
+      <CmnBanner
+title={
+  <>
+    Event Media FAQs – <br />
+    Live Streaming, Videography & Coverage <br />
+    in Mumbai
+  </>
+}
+navigation="Faq"
+/>
       <FaqMain />
     </Layout>
   );
