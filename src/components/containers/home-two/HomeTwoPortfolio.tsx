@@ -1,3 +1,4 @@
+//homepage portfolio section with 6 items in a 3x2 grid, each showing a video on hover/tap
 "use client";
 
 import React, { useEffect, useRef, useState, useCallback } from "react";

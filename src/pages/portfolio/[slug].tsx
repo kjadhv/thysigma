@@ -172,12 +172,12 @@ const portfolioData: PortfolioItem[] = [
     videos: [
       {
         id: "GxVyx4TEgyc",
-        title:"THE RISE OF DIGITAL MEDIA IN SPORTS",
+        title:"Live Streaming of National MMA Championship 2025",
         desc: "We are about to witness epic talent from across the globe hash it out....Remember! The cage favours those who fears none. Catch the live action of the best fighters in the most anticipated International combat Sport Championship. Ending  the year with a banggggg...... cheer for your fighter in the live comments section."
       },
       {
         id: "https://www.instagram.com/reel/DS4zKRPkbEi/",
-        title:"National MMA Championship 2025",
+        title:"National Event MMA Championship 2025",
         desc: "A big shoutout to Zandu Fast Relief for supporting our athletes during the National MMA Championship 2025"
       },
       {

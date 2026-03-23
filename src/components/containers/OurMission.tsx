@@ -106,7 +106,7 @@ const OurMission = () => {
               overflow: "hidden",
             }}
           >
-            <Image src={missionImg} alt="Mission" fill style={{ objectFit: "cover" }} />
+            <Image src={missionImg} alt="Mumbai Event" fill style={{ objectFit: "cover" }} />
           </div>
 
           <div
@@ -121,7 +121,7 @@ const OurMission = () => {
               Our Mission →
             </h3>
             <p style={{ fontSize: isMobile ? "15px" : "22px", lineHeight: "1.6" }}>
-              Deliver high-quality media and livestreaming solutions that transform
+              Deliver Events and Live Streaming Solutions that transform
               every event into a compelling digital experience.
             </p>
           </div>
@@ -153,7 +153,7 @@ const OurMission = () => {
               overflow: "hidden",
             }}
           >
-            <Image src={visionImg} alt="Vision" fill style={{ objectFit: "cover" }} />
+            <Image src={visionImg} alt="Photography" fill style={{ objectFit: "cover" }} />
           </div>
 
           <div
@@ -210,7 +210,7 @@ const OurMission = () => {
       overflow: "hidden",
     }}
   >
-    <Image src={teamImg} alt="Team" fill style={{ objectFit: "cover" }} />
+    <Image src={teamImg} alt="Videography and Media Production in Mumbai" fill style={{ objectFit: "cover" }} />
     <div
       style={{
         position: "absolute",
@@ -232,7 +232,7 @@ const OurMission = () => {
       transition: "0.8s cubic-bezier(0.4,0,0.2,1) 0.2s",
     }}
   >
-    Fast edits, quick turnarounds, tight schedules – we&apos;re used to it.
+    Fast edits, quick turnarounds, tight schedules we&apos;re used to it.
     Deadlines are not negotiable for us, and neither is the quality of the final
     video.
   </p>

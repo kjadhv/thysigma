@@ -83,7 +83,7 @@ const HomeTestimonial = () => {
                   <div className="video-overlay">
                     <img
                       src={logos[i]}
-                      alt="Brand logo"
+                      alt="Brand Event Company"
                       className="overlay-logo"
                     />
                   </div>

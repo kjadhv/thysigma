@@ -10,14 +10,12 @@ const TermsOfServicePage = () => {
     <section className="tos">
       <div className="container">
         <div className="top">
-          <h1 className="title">Terms of Service</h1>
+          <h1 className="title">Terms of Service – Thy Sigma Media Production</h1>
           <p className="meta">
             Last updated: <span>{lastUpdated}</span>
           </p>
           <p className="intro">
-            Welcome to Thy Sigma. By accessing or using our website, services,
-            and content, you agree to comply with and be bound by these Terms of
-            Service. If you do not agree, please do not use our services.
+            Welcome to Thy Sigma, a professional media production company based in Navi Mumbai. By accessing or using our website, services, and content, you agree to comply with and be bound by these Terms of Service. If you do not agree with any part of these terms, please do not use our services.
           </p>
         </div>
 
@@ -25,11 +23,7 @@ const TermsOfServicePage = () => {
           <div className="block">
             <h2>1. Definitions</h2>
             <p>
-              “Company”, “we”, “our”, “us” refers to Thy Sigma. “User”, “you”,
-              “your” refers to any person using our website or services.
-              “Services” means video production, photography, live streaming,
-              content editing, content creation, content distribution, and
-              related media services.
+              "Company", "we", "our", "us" refers to Thy Sigma, a media and video production company in Navi Mumbai. "User", "you", "your" refers to any individual or business accessing our website or engaging our services. "Services" includes video production, photography, live streaming, content editing, content creation, content distribution, graphic design, and related media services offered in Navi Mumbai, Thane, and across India.
             </p>
           </div>
 
@@ -50,10 +44,7 @@ const TermsOfServicePage = () => {
           <div className="block">
             <h2>3. Services & Deliverables</h2>
             <p>
-              Service timelines, deliverables, formats, and revisions will be
-              agreed in writing (email/WhatsApp/contract). The final output may
-              vary depending on creative direction, lighting conditions, venue
-              limitations, and client-provided inputs.
+              Service timelines, deliverables, formats, and revision rounds will be mutually agreed upon in writing (via email, WhatsApp, or formal contract). Final output quality may vary based on creative direction, available lighting, venue limitations, and client-provided materials. Thy Sigma strives to deliver cinematic, high-quality results for every project.
             </p>
           </div>
             <div className="block">
@@ -168,8 +159,8 @@ const TermsOfServicePage = () => {
           <div className="block">
             <h2>13. Contact</h2>
             <p>
-              If you have any questions about these Terms of Service, contact us
-              at:
+              For any questions regarding these Terms of Service, or to discuss a video production, photography, or live streaming project, reach out to our team:
+              At:
             </p>
             <div className="contactBox">
               <p>

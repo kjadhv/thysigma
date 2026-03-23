@@ -23,7 +23,7 @@ const ClientFeedbackMain = () => {
               <hr />
               <div className="author">
                 <div className="thumb">
-                  <Image src={kartik} alt="Image" />
+                  <Image src={kartik} alt="Video Production" />
                 </div>
                 <div className="author-meta">
                   <h5>Kartik Salve</h5>
@@ -47,7 +47,7 @@ const ClientFeedbackMain = () => {
               <hr />
               <div className="author">
                 <div className="thumb">
-                  <Image src={anish} alt="Image" />
+                  <Image src={anish} alt="Anish Gupta – Thy Sigma Client" />
                 </div>
                 <div className="author-meta">
                   <h5>Anish Gupta</h5>
@@ -71,7 +71,7 @@ const ClientFeedbackMain = () => {
               <hr />
               <div className="author">
                 <div className="thumb">
-                  <Image src={kalyani} alt="Image" />
+                  <Image src={kalyani} alt="Kalyani Jadhav – Thy Sigma Client" />
                 </div>
                 <div className="author-meta">
                   <h5>Kalyani Jadhav</h5>

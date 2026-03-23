@@ -181,10 +181,130 @@ const Layout = ({
           type="image/x-icon"
         />
         <title>Event Coverage & Live Streaming Services in Mumbai | Thy Sigma</title>
-        <meta name="keywords" content="creative, agency, portfolio" />
+        <meta name="keywords" content="video production Mumbai, photography Navi Mumbai, live streaming services, corporate event coverage, content creation, graphic design Thane, media production company India" />
         <meta
           name="description"
-          content="Media Services"
+          content="Thy Sigma provides professional video production, photography, and live streaming services in Mumbai, Navi Mumbai, and Thane."
+        />
+         <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@graph": [
+                {
+                  "@type": "LocalBusiness",
+                  "name": "Thy Sigma Media Services",
+                  "url": "https://www.thysigma.com",
+                  "logo": "https://www.thysigma.com/images/logo.png",
+                  "image": "https://www.thysigma.com/images/logo.png",
+                  "description": "Thy Sigma is a professional media production company in Navi Mumbai offering video production, photography, live streaming, content creation, content marketing, event coverage, corporate events, social media marketing, content reporposing and graphic design services.",
+                  "telephone": "+919082083273",
+                  "email": "kd@thysigma.com",
+                  "address": {
+                    "@type": "PostalAddress",
+                    "streetAddress": "116, Shah Heritage, Seawoods West",
+                    "addressLocality": "Navi Mumbai",
+                    "addressRegion": "Maharashtra",
+                    "postalCode": "400706",
+                    "addressCountry": "IN"
+                  },
+                  "geo": {
+                    "@type": "GeoCoordinates",
+                    "latitude": "19.0196",
+                    "longitude": "73.0169"
+                  },
+                  "sameAs": [
+                    "https://www.linkedin.com/company/thy-sigma/",
+                    "https://www.instagram.com/thysigma"
+                  ],
+                  "openingHoursSpecification": {
+                    "@type": "OpeningHoursSpecification",
+                    "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],
+                    "opens": "09:00",
+                    "closes": "19:00"
+                  },
+                  "priceRange": "₹₹"
+                },
+                {
+                  "@type": "Service",
+                  "serviceType": "Video Production",
+                  "provider": { "@type": "LocalBusiness", "name": "Thy Sigma Media Services" },
+                  "areaServed": ["Navi Mumbai", "Mumbai", "Thane"],
+                  "description": "Professional video production services including corporate films, brand videos, sports coverage, and AI/ML video production in Navi Mumbai and Mumbai."
+                },
+                {
+                  "@type": "Service",
+                  "serviceType": "Live Streaming",
+                  "provider": { "@type": "LocalBusiness", "name": "Thy Sigma Media Services" },
+                  "areaServed": ["Navi Mumbai", "Mumbai", "Thane"],
+                  "description": "Professional live streaming services with multi-camera setup, broadcast-level audio, and backup routes for corporate events and conferences."
+                },
+                {
+                  "@type": "Service",
+                  "serviceType": "Photography",
+                  "provider": { "@type": "LocalBusiness", "name": "Thy Sigma Media Services" },
+                  "areaServed": ["Navi Mumbai", "Mumbai", "Thane"],
+                  "description": "Event photography, product photography, editorial shoots, and corporate photography services in Navi Mumbai and Mumbai."
+                },
+                {
+                  "@type": "Service",
+                  "serviceType": "Graphic Design",
+                  "provider": { "@type": "LocalBusiness", "name": "Thy Sigma Media Services" },
+                  "areaServed": ["Navi Mumbai", "Mumbai", "Thane"],
+                  "description": "Creative graphic design services including ad creatives, marketing materials, digital creatives, and event promotion design."
+                },
+               {
+                  "@type": "Service",
+                  "serviceType": "Content Creation",
+                  "provider": { "@type": "LocalBusiness", "name": "Thy Sigma Media Services" },
+                  "areaServed": ["Navi Mumbai", "Mumbai", "Thane"],
+                  "description": "Professional content creation services including video editing, animation, and digital marketing content in Navi Mumbai and Mumbai."
+                },
+                  {
+                  "@type": "Service",
+                  "serviceType": "Content Marketing",
+                  "provider": { "@type": "LocalBusiness", "name": "Thy Sigma Media Services" },
+                  "areaServed": ["Navi Mumbai", "Mumbai", "Thane"],
+                  "description": "Strategic content marketing services to promote your brand and engage your audience in Navi Mumbai and Mumbai."
+                },
+                  {
+                  "@type": "Service",
+                  "serviceType": "Event Coverage",
+                  "provider": { "@type": "LocalBusiness", "name": "Thy Sigma Media Services" },
+                  "areaServed": ["Navi Mumbai", "Mumbai", "Thane"],
+                  "description": "Professional event coverage services for corporate events, conferences, and special occasions in Navi Mumbai and Mumbai."
+                },
+                  {
+                  "@type": "Service",
+                  "serviceType": "Corporate Events",
+                  "provider": { "@type": "LocalBusiness", "name": "Thy Sigma Media Services" },
+                  "areaServed": ["Navi Mumbai", "Mumbai", "Thane"],
+                  "description": "Professional corporate event planning and execution services in Navi Mumbai and Mumbai."
+                },
+                  {
+                  "@type": "Service",
+                  "serviceType": "Social Media Marketing",
+                  "provider": { "@type": "LocalBusiness", "name": "Thy Sigma Media Services" },
+                  "areaServed": ["Navi Mumbai", "Mumbai", "Thane"],
+                  "description": "Strategic social media marketing services to promote your brand and engage your audience in Navi Mumbai and Mumbai."
+                },
+                  {
+                  "@type": "Service",
+                  "serviceType": "Content Repurposing",
+                  "provider": { "@type": "LocalBusiness", "name": "Thy Sigma Media Services" },
+                  "areaServed": ["Navi Mumbai", "Mumbai", "Thane"],
+                  "description": "Strategic content repurposing services to maximize the value of your existing content in Navi Mumbai and Mumbai."
+                },
+                {
+                  "@type": "CreativeWork",
+                  "name": "Thy Sigma Portfolio",
+                  "url": "https://www.thysigma.com/portfolio",
+                  "description": "Explore Thy Sigma's portfolio showcasing our expertise in video production, photography, live streaming, content creation, and graphic design services in Navi Mumbai and Mumbai."
+                }
+              ]
+            })
+          }}
         />
       </Head>
       <div className={combinedClassName}>

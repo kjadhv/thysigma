@@ -13,6 +13,7 @@ interface BannerProps {
 
 const CmnBanner = ({ title, navigation, parent, parentLink }: BannerProps) => {
   const pathname = usePathname();
+  const safePath = pathname ?? "";
 
   let description: string | null = null;
 

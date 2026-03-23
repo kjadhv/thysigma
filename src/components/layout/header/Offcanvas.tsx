@@ -55,7 +55,7 @@ const Offcanvas = ({ openNav, setOpenNav }: HeaderProps) => {
           <div className="offcanvas-menu__header nav-fade">
             <div className="logo">
               <Link href="/">
-                <Image src={logo} alt="Image" title="Image" priority />
+                <Image src={logo} alt="Thy Sigma Logo" title="Thy Sigma Media Production Company" priority />
               </Link>
             </div>
             <button

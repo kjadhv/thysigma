@@ -59,7 +59,7 @@ const Agency = () => {
         </div>
       </div>
 
-      <Image src={dotlarge} alt="decor" className="dot-large" priority />
+      <Image src={dotlarge} alt="Best Media Services In Mumbai" className="dot-large" priority />
 
       <style jsx>{`
         /* ================= DESKTOP / IPAD (UNCHANGED) ================= */

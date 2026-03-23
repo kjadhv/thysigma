@@ -45,7 +45,7 @@ const FooterTwo = () => {
           {/* LEFT */}
           <div className="col">
             <Link href="/">
-              <Image src={logo} alt="Thy Sigma" width={150} />
+              <Image src={logo} alt="Thy Sigma Media Production Company" width={150} />
             </Link>
 
             <p className="desc">

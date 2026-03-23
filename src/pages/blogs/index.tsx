@@ -223,21 +223,22 @@ const BLOG_CSS = `
     letter-spacing: 1px; text-transform: uppercase;
     color: #0a0a0a !important; background: #c05010; padding: 4px 10px; border-radius: 2px;
   }
-  .bl-card-body { padding: 24px; display: flex; flex-direction: column; flex: 1; }
+  .bl-card-body { padding: 12px 0 0 0; display: flex; flex-direction: column; flex: 1; }
   .bl-card-title {
     font-family: 'Cinzel', serif; font-size: 15px; font-weight: 600;
     color: #fff !important; line-height: 1.35; margin-bottom: 10px;
-    letter-spacing: 0.2px;
+    letter-spacing: 0.2px; text-align: left;
   }
   .bl-card-excerpt {
     font-size: 13px; color: rgba(255,255,255,0.45) !important; font-weight: 300;
-    line-height: 1.65; margin-bottom: 14px; flex: 1;
+    line-height: 1.65; margin-bottom: 14px; flex: 1; text-align: left;
     display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;
   }
   .bl-card-tags { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 14px; }
   .bl-card-footer {
     display: flex; align-items: center; justify-content: space-between;
     border-top: 1px solid rgba(255,255,255,0.06); padding-top: 14px; margin-top: auto;
+    padding-left: 0; padding-right: 0
   }
   .bl-card-meta { font-size: 11px; color: rgba(255,255,255,0.3) !important; }
   .bl-card-link {
@@ -249,6 +250,7 @@ const BLOG_CSS = `
     letter-spacing: 0.8px; text-transform: uppercase;
     color: #fff !important; text-decoration: none !important;
     transition: all 0.2s;
+    margin-left: auto;
   }
   .bl-card-link:hover { background: #7b61ff; }
 

@@ -326,13 +326,13 @@ const AddBlog = () => {
         <header className="ab-topbar">
           <div className="ab-logo">thy<span>σ</span>sigma</div>
           <div className="ab-topbar-actions">
-            {/* <button
+            <button
               className={`ab-status-pill ${form.status === "published" ? "published" : ""}`}
               onClick={() => handleChange("status", form.status === "draft" ? "published" : "draft")}
             >
               <span className="dot" />
               {form.status === "draft" ? "Draft" : "Published"}
-            </button> */}
+            </button>
             <button className="ab-btn-ghost" onClick={() => setShowPreview(true)} disabled={submitting}>Preview</button>
             <button
               className="ab-btn-primary"
@@ -393,7 +393,10 @@ const AddBlog = () => {
                 ) : (
                   <div className="ab-cover-uploaded">
                     {imageUploading && <div className="ab-upload-progress"><div className="ab-upload-progress-bar" /></div>}
-                    <img src={coverPreviewLocal} alt="Cover preview" />
+                    <img 
+  src={coverPreviewLocal} 
+  alt={form.title ? `${form.title} blog cover image` : "Corporate event"} 
+/>
                     <div className="ab-cover-uploaded-bar">
                       <span className="ab-file-name">{coverImageFile?.name || "cover image"}</span>
                       <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
@@ -497,7 +500,11 @@ const AddBlog = () => {
                     <span className="ab-preview-meta-item">{readTime} min read</span>
                     {wordCount > 0 && <><span className="ab-preview-meta-dot" /><span className="ab-preview-meta-item">{wordCount} words</span></>}
                   </div>
-                  {previewCover && <img className="ab-preview-cover" src={previewCover} alt="Cover" />}
+                  {previewCover && <img 
+  className="ab-preview-cover" 
+  src={previewCover} 
+  alt={form.title ? `${form.title} featured image` : "Live event"} 
+/>}
                   {form.content && (
                     <>
                       <div className="ab-preview-divider" />

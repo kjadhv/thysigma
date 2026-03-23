@@ -439,7 +439,7 @@ maxWidth: isMobile || isTablet ? "100%" : "1500px",
           </div>
         </div>
       </div>
-      <Image src={dawn} alt="Image" className="dawn" />
+      <Image src={dawn} alt="Event in Mumbai" className="dawn" />
     </section>
   );
 };

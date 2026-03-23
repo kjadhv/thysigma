@@ -76,7 +76,7 @@ const HeaderTwo = ({ openNav, setOpenNav, handleNav }: HeaderTwoProps) => {
                 <Link href="/" aria-label="home">
                   <Image
                     src={logo}
-                    alt="Logo"
+                    alt="Thy Sigma Logo"
                     width={160}
                     height={40}
                     priority

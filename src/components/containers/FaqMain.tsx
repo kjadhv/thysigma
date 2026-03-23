@@ -13,10 +13,6 @@ const faqs = [
     q: "Which Events Do You Provide Livestreaming Services For?",
     a: "We cover corporate events, weddings, conferences, concerts, and more.",
   },
-  // {
-  //   q: "Do You Provide Drone Videography For Events?",
-  //   a: "Yes, drone videography is available where regulations allow.",
-  // },
   {
     q: "What makes Thy Sigma your reliable partner?",
     a: "We blend 16+ years of media technology expertise with high-end production. Our services include backup internet, multi-camera switching, on-ground technical crew, professional audio, and fast delivery timelines—ensuring a risk-free, premium event media experience.",
@@ -33,10 +29,6 @@ const faqs = [
     q: "Do you work with event management companies and agencies?",
     a: "Absolutely. We collaborate with event agencies, wedding planners, and experiential marketing companies to manage media production for their clients. Our team acts as an extension of the event organizer&apos;s brand.",
   },
-  // {
-  //   q: "What equipment do you use for livestreaming and video production?",
-  //   a: "We use 4K mirrorless cameras, multi-cam switchers, stabilizers, drones, broadcast audio systems, lighting rigs, and bonded high-speed internet to ensure stable, professional production.",
-  // },
   {
     q: "Do you offer custom media packages for expos and award shows?",
     a: "Yes. We create custom media packages for large events such as Edu Expos, trade fairs, conventions, and award ceremonies—including livestreaming, video coverage, photography, interviews, and post-event highlight films.",
@@ -90,6 +82,23 @@ const FAQ = () => {
         </div>
       </div>
 
+<script
+  type="application/ld+json"
+  dangerouslySetInnerHTML={{
+    __html: JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": faqs.map((item) => ({
+        "@type": "Question",
+        "name": item.q,
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": item.a.replace(/&apos;/g, "'"),
+        },
+      })),
+    }),
+  }}
+/>
       {/* ✅ STYLES */}
       <style jsx>{`
         /* ---- DESKTOP & iPAD (UNCHANGED) ---- */

@@ -18,7 +18,7 @@ const HomeTwoAward = () => {
               <div className="team-img-wrapper">
                 <Image
                   src={team}
-                  alt="What We Do"
+                  alt="Best Media Services In Mumbai"
                   fill
                   className="team-img"
                   priority

@@ -42,7 +42,7 @@ const HomeTwoTestimonial = () => {
         <div className="row gaper align-items-center">
           <div className="col-12 col-lg-5 col-xxl-4">
             <div className="testimonial-two__thumb">
-              <Image src={kartik} alt="Image" />
+              <Image src={kartik} alt="Kartik Salve – Thy Sigma Client" />
             </div>
           </div>
           <div className="col-12 col-lg-7 col-xxl-7 offset-xxl-1">
@@ -86,7 +86,7 @@ const HomeTwoTestimonial = () => {
                       </div>
                       <div className="author-meta">
                         <div className="author-meta__thumb">
-                          <Image src={avatar} alt="Image" />
+                          <Image src={avatar} alt="Kartik Salve – Thy Sigma Client" />
                         </div>
                         <div className="author-meta__content">
                           <h5>Kartik Salve</h5>
@@ -106,7 +106,7 @@ const HomeTwoTestimonial = () => {
                       </div>
                       <div className="author-meta">
                         <div className="author-meta__thumb">
-                          <Image src={avatar} alt="Image" />
+                          <Image src={avatar} alt="Anish Gupta – Thy Sigma Client" />
                         </div>
                         <div className="author-meta__content">
                           <h5>Anish Gupta</h5>
@@ -126,7 +126,7 @@ const HomeTwoTestimonial = () => {
                       </div>
                       <div className="author-meta">
                         <div className="author-meta__thumb">
-                          <Image src={avatar} alt="Image" />
+                          <Image src={avatar} alt="Live Events in navi Mumbai" />
                         </div>
                         <div className="author-meta__content">
                           <h5>Kalyani Jadhav</h5>

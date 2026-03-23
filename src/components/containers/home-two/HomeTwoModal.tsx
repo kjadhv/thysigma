@@ -52,7 +52,7 @@ const HomeTwoModal = () => {
       {/* ✅ IMAGE */}
       <Image
         src={grp}
-        alt="services parallax background"
+        alt="Media services"
         fill
         sizes="100vw"
         style={{
