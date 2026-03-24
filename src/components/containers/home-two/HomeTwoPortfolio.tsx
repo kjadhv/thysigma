@@ -8,7 +8,7 @@ import one   from "public/images/homepg/h1.jpg";
 import two   from "public/images/homepg/schedule2.jpg";
 import three from "public/images/homepg/event.jpg";
 import four  from "public/images/services/contentc.jpeg";
-import five  from "public/images/homepg/repurpose4.jpg";
+import five  from "public/images/homepg/repurpose4.png";
 import six   from "public/images/services/cm_photo.jpg";
 
 interface PortfolioItem {
