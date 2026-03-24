@@ -21,8 +21,8 @@ interface PortfolioItem {
 const PORTFOLIO_ITEMS: PortfolioItem[] = [
   {
     img: one,   title: "Content Creation",
-    video:       "/images/homepg/camera.mp4",       // desktop
-    videoMobile: "/images/homepg/camera.mp4", // mobile/tablet — replace with your path
+    video:       "/images/homepg/camerashort.mp4",       // desktop
+    videoMobile: "/images/homepg/camerashort.mp4", // mobile/tablet — replace with your path
   },
   {
     img: two,   title: "Content Monetisation",
@@ -31,8 +31,8 @@ const PORTFOLIO_ITEMS: PortfolioItem[] = [
   },
   {
     img: three, title: "Technology & Infrastructure Services",
-    video:       "/images/homepg/film.mp4",
-    videoMobile: "/images/homepg/film.mp4"
+    video:       "/images/homepg/filmshort.mp4",
+    videoMobile: "/images/homepg/filmshort.mp4"
   },
   {
     img: four,  title: "Content Management",
