@@ -41,13 +41,13 @@ const PORTFOLIO_ITEMS: PortfolioItem[] = [
   },
   {
     img: five,  title: "Content Repurposing",
-    video:       "/images/homepg/repurpose5.mp4",
-    videoMobile: "/images/homepg/repurpose5.mp4"
+    video:       "/images/homepg/repurpose6.mp4",
+    videoMobile: "/images/homepg/repurpose6.mp4"
   },
   {
     img: six,   title: "Content Marketing",
-    video:       "/images/homepg/camera-shoot.mp4",
-    videoMobile: "/images/homepg/camera-shoot.mp4"
+    video:       "/images/homepg/social.mp4",
+    videoMobile: "/images/homepg/social.mp4"
   },
 ];
 
