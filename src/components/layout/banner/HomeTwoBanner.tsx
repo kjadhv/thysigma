@@ -298,22 +298,20 @@ const HomeTwoBanner = () => {
       <div
         ref={fullscreenVideoRef}
         style={{
-          position: "absolute",
-          top: isMobile || isTablet ? `${headerHeight + 40}px` : `${headerHeight}px`,
-          left: "50%",
-          transform: isMobile || isTablet ? "translateX(-50%) scale(0.9)" : "translateX(-50%)",
-          width: isMobile || isTablet ? "90%" : "85%",
-maxWidth: isMobile || isTablet ? "100%" : "1500px",
-          aspectRatio: "16/9",
-          zIndex: 1,
-          borderRadius: "20px",
-          overflow: "hidden",
-          border: "1px solid rgba(150, 150, 150, 0.3)",
-          boxShadow: 
-            "inset 0 0 30px rgba(150, 150, 150, 0.15), " +
-            "0 0 40px 5px rgba(150, 150, 150, 0.3), " +
-            "0 0 80px 15px rgba(150, 150, 150, 0.2)",
-          transition: "opacity 0.3s ease, box-shadow 0.3s ease, border 0.3s ease",
+          position: isMobile || isTablet ? "absolute" : "fixed",
+top: isMobile || isTablet ? `${headerHeight + 40}px` : `${headerHeight}px`,
+left: isMobile || isTablet ? "50%" : "0",
+transform: isMobile || isTablet ? "translateX(-50%) scale(0.9)" : "none",
+width: isMobile || isTablet ? "90%" : "100vw",
+maxWidth: isMobile || isTablet ? "100%" : "100vw",
+height: isMobile || isTablet ? "auto" : "100vh",
+aspectRatio: isMobile || isTablet ? "16/9" : undefined,
+zIndex: 1,
+borderRadius: isMobile || isTablet ? "20px" : "0",
+overflow: "hidden",
+border: isMobile || isTablet ? "1px solid rgba(150, 150, 150, 0.3)" : "none",
+boxShadow: isMobile || isTablet ? "inset 0 0 30px rgba(150,150,150,0.15), 0 0 40px 5px rgba(150,150,150,0.3)" : "none",
+transition: "opacity 0.3s ease",
         }}
       >
         <video
