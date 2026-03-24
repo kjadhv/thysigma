@@ -4,9 +4,9 @@
 import React, { useEffect, useRef, useState, useCallback } from "react";
 import Image, { StaticImageData } from "next/image";
 
-import one   from "public/images/services/contentc.jpeg";
-import two   from "public/images/services/lives.jpeg";
-import three from "public/images/services/lives.jpeg";
+import one   from "public/images/homepg/h1.jpg";
+import two   from "public/images/homepg/schedule2.jpg";
+import three from "public/images/homepg/event.jpg";
 import four  from "public/images/services/contentc.jpeg";
 import five  from "public/images/services/cr_photo.jpg";
 import six   from "public/images/services/cm_photo.jpg";
@@ -21,33 +21,33 @@ interface PortfolioItem {
 const PORTFOLIO_ITEMS: PortfolioItem[] = [
   {
     img: one,   title: "Content Creation",
-    video:       "/images/services/cc1.mp4",       // desktop
-    videoMobile: "/images/services/cc1_mobile.mp4" // mobile/tablet — replace with your path
+    video:       "/images/homepg/camera.mp4",       // desktop
+    videoMobile: "/images/homepg/camera.mp4", // mobile/tablet — replace with your path
   },
   {
     img: two,   title: "Content Monetisation",
-    video:       "/content2.mp4",
-    videoMobile: "/images/services/ls1_mobile.mp4"
+    video:       "/images/homepg/monetize.mp4",
+    videoMobile: "/images/homepg/monetize.mp4"
   },
   {
     img: three, title: "Technology & Infrastructure Services",
-    video:       "/content3.mp4",
-    videoMobile: "/images/services/mes1_mobile.mp4"
+    video:       "/images/homepg/film.mp4",
+    videoMobile: "/images/homepg/film.mp4"
   },
   {
     img: four,  title: "Content Management",
-    video:       "/videos/content-creation.mp4",
-    videoMobile: "/videos/content-creation_mobile.mp4"
+    video:       "/images/homepg/camera-shoot.mp4",
+    videoMobile: "/images/homepg/camera-shoot.mp4"
   },
   {
     img: five,  title: "Content Repurposing",
-    video:       "/images/services/cr2.mp4",
-    videoMobile: "/images/services/cr2_mobile.mp4"
+    video:       "/images/homepg/camera-shoot.mp4",
+    videoMobile: "/images/homepg/camera-shoot.mp4"
   },
   {
     img: six,   title: "Content Marketing",
-    video:       "/images/services/cm2.mp4",
-    videoMobile: "/images/services/cm2_mobile.mp4"
+    video:       "/images/homepg/camera-shoot.mp4",
+    videoMobile: "/images/homepg/camera-shoot.mp4"
   },
 ];
 
@@ -252,7 +252,15 @@ const HomeTwoPortfolio = () => {
           overflow: hidden; 
           isolation: isolate;
         }
-
+        /* Non-active cells get a dark overlay so boundaries are visible during video */
+.pf-grid:has(.pf-cell--active) .pf-cell:not(.pf-cell--active)::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(150, 143, 143, 0.1);
+  z-index: 10;
+  pointer-events: none;
+}
         /* ─── Cell ─── */
         .pf-cell {
           position: relative;
@@ -260,7 +268,15 @@ const HomeTwoPortfolio = () => {
           cursor: crosshair;
           background: #000;
         }
-        .pf-cell--active { z-index: auto; }
+        .pf-cell--active::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  outline: 2px solid #a85f0bff;
+  outline-offset: -2px;
+  z-index: 15;
+  pointer-events: none;
+}
 
         /* ─── Photo: visible by default ─── */
         .pf-img-wrap {
@@ -346,7 +362,7 @@ const HomeTwoPortfolio = () => {
         .pf-ring {
           position: absolute;
           inset: 0;
-          border: 0px solid #ffd700;
+          border: 0px solid #7e41088a;
           z-index: 6;
           pointer-events: none;
           transition: border-width 0.2s ease, box-shadow 0.2s ease;
@@ -374,12 +390,13 @@ const HomeTwoPortfolio = () => {
         .pf-overlay__video {
           width: 100%; height: 100%;
           object-fit: cover;
+          object-position: top; 
           display: block;
         }
         .pf-overlay__tint {
           position: absolute;
           inset: 0;
-          background: rgba(0,0,0,0.45);
+          
         }
 
         /* ─── Hole ─── */
@@ -387,16 +404,9 @@ const HomeTwoPortfolio = () => {
           position: absolute;
           z-index: 4;
           pointer-events: none;
-          background: transparent;
-          opacity: 0;
-          transition:
-            opacity 0.35s ease,
-            left    0.22s ease,
-            top     0.22s ease,
-            width   0.22s ease,
-            height  0.22s ease;
-            outline: 2px solid #ffd700;
-  outline-offset: -2px;
+          background: transparent;       
+          outline: 2px solid #a85f0bff;
+          outline-offset: -2px;
         }
         .pf-hole--on { opacity: 1; }
 
