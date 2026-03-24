@@ -8,7 +8,7 @@ import one   from "public/images/homepg/h1.jpg";
 import two   from "public/images/homepg/schedule2.jpg";
 import three from "public/images/homepg/event.jpg";
 import four  from "public/images/services/contentc.jpeg";
-import five  from "public/images/services/cr_photo.jpg";
+import five  from "public/images/homepg/repurpose4.jpg";
 import six   from "public/images/services/cm_photo.jpg";
 
 interface PortfolioItem {
@@ -41,8 +41,8 @@ const PORTFOLIO_ITEMS: PortfolioItem[] = [
   },
   {
     img: five,  title: "Content Repurposing",
-    video:       "/images/homepg/camera-shoot.mp4",
-    videoMobile: "/images/homepg/camera-shoot.mp4"
+    video:       "/images/homepg/repurpose5.mp4",
+    videoMobile: "/images/homepg/repurpose5.mp4"
   },
   {
     img: six,   title: "Content Marketing",
