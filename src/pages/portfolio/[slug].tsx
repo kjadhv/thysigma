@@ -21,6 +21,7 @@ import blog from "public/images/icff/ihff5.jpeg";
 type VideoItem = {
   id: string;
   desc: string;
+  hashtags: string;
   title: string; // ✅ optional
 };
 
@@ -42,14 +43,15 @@ const portfolioData: PortfolioItem[] = [
     videos: [
     {
       id: "Pi92_fmvEvA",
-      title: "VIREN MEMORIAL CUP 2025 DAY1",
-      desc: "VIREN Memorial Cup 2025 - Day 1 highlights and best moments of the tournament."
+      title: "Viren Memorial Cup 2025 | Day 1 Full Highlights | Best Moments & Match Coverage",
+desc: "Watch the complete Day 1 coverage of the Viren Memorial Cup 2025 — one of the most anticipated sporting tournaments of the year. Named in honor of a true champion whose legacy continues to inspire generations of athletes, the Viren Memorial Cup brings together competitors from across the region to battle it out at the highest level. Day 1 featured electrifying performances, tactical brilliance, and moments of pure sporting excellence that set the tone for the entire tournament. Whether you are a die-hard fan or discovering this event for the first time, this full coverage gives you the best seat in the house. Our professional videography team captured every crucial match, every standout performance, and every emotional moment across the full day of competition. From the opening ceremony to the final contest of the evening, Day 1 delivered everything fans had been hoping for and more. The level of competition on display was exceptional, with athletes pushing each other to their absolute limits in every single encounter. Watch now to relive the passion, the pride, and the sporting excellence that made Day 1 of the Viren Memorial Cup 2025 truly unforgettable. Produced by Thy Sigma — Mumbai's leading sports videography and live streaming production company. Subscribe for more professional event coverage, live streams, tournament highlights, and sports videography from across India.",
+hashtags: "#VirenMemorialCup2025 #Day1Highlights #SportsTournament #MemorialCup2025 #SportsVideography #ThySigma #TournamentHighlights #IndianSports2025 #SportsIndia #EventCoverage #FullHighlights #LiveSports #MumbaiSports #SportsProduction #MatchHighlights"
     },
     {
       id: "QWukc8vTlJQ",
-      title: "VIREN MEMORIAL CUP 2025 DAY2",
-      desc: "VIREN Memorial Cup 2025 - Day 2 action, key matches and final moments."
-    }],
+     title: "Viren Memorial Cup 2025 | Day 2 Full Highlights | Finals & Championship Moments",
+desc: "The Viren Memorial Cup 2025 reaches its defining moments in Day 2 — where champions are made and legacies are written. If Day 1 set the stage, Day 2 delivered everything the tournament had been building toward. Higher stakes, sharper competition, and performances that will be remembered long after the final whistle. As the tournament moved into its decisive phases, every match carried greater weight and the athletes responded with some of the most compelling sport seen at this event in years. Our professional videography team captured every angle, every celebration, and every decisive moment with full production quality. Day 2 saw standout performers emerge on a bigger stage, leaving lasting impressions on everyone in attendance. The atmosphere inside the venue was electric from the first contest to the last, with supporters and competitors alike giving everything they had until the very end. The Viren Memorial Cup 2025 Day 2 is a fitting tribute to the legacy this tournament carries — a reminder of why sport has the power to move, inspire, and unite people from all walks of life. Produced by Thy Sigma — Mumbai's leading sports videography and live streaming production company. Subscribe for more professional event coverage, live streams, tournament highlights, and sports videography from across India.",
+hashtags: "#VirenMemorialCup2025 #Day2Highlights #SportsTournament #MemorialCupFinals #SportsVideography #ThySigma #TournamentHighlights #IndianSports2025 #ChampionshipMoments #FullHighlights #LiveSports #MumbaiSports #SportsProduction #FinalDay #MatchHighlights"  }],
   },
   {
     slug: "fight club",
@@ -59,14 +61,14 @@ const portfolioData: PortfolioItem[] = [
     videos: [
       {
         id: "csz4phDCppQ",
-        title:"FIGHT CLUB PART1",
-        desc: "The gloves are off, the stakes are higher, and the clubs are hungry for honor and bragging rights. This isn’t just a fight, it’s an all-out turf war where rival clubs settle scores in the cage, live for the world to watch. New fighters, bad blood, bigger crowds. Expect knockouts, grudges, and moments that’ll be replayed for weeks."
-      },
+       title: "Fight Club | War of the Clubs 2025 Part 1 | Live MMA & Combat Sports Event",
+desc: "War of the Clubs is not your average fight night — and Part 1 proves it from the very first bell. This is where months of rivalry, training, and determination finally get settled inside the cage. Fight Club brings together the best fighters from competing clubs across the region for an all-out battle where honor, reputation, and bragging rights are on the line. Part 1 covers the explosive opening bouts of the evening — sharp striking, intelligent grappling, and the kind of composed aggression that only comes from serious training and real competitive hunger. Our professional live streaming team delivered full real-time coverage with broadcast-quality production, putting fans ringside no matter where they were watching from. New fighters announced themselves to the world, experienced veterans showed their class, and every bout added another chapter to one of the most exciting combat sports events in the region. If you follow MMA, kickboxing, or any form of combat sports, Fight Club War of the Clubs is unmissable. Produced by Thy Sigma — Mumbai's leading sports live streaming and event production company. Subscribe for more combat sports coverage, live streams, and fight night highlights from across India.",
+hashtags: "#FightClub2025 #WarOfTheClubs #MMAIndia #CombatSports #LiveMMA #FightNight #MartialArts #KnockoutHighlights #ThySigma #LiveStreaming #SportsVideography #IndianMMA #FightHighlights #CageFighting #MumbaiMMA" },
       {
         id: "5qw7tzLSiAg",
-        title:"FIGHT CLUB PART2",
-        desc:"The gloves are off, the stakes are higher, and the clubs are hungry for honor and bragging rights. This isn’t just a fight, it’s an all-out turf war where rival clubs settle scores in the cage, live for the world to watch. New fighters, bad blood, bigger crowds. Expect knockouts, grudges, and moments that’ll be replayed for weeks."
-      }
+       title: "Fight Club | War of the Clubs 2025 Part 2 | Knockouts Finals & Best Fights",
+desc: "Part 2 of Fight Club War of the Clubs 2025 took the intensity to a completely different level — and delivered the knockouts, comebacks, and defining moments the entire night had been building toward. With the stakes at their highest and the crowd at its loudest, the fighters inside the cage gave everything they had in front of a roaring audience. This is combat sports at its most raw and most exciting — no filters, no breaks, just pure heart, grit, and glory. Our live streaming team captured every second in real time, ensuring fans worldwide could witness every highlight as it happened. From grudge matches to surprise upsets, Part 2 had moments that will be replayed and talked about for weeks. The club rivalry format raises the stakes beyond a standard fight card — every fighter carries the pride of their team, and that pressure brings out performances that standard events simply cannot replicate. If you missed it live, watch the full replay now and experience every unforgettable moment of Fight Club War of the Clubs 2025 Part 2. Produced by Thy Sigma — Mumbai's leading combat sports live streaming and production company. Subscribe for more fight nights, live MMA coverage, and combat sports highlights.",
+hashtags: "#FightClub2025 #WarOfTheClubs #MMAKnockouts #CombatSportsFinals #LiveMMA #FightNight #BestFights #ThySigma #LiveStreaming #SportsVideography #IndianMMA #KnockoutHighlights #CageFighting #MumbaiMMA #FightClubPart2" }
     ],
   },
   {
@@ -77,14 +79,14 @@ const portfolioData: PortfolioItem[] = [
     videos: [
       {
         id: "GxVyx4TEgyc",
-        title:"INTERNATIONAL COMBAT SPORTS CHAMPIONSHIP 2025",
-        desc: "Catch the live action of the best fighters in the most anticipated International combat Sport Championship."
-      },
+       title: "International Combat Sports Championship 2025 | Alpha Main Event MMA | Full Live Coverage",
+desc: "The International Combat Sports Championship 2025 is the most anticipated MMA event of the year — and the Alpha Main Event delivered on every single promise. Elite fighters from across the globe came together to compete at the highest level, bringing world-class technique, power, and heart to every round. This is where careers are defined and champions are crowned. Our professional live streaming team provided full broadcast-quality coverage of the entire event, giving fans a real-time ringside experience no matter where they were watching from. The card featured explosive knockouts, tactical ground battles, and submission finishes that had the crowd on its feet throughout the night. Every fighter on the card brought their absolute best, knowing that a performance at an event of this caliber can change the trajectory of an entire career. The International Combat Sports Championship 2025 raised the bar for MMA events in India and showcased the incredible talent that the country's combat sports scene has produced. Whether you are a longtime MMA follower or new to the sport, this event is the perfect showcase of what modern mixed martial arts looks like at its very best. Produced by Thy Sigma — Mumbai's premier combat sports live streaming and event production company. Subscribe for more MMA coverage, fight night highlights, and live sports events.",
+hashtags: "#InternationalCombatSportsChampionship2025 #AlphaMainEvent #MMA2025 #LiveMMA #CombatSports #MMAIndia #FightNight #ThySigma #LiveStreaming #SportsVideography #IndianMMA #MMAHighlights #CageFighting #MumbaiMMA #MMAChampionship"  },
       {
         id: "OGKsguUwaqk",
-        title:"INTERNATIONAL COMBAT SPORTS CHAMPIONSHIP 2025",
-        desc: "Alpha Main Event MMA 2025 - Final matches and tournament conclusion."
-      }],
+       title: "International Combat Sports Championship 2025 | Grand Finale | Alpha Main Event MMA",
+desc: "The grand finale of the International Combat Sports Championship 2025 brought everything to a head — title bouts, championship fights, and the crowning of champions who earned every second of their glory through months of dedication and sacrifice. The closing segment of the Alpha Main Event was nothing short of spectacular, delivering the kind of high-stakes drama that only the biggest events in combat sports can produce. Our live streaming team was there for every moment of the final fights, capturing the full emotional arc of the evening from the tension of the walkouts to the euphoria of the final bell. The athletes who competed in the main event fights left everything inside the cage, giving performances that will stand as benchmarks for Indian MMA in 2025. The crowd energy during the finale was unlike anything else — thousands of fans united by their love of combat sports, witnessing history being made in real time. This is the footage that defines the year in Indian MMA. Watch the complete finale of Alpha Main Event 2025 and be part of the moment that crowned new champions and cemented the International Combat Sports Championship as the premier MMA event in the country. Produced by Thy Sigma — subscribe for more.",
+hashtags: "#AlphaMainEventFinale #InternationalCombatSportsChampionship2025 #MMAChampionship #MMAFinale #CombatSports2025 #LiveMMA #ThySigma #IndianMMA #MMAHighlights #FightNight #CageFighting #MumbaiMMA #MMAIndia #LiveStreaming #SportsVideography" }],
   },
   {
     slug: "shiv",
@@ -94,9 +96,9 @@ const portfolioData: PortfolioItem[] = [
     videos: [
       {
         id: "Ps5VUiQDCGA",
-        title:"SHIVMUDRA PRATISHTHAN CHASHAK 2025",
-        desc: "Shivmudra Pratishthan Chashak 2025 celebrates tradition and competitive spirit in this landmark sporting event."
-      }],
+       title: "Shivmudra Pratishthan Chashak 2025 | Full Event Coverage | Sports Tournament Highlights",
+desc: "The Shivmudra Pratishthan Chashak 2025 is more than a sporting event — it is a celebration of culture, community, and competitive excellence that has grown into one of the most respected and beloved tournaments in the region. Rooted in tradition and driven by a passion for sport, this annual Chashak brings together athletes who embody the values of discipline, respect, and relentless dedication. This year's edition was particularly special, attracting a strong field of competitors determined to honor the occasion with their best performances. From the opening matches to the grand finale, every contest was played with intensity and pride. Our videography team was on the ground throughout, documenting every highlight, every emotional moment, and every victory that made the Shivmudra Pratishthan Chashak 2025 a truly landmark edition. We believe events like this deserve to be captured and preserved with the same care and commitment that the athletes bring to their sport. The tournament also served as a platform for young and emerging talent to showcase their abilities alongside experienced competitors, creating a rich and varied program that kept spectators engaged from start to finish. Beyond the competition, the Chashak is a celebration of the community bonds that sport can forge — bringing families, coaches, supporters, and officials together in shared purpose. Watch the complete coverage of the Shivmudra Pratishthan Chashak 2025 and experience the tradition, passion, and sporting excellence that makes this event one of a kind. Produced by Thy Sigma — subscribe for more event coverage and sports videography.",
+hashtags: "#ShivmudraPratishthanChashak2025 #Chashak2025 #SportsTournament #IndianSports #SportsVideography #ThySigma #TournamentHighlights #EventCoverage #MumbaiSports #SportsIndia #TraditionalSports #CommunityEvent #SportingExcellence #FullCoverage #ChashakHighlights"    }],
   },
   {
     slug: "icff",
@@ -106,9 +108,9 @@ const portfolioData: PortfolioItem[] = [
     videos: [
       {       
         id: "GxVyx4TEgyc",
-        title:"ICFF",
-        desc: "Don't miss your chance to witness the future of fighting unfold before your eyes."
-      }],
+       title: "ICFF 2025 | International Combat Fighting Federation | Full Live Stream Coverage",
+desc: "The International Combat Fighting Federation event was a landmark moment for combat sports in India and a powerful statement about the future of the sport in this country. Featuring some of the most talented and technically gifted fighters currently competing in the circuit, the ICFF brought together athletes who are actively shaping the direction of combat sports across the region. The matchups were carefully constructed to showcase the very best the sport has to offer — explosive stand-up exchanges, high-level grappling sequences, and the kind of finishing ability that separates elite competitors from the rest. Our live streaming team delivered full real-time coverage of the entire event, ensuring that fans across India and around the world could watch every round unfold with the same excitement as those inside the arena. The production quality was designed to match the caliber of the fighters on the card — because events of this standard deserve nothing less than professional broadcast-quality coverage. The ICFF is more than a fight card. It is a vision for what Indian combat sports can become — organized, professional, and capable of producing fighters who can compete and win on the international stage. Every athlete who stepped inside the cage at this event carried that vision with them, and the performances delivered on the promise. Do not miss a single moment of the International Combat Fighting Federation 2025. Watch the full live stream replay now and witness the future of fighting. Produced by Thy Sigma — Mumbai's premier combat sports live streaming and production company. Subscribe for more.",
+hashtags: "#ICFF2025 #InternationalCombatFightingFederation #LiveMMA #CombatSports2025 #MMAIndia #FightNight #ThySigma #LiveStreaming #SportsVideography #IndianMMA #CageFighting #MumbaiMMA #FutureOfFighting #MMAHighlights #CombatSportsIndia"  }],
   },
   {
     slug: "creative-journey",
@@ -118,9 +120,9 @@ const portfolioData: PortfolioItem[] = [
     videos: [
       {
         id: "4fPtqI8XoJ8",
-        title:"SAFETECH AWARDS & CONFERENCE 2025",
-        desc: "The SafeTech Awards & Conference 2025, hosted by Kings Expomedia at The Taj Mahal Hotel, Mumbai, brought together India’s foremost leaders in industrial safety, EHS management, and emergency response. This 5th edition marked a landmark celebration of excellence, honoring organizations and individuals who set new benchmarks in safety culture, risk mitigation, and operational integrity. From recognizing pioneering factories and corporate units under the Industrial Safety Awards to saluting frontline heroes through the Safe India Hero Plus Awards, the event underscored the critical role of safety in ensuring business continuity, workforce morale, and national resilience. The conference also served as a knowledge-sharing platform, fostering collaboration among safety professionals, innovators, and policymakers. The After Movie captures not just the awards, but the spirit of commitment, courage, and collaboration that defines India’s evolving safety landscape."
-      }],
+      title: "National MMA Championship 2025 | IHFF | Full Live Stream | Best Fights & Highlights",
+desc: "The National MMA Championship 2025 at IHFF was the biggest combat sports event India has hosted this year — a full-scale professional production that brought together the finest MMA talent from across the country for the ultimate test of skill, fitness, and mental fortitude. This was not just another fight card. This was a defining moment for Indian MMA — proof that the sport has arrived at a level of organization, talent depth, and production quality that can stand alongside international standards. Our team was there from start to finish, streaming every bout live with broadcast-quality coverage that gave fans a true ringside experience no matter where they were watching from. The championship featured fighters who had spent months preparing for this exact moment — sharpening their striking, refining their grappling, and building the kind of conditioning that allows them to perform at full intensity for the full duration of every fight. The matchups delivered on every level, with technical brilliance matched by genuine heart and a refusal to take a backward step. IHFF provided the perfect stage for a tournament of this magnitude, and the atmosphere inside the venue was electric throughout the evening. Every fighter who competed at the National MMA Championship 2025 represented the very best that Indian combat sports has to offer today. For fans of MMA, this is essential viewing — a complete picture of where Indian combat sports stands right now and a preview of where it is headed. Watch the full live stream replay, relive every highlight, and be part of the moment that defined Indian MMA in 2025. Produced by Thy Sigma — subscribe for more.",
+hashtags: "#NationalMMAChampionship2025 #IHFF2025 #MMAIndia #LiveMMA #CombatSports2025 #IndianMMA #FightNight #ThySigma #LiveStreaming #SportsVideography #MMAHighlights #CageFighting #MumbaiMMA #NationalChampionship #MMAFinals"  }],
     images:[
         "/images/safetech/safetech1.jpeg",
         "/images/safetech/safetech2.jpeg",
@@ -173,27 +175,32 @@ const portfolioData: PortfolioItem[] = [
       {
         id: "GxVyx4TEgyc",
         title:"Live Streaming of National MMA Championship 2025",
-        desc: "We are about to witness epic talent from across the globe hash it out....Remember! The cage favours those who fears none. Catch the live action of the best fighters in the most anticipated International combat Sport Championship. Ending  the year with a banggggg...... cheer for your fighter in the live comments section."
+        desc: "We are about to witness epic talent from across the globe hash it out....Remember! The cage favours those who fears none. Catch the live action of the best fighters in the most anticipated International combat Sport Championship. Ending  the year with a banggggg...... cheer for your fighter in the live comments section.",
+        hashtags: "#NationalMMAChampionship2025 #LiveStreaming #SportsVideography #ThySigma"
       },
       {
         id: "https://www.instagram.com/reel/DS4zKRPkbEi/",
         title:"National Event MMA Championship 2025",
-        desc: "A big shoutout to Zandu Fast Relief for supporting our athletes during the National MMA Championship 2025"
+        desc: "A big shoutout to Zandu Fast Relief for supporting our athletes during the National MMA Championship 2025",
+        hashtags: "#NationalMMAChampionship2025 #Shoutout #SupportOurAthletes #ThySigma"
       },
       {
         id: "https://www.instagram.com/reel/DRzIEU6EQBa/",
         title:"#MMAFI #RiteBite #MaxProtein",
-        desc: "We truly appreciate your support toward India’s combat sports community"
+        desc: "We truly appreciate your support toward India’s combat sports community",
+        hashtags: "#MMAFI #RiteBite #MaxProtein"
       },
       {
         id: "https://www.instagram.com/reel/DRycJYQEWBO/",
         title:"#EnergyPartner #NationalMMAChampionship2025 #IHFF2025",
-        desc:"A huge shoutout to Campa Energy for powering the athletes of the National MMA Championship 2025 at IHFF!"
+        desc:"A huge shoutout to Campa Energy for powering the athletes of the National MMA Championship 2025 at IHFF!",
+        hashtags: "#EnergyPartner #NationalMMAChampionship2025 #IHFF2025"
       },
       {
         id:"https://www.instagram.com/reel/DRn6KdXiHq0/",
         title:"Athlete recovery = Stronger performance",
-        desc:"We truly appreciate your partnership and commitment to the combat sports community."
+        desc:"We truly appreciate your partnership and commitment to the combat sports community.",
+        hashtags: "#AthleteRecovery #StrongerPerformance #ThySigma"
       }
     ],
   },
@@ -367,10 +374,18 @@ const prevImage = () => {
               lineHeight: 1.7,
               opacity: 0.9,
               textAlign: "justify",
+              whiteSpace: "pre-line",
             }}
           >
             {video.desc}
           </p>
+         <p style={{ marginTop: "10px" }}>
+  {video.hashtags.split(" ").map((tag, i) => (
+    <span key={i} style={{ color: "#00aced", marginRight: "8px" }}>
+      {tag}
+    </span>
+  ))}
+</p>
         </div>
   );
       })}

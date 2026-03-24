@@ -216,6 +216,7 @@ const HomeTwoPortfolio = () => {
             muted
             loop
             playsInline
+            preload="none"
           />
           <div className="pf-overlay__tint" />
         </div>
