@@ -9,6 +9,7 @@ const HomeTwoOffer = () => {
         position: "relative",
         zIndex: 2,
         background: "transparent",
+        paddingTop: "55px", 
         paddingBottom: "30px",
       }}
     >

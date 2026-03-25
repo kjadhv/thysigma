@@ -307,6 +307,7 @@ maxWidth: isMobile || isTablet ? "100%" : "100vw",
 height: isMobile || isTablet ? "auto" : "100vh",
 aspectRatio: isMobile || isTablet ? "16/9" : undefined,
 zIndex: 1,
+pointerEvents: "none",
 borderRadius: isMobile || isTablet ? "20px" : "0",
 overflow: "hidden",
 border: isMobile || isTablet ? "1px solid rgba(150, 150, 150, 0.3)" : "none",
@@ -328,8 +329,353 @@ transition: "opacity 0.3s ease",
         >
           <source src="/Show Reel- sepia.mp4" type="video/mp4" />
         </video>
-      </div>
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          style={{
+            width: "100%",
+            height: "100%",
+            objectFit: "cover",
+            objectPosition: "center center",
+          }}
+        >
+          <source src="/Show Reel- sepia.mp4" type="video/mp4" />
+        </video>
 
+        {/* ← PASTE HERE ↓ */}
+        {!(isMobile || isTablet) && (
+          <div style={{
+            position: "absolute",
+            top: 0, left: 0,
+            width: "100%", height: "100%",
+            zIndex: 50,
+            display: "flex",
+            alignItems: "stretch",
+            background: "linear-gradient(to right, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.2) 60%, transparent 100%)",
+            pointerEvents: "none",
+          }}>
+            {/* Social icons column */}
+            <div style={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              justifyContent: "center",
+              gap: "22px",
+              padding: "0 18px",
+            }}>
+              {[
+                { icon: "fa-instagram", href: "#" },
+                { icon: "fa-linkedin-in", href: "#" },
+              ].map(({ icon, href }) => (
+                <a key={icon} href={href} style={{
+                  width: "38px", height: "38px",
+                  borderRadius: "50%",
+                  border: "1px solid rgba(255,255,255,0.25)",
+                  display: "flex", alignItems: "center", justifyContent: "center",
+                  color: "#af630cff", fontSize: "13px",
+                  textDecoration: "none",
+                  transition: "border-color 0.2s, color 0.2s",
+                }}>
+                  <i className={`fa-brands ${icon}`}></i>
+                </a>
+              ))}
+            </div>
+
+            {/* Orange vertical line */}
+            <div style={{
+              width: "2px",
+              background: "#5a5450ff",
+              margin: "60px 0",
+              borderRadius: "2px",
+              flexShrink: 0,
+            }} />
+
+            {/* Main content */}
+            <div style={{
+  display: "flex",
+  color: "#68310cff",
+  flexDirection: "column",
+  justifyContent: "flex-start",   // ✅ moved up
+  padding: "0 60px",
+  paddingTop: "120px",            // 🔥 adjust this value
+  maxWidth: "1400px",   
+  width: "100%",
+  pointerEvents: "auto",
+}}>
+              {/* Watch Showreel */}
+              {/* <div style={{
+                display: "flex", alignItems: "center", gap: "14px",
+                marginBottom: "32px",
+              }}>
+                <span style={{
+                  color: "#fff", fontSize: "14px",
+                  fontWeight: 400, letterSpacing: "1px",
+                }}>Watch Showreel</span>
+                <button style={{
+                  width: "44px", height: "44px",
+                  borderRadius: "50%",
+                  background: "#e97820",
+                  border: "none", cursor: "pointer",
+                  display: "flex", alignItems: "center", justifyContent: "center",
+                  color: "#fff", fontSize: "14px",
+                  flexShrink: 0,
+                }}>
+                  <i className="fa-solid fa-play"></i>
+                </button>
+              </div> */}
+
+              {/* Big title - Glitch effect */}
+              <div style={{ position: "relative", marginBottom: "24px" }}>
+                <style>{`
+                 @keyframes glitch-main {
+  0%   { transform: translate(0); }
+  10%  { transform: translate(-2px, 1px); }
+  20%  { transform: translate(2px, -1px); }
+  30%  { transform: translate(-1px, 2px); }
+  40%  { transform: translate(1px, -2px); }
+  50%  { transform: translate(-3px, 0); }
+  60%  { transform: translate(3px, 1px); }
+  70%  { transform: translate(-1px, -1px); }
+  80%  { transform: translate(2px, 2px); }
+  90%  { transform: translate(-2px, -1px); }
+  100% { transform: translate(0); }
+}
+@keyframes glitch-red {
+  0%   { clip-path: inset(10% 0 80% 0); transform: translate(-4px, 0); opacity: 0.9; }
+  15%  { clip-path: inset(60% 0 20% 0); transform: translate(4px, 0);  opacity: 0.8; }
+  30%  { clip-path: inset(30% 0 50% 0); transform: translate(-3px, 0); opacity: 1;   }
+  45%  { clip-path: inset(75% 0 5% 0);  transform: translate(3px, 0);  opacity: 0.7; }
+  60%  { clip-path: inset(5% 0 70% 0);  transform: translate(-4px, 0); opacity: 0.9; }
+  75%  { clip-path: inset(45% 0 35% 0); transform: translate(4px, 0);  opacity: 0.8; }
+  90%  { clip-path: inset(20% 0 60% 0); transform: translate(-2px, 0); opacity: 1;   }
+  100% { clip-path: inset(10% 0 80% 0); transform: translate(-4px, 0); opacity: 0.9; }
+}
+@keyframes glitch-cyan {
+  0%   { clip-path: inset(70% 0 10% 0); transform: translate(4px, 0);  opacity: 0.8; }
+  15%  { clip-path: inset(20% 0 60% 0); transform: translate(-4px, 0); opacity: 0.7; }
+  30%  { clip-path: inset(55% 0 25% 0); transform: translate(3px, 0);  opacity: 0.9; }
+  45%  { clip-path: inset(5% 0 75% 0);  transform: translate(-3px, 0); opacity: 0.8; }
+  60%  { clip-path: inset(40% 0 40% 0); transform: translate(4px, 0);  opacity: 0.7; }
+  75%  { clip-path: inset(80% 0 5% 0);  transform: translate(-4px, 0); opacity: 0.9; }
+  90%  { clip-path: inset(15% 0 65% 0); transform: translate(3px, 0);  opacity: 0.8; }
+  100% { clip-path: inset(70% 0 10% 0); transform: translate(4px, 0);  opacity: 0.8; }
+}
+.glitch-title {
+  animation: glitch-main 5s infinite;
+}
+.glitch-title::before {
+  content: attr(data-text);
+  position: absolute;
+  top: 0; left: 0;
+  color: #cc9e9eff;
+  animation: glitch-red 3s infinite;
+  pointer-events: none;
+  width: 100%;
+  mix-blend-mode: screen;
+}
+.glitch-title::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0; left: 0;
+  color: #00c8ff;
+  animation: glitch-cyan 3s infinite;
+  pointer-events: none;
+  width: 100%;
+  mix-blend-mode: screen;
+}
+  .services-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: #e97820;
+  color: #fff;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 14px 28px;
+  border-radius: 4px;
+  border: 2px solid #e97820;
+  cursor: pointer;
+  position: relative;
+  z-index: 20;
+  pointer-events: auto;
+  transition: background 0.25s ease, color 0.25s ease;
+}
+.services-btn:hover {
+  background: transparent;
+  color: #e97820;
+}
+                `}</style>
+                 <h1
+                  className="glitch-title"
+                  data-text="Professional Event Media Services:"
+                  style={{
+                    fontFamily: "'Bebas Neue', sans-serif",
+                    fontSize: "60px",
+                    lineHeight: 1.1,
+                    letterSpacing: "2px",
+                    color: "#c25710ff",
+                    WebkitTextFillColor: "#b65718ff",
+                    margin: 0,
+                    position: "relative",
+                    maxWidth: "1200px",
+                  }}
+                >
+                  Professional Event Media Services:
+                </h1>
+ </div>
+
+              {/* Bullet list — completely outside glitch div */}
+              {/* <div style={{
+                display: "flex",
+                flexDirection: "column",
+                gap: "10px",
+                marginBottom: "24px",
+                paddingLeft: "4px",
+              }}>
+                {["Live Streaming", "Videography", "Post Production"].map((item) => (
+                  <div key={item} style={{
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "10px",
+                    fontSize: "clamp(16px, 1.5vw, 22px)",
+                    color: "#e97820",
+                    fontFamily: "'Bebas Neue', sans-serif",
+                    letterSpacing: "1px",
+                  }}>
+                    <span style={{
+                      width: "6px", height: "6px",
+                      borderRadius: "50%",
+                      background: "#e97820",
+                      flexShrink: 0,
+                    }} />
+                    {item}
+                  </div>
+                ))}
+              </div> */}
+             {/* Bullet list with glitch effect */}
+              <style>{`
+                .glitch-bullet {
+                  position: relative;
+                  display: inline-block;
+                  animation: glitch-main 5s infinite;
+                }
+                .glitch-bullet::before {
+                  content: attr(data-text);
+                  position: absolute;
+                  top: 0; left: 0;
+                  color: #cf903cff;
+                  animation: glitch-red 3s infinite;
+                  pointer-events: none;
+                  width: 100%;
+                  mix-blend-mode: screen;
+                }
+                .glitch-bullet::after {
+                  content: attr(data-text);
+                  position: absolute;
+                  top: 0; left: 0;
+                  color: #ff9900ff;
+                  animation: glitch-cyan 3s infinite;
+                  pointer-events: none;
+                  width: 100%;
+                  mix-blend-mode: screen;
+                }
+              `}</style>
+              <div style={{
+                display: "flex",
+                flexDirection: "column",
+                gap: "10px",
+                marginBottom: "24px",
+                paddingLeft: "4px",
+              }}>
+                {["Live Streaming", "Videography", "Post Production"].map((item) => (
+                  <div key={item} style={{
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "10px",
+                    fontSize: "30px",
+                    fontFamily: "'Bebas Neue', sans-serif",
+                    letterSpacing: "1px",
+                  }}>
+                    <span style={{
+                      width: "6px", height: "6px",
+                      borderRadius: "50%",
+                      background: "#e97820",
+                      flexShrink: 0,
+                    }} />
+                    <span
+                      className="glitch-bullet"
+                      data-text={item}
+                      style={{ color: "#c25710", fontSize: "inherit" }}
+                    >
+                      {item}
+                    </span>
+                  </div>
+                ))}
+              </div>
+              {/* Description */}
+              <p style={{
+                fontSize: "clamp(18px, 1.7vw, 20px)",
+                lineHeight: 1.7,
+                color: "#e97820",
+                marginBottom: "32px",
+                maxWidth: "460px",
+              }}>
+                End-to-end media coverage for corporate events, sports, conferences, expos, and more.
+              </p>
+
+              {/* Our Services Button */}
+              {/* ── Our Services Button — truly outside everything ── */}
+      {!(isMobile || isTablet) && (
+        <>
+          <style>{`
+            .services-btn-fixed {
+              display: inline-flex;
+              align-items: center;
+              gap: 10px;
+              background: #e97820;
+              color: #fff !important;
+              text-decoration: none;
+              font-size: 13px;
+              font-weight: 600;
+              letter-spacing: 2px;
+              text-transform: uppercase;
+              padding: 14px 28px;
+              border-radius: 4px;
+              border: 2px solid #e97820;
+              cursor: pointer;
+              transition: background 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+            }
+            .services-btn-fixed:hover {
+              background: #000 !important;
+              color: #fff !important;
+              border-color: #000 !important;
+            }
+          `}</style>
+          <div style={{
+            position: "fixed",
+            bottom: "60px",
+            right: "60px",
+            zIndex: 9999,
+          }}>
+            <Link href="/our-services" className="services-btn-fixed">
+              View Our Services
+              <span style={{ fontSize: "16px" }}>→</span>
+            </Link>
+          </div>
+        </>
+      )}
+            </div>
+          </div>
+        )}
+
+      </div> {/* ← this closes fullscreenVideoRef */}
+
+    
       {/* Boxed capsule video - MOVED DOWN */}
       <div
         ref={boxedVideoContainerRef}
@@ -360,6 +706,7 @@ transition: "opacity 0.3s ease",
             loop
             muted
             playsInline
+            preload="auto"
             style={{
               width: "100%",
               height: "100%",
@@ -406,9 +753,7 @@ transition: "opacity 0.3s ease",
                       color: "#13110fff", // ⭐ yellow
                       WebkitTextFillColor: "#f0eeebff",
                     }}>
-                      THYSIGMA creates high-performance digital experiences with
-                      a focus on luxury design, clean interfaces, and seamless
-                      user interaction.
+                      Event Coverage & Live Streaming Services in Mumbai | Thy Sigma , Navi Mumbai
                     </p>
                   </div>
                   <div className="arrow-wrapper d-none d-lg-block" style={{ display: "none" }}>

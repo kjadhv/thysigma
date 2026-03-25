@@ -239,6 +239,9 @@ const HomeTwoPortfolio = () => {
           position: relative;
           padding-bottom: 80px;
         }
+          .pf-grid {
+          margin-bottom: 130px;
+        }
 
         /* ─── Grid ─── */
         .pf-grid {
@@ -289,6 +292,7 @@ const HomeTwoPortfolio = () => {
           transition:
             opacity   0.45s ease,
             transform 0.55s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+          filter: sepia(0.55) brightness(0.82) contrast(1.05);
         }
 
         /* Non-active cells when grid has an active cell → drop image, show video */

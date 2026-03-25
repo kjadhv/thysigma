@@ -38,13 +38,18 @@ export default function HomeSponsor() {
         zIndex: 2,
         display: "flex",
         alignItems: "center",
+        marginTop: "80px",
         paddingTop: "30px",
-        paddingBottom: "40px",
+        paddingBottom: "70px",
         minHeight: "290px",
       }}
     >
       {/* ✅ FLOATING CENTER HEADING */}
-      <h3 className="clientele-heading">Our Esteemed Clientele</h3>
+      <h3 
+      className="clientele-heading" 
+      style={{marginBottom: "100px" ,
+
+      }}>Our Esteemed Clientele</h3>
 
       <div className="container-fluid">
         <Swiper
@@ -83,7 +88,7 @@ export default function HomeSponsor() {
         /* ===== FLOATING HEADING ===== */
         .clientele-heading {
           position: absolute;
-          top: -42px;
+          top: -90px;
           left: 50%;
           transform: translateX(-50%);
           z-index: 20;

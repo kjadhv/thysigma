@@ -1,10 +1,9 @@
 import React from "react";
-
 import phone from "public/images/wedo.jpg";
 import mail from "public/images/cameraman.jpg";
 import location from "public/images/ve.jpg";
 import time from "public/images/sm.jpg";
-
+import Link from "next/link";
 const HomeFour = () => {
   const items = [
     { title: "Videography", bg: phone },
@@ -17,16 +16,17 @@ const HomeFour = () => {
     <div className="home-four">
       <div className="home-four__grid">
         {items.map((item, i) => (
-          <div
-            key={i}
-            className="home-four__box"
-            style={{ backgroundImage: `url(${item.bg.src})` }}
-          >
-            <div className="overlay"></div>
-            <div className="content">
-              <h4>{item.title}</h4>
+          <Link key={i} href="/our-services" style={{ textDecoration: "none", display: "block" }}>
+            <div
+              className="home-four__box"
+              style={{ backgroundImage: `url(${item.bg.src})` }}
+            >
+              <div className="overlay"></div>
+              <div className="content">
+                <h4>{item.title}</h4>
+              </div>
             </div>
-          </div>
+          </Link>
         ))}
       </div>
 
