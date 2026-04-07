@@ -240,7 +240,31 @@ const HomeTwoBanner = () => {
       ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
     };
   }, []);
-
+useEffect(() => {
+  const style = document.createElement("style");
+  style.innerHTML = `
+    @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@600&display=swap');
+    .glass-box-a {
+      padding: 18px 26px;
+      border-radius: 14px;
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.08);
+      transition: box-shadow 0.25s, background 0.25s, border-color 0.25s;
+    }
+    .glass-box-a:hover {
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.14), 0 0 24px rgba(245,230,200,0.15);
+    }
+    .glass-label-a {
+      font-family: 'Cinzel', serif;
+      font-size: 20px;
+      font-weight: 600;
+      letter-spacing: 2px;
+    }
+  `;
+  document.head.appendChild(style);
+  return () => { document.head.removeChild(style); };
+}, []);
   return (
     <section
       className="banner-two"
@@ -512,7 +536,7 @@ transition: "opacity 0.3s ease",
                 `}</style>
                  <h1
                   className="glitch-title"
-                  data-text="Professional Event Media Services:"
+                  data-text="Professional Event Media Services"
                   style={{
                     fontFamily: "'Bebas Neue', sans-serif",
                     fontSize: "60px",
@@ -525,7 +549,7 @@ transition: "opacity 0.3s ease",
                     maxWidth: "1200px",
                   }}
                 >
-                  Professional Event Media Services:
+                  Professional Event Media Services
                 </h1>
  </div>
 
@@ -558,7 +582,7 @@ transition: "opacity 0.3s ease",
                 ))}
               </div> */}
              {/* Bullet list with glitch effect */}
-              <style>{`
+              {/* <style>{`
                 .glitch-bullet {
                   position: relative;
                   display: inline-block;
@@ -616,7 +640,53 @@ transition: "opacity 0.3s ease",
                     </span>
                   </div>
                 ))}
-              </div>
+              </div> */}
+
+
+              {/* Glass morphism service boxes - Cinzel Ivory */}
+{/* <style>{`
+  @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@600&display=swap');
+  .glass-box-a {
+    padding: 18px 26px;
+    border-radius: 14px;
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.08);
+    transition: box-shadow 0.25s, background 0.25s, border-color 0.25s;
+  }
+  .glass-box-a:hover {
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.14), 0 0 24px rgba(245,230,200,0.15);
+  }
+  .glass-label-a {
+    font-family: 'Cinzel', serif;
+    font-size: 20px;
+    font-weight: 600;
+    letter-spacing: 2px;
+  }
+`}</style> */}
+<div style={{
+  display: "flex",
+  flexDirection: "row",
+  flexWrap: "wrap",
+  gap: "14px",
+  marginBottom: "28px",
+}}>
+  {[
+    { label: "Live Streaming", bg: "rgba(255,200,80,0.06)",  border: "rgba(255,200,80,0.3)",   color: "#ffd56b" },
+    { label: "Videography",    bg: "rgba(255,240,210,0.06)", border: "rgba(255,240,210,0.25)", color: "#f5e6c8" },
+    { label: "Photography",    bg: "rgba(200,120,60,0.08)",  border: "rgba(200,120,60,0.35)",  color: "#d4875a" },
+  ].map(({ label, bg, border, color }) => (
+    <div
+      key={label}
+      className="glass-box-a"
+      style={{ background: bg, border: `1px solid ${border}` }}
+    >
+      <span className="glass-label-a" style={{ color }}>
+        {label}
+      </span>
+    </div>
+  ))}
+</div>
               {/* Description */}
               <p style={{
                 fontSize: "clamp(18px, 1.7vw, 20px)",

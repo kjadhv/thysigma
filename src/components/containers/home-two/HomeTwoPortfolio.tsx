@@ -26,8 +26,8 @@ const PORTFOLIO_ITEMS: PortfolioItem[] = [
   },
   {
     img: two,   title: "Content Monetisation",
-    video:       "/images/homepg/monetize.mp4",
-    videoMobile: "/images/homepg/monetize.mp4"
+    video:       "/images/homepg/contents.mp4",
+    videoMobile: "/images/homepg/contents.mp4"
   },
   {
     img: three, title: "Technology & Infrastructure Services",
@@ -41,8 +41,8 @@ const PORTFOLIO_ITEMS: PortfolioItem[] = [
   },
   {
     img: five,  title: "Content Repurposing",
-    video:       "/images/homepg/repurpose6.mp4",
-    videoMobile: "/images/homepg/repurpose6.mp4"
+    video:       "/images/homepg/monitor.mp4",
+    videoMobile: "/images/homepg/monitor.mp4"
   },
   {
     img: six,   title: "Content Marketing",
@@ -210,8 +210,8 @@ const HomeTwoPortfolio = () => {
         */}
         <div className={`pf-overlay${overlayOn ? " pf-overlay--on" : ""}`}>
           <video
-            ref={videoRef}
-            className="pf-overlay__video"
+  ref={videoRef}
+  className={`pf-overlay__video${activeIdx === 4 ? " pf-overlay__video--bottom" : ""}`}
             autoPlay
             muted
             loop
@@ -393,11 +393,15 @@ const HomeTwoPortfolio = () => {
         }
         .pf-overlay--on { opacity: 1; }
         .pf-overlay__video {
-          width: 100%; height: 100%;
-          object-fit: cover;
-          object-position: top; 
-          display: block;
-        }
+  width: 100%; height: 100%;
+  object-fit: cover;
+  object-position: top;
+  display: block;
+  transition: object-position 0.3s ease;
+}
+.pf-overlay__video--bottom {
+  object-position: bottom;
+}
         .pf-overlay__tint {
           position: absolute;
           inset: 0;
